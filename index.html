@@ -28,6 +28,8 @@
   --white-08:rgba(238,234,226,0.08);
   --border:rgba(238,234,226,0.09);
   --border-md:rgba(238,234,226,0.16);
+  --purple:#D0C2EC;
+  --purple-dark:#1A1526;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -42,15 +44,16 @@ nav{
   backdrop-filter:blur(20px);
   border-bottom:1px solid var(--border);
 }
-.nav-logo{display:flex;align-items:center;text-decoration:none;height:44px}
-.nav-logo img{height:44px;width:44px;object-fit:contain;display:block}
+/* App Icon inline SVG — always white, full visible */
+.nav-logo{display:flex;align-items:center;text-decoration:none;height:44px;flex-shrink:0}
+.nav-logo svg{width:auto;height:36px;display:block}
 .nav-center{position:absolute;left:50%;transform:translateX(-50%);display:flex;gap:2.2rem;list-style:none}
 .nav-center a{font-size:.78rem;font-weight:400;letter-spacing:.06em;color:var(--white-40);text-decoration:none;text-transform:uppercase;transition:color .18s}
 .nav-center a:hover{color:var(--white)}
 .nav-right{display:flex;align-items:center;gap:1.4rem}
 .nav-right a{font-size:.78rem;letter-spacing:.04em;color:var(--white-40);text-decoration:none;transition:color .18s}
 .nav-right a:hover{color:var(--yellow)}
-.nav-cta{font-size:.75rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:.4rem 1.1rem;border:1px solid var(--white-18);color:var(--white)!important;transition:border-color .18s,background .18s!important}
+.nav-cta{font-size:.75rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:.4rem 1.1rem;border:1px solid var(--white-18);color:var(--white)!important;transition:border-color .18s,background .18s,color .18s!important}
 .nav-cta:hover{border-color:var(--yellow)!important;background:var(--yellow-dim)!important;color:var(--yellow)!important}
 
 /* ── HERO ── */
@@ -62,7 +65,6 @@ nav{
   text-align:center;
   position:relative;overflow:hidden;
   border-bottom:1px solid var(--border);
-  /* Même noir que le header + pointillés FigJam */
   background-color:var(--bg);
   background-image:radial-gradient(circle, rgba(238,234,226,0.07) 1px, transparent 1px);
   background-size:28px 28px;
@@ -71,97 +73,63 @@ nav{
 .hero-content{position:relative;z-index:1;max-width:760px;width:100%;animation:fadeUp .7s ease both}
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 
-/* EKO wordmark */
-.hero-logo{display:inline-block;margin-bottom:.6rem}
+/* EKO wordmark — white paths */
+.hero-logo{display:inline-block;margin-bottom:.5rem}
 .hero-logo svg{width:auto;height:clamp(48px,8vw,96px)}
 .hero-logo svg path{fill:var(--white)}
 
-/* DESIGN subline — Kanit Bold */
+/* DESIGN subline Kanit */
 .hero-design-sub{
-  font-family:'Kanit',sans-serif;
-  font-weight:600;
-  font-size:clamp(.7rem,1.4vw,1rem);
-  letter-spacing:.5em;
-  text-transform:uppercase;
-  color:var(--white-40);
-  margin-bottom:1.4rem;
+  font-family:'Kanit',sans-serif;font-weight:600;
+  font-size:clamp(.7rem,1.4vw,1rem);letter-spacing:.5em;
+  text-transform:uppercase;color:var(--white-40);margin-bottom:1.2rem;
 }
 
 /* Tagline */
 .hero-tagline{
-  font-family:'DM Sans',sans-serif;
-  font-size:clamp(.85rem,1.4vw,1rem);
-  font-weight:300;
-  font-style:italic;
-  color:var(--white-40);
-  letter-spacing:.04em;
-  margin-bottom:2.8rem;
+  font-family:'DM Sans',sans-serif;font-size:clamp(.85rem,1.4vw,1rem);
+  font-weight:300;font-style:italic;color:var(--white-40);
+  letter-spacing:.04em;margin-bottom:2.8rem;
 }
 
 /* ── AI ZONE ── */
 .ai-zone{max-width:560px;margin:0 auto;animation:fadeUp .8s .1s ease both}
-
 .ai-prompt-label{
   font-size:.68rem;font-weight:500;letter-spacing:.14em;
   text-transform:uppercase;color:var(--yellow);
-  margin-bottom:1.1rem;
-  display:flex;align-items:center;gap:.5rem;justify-content:center;
+  margin-bottom:1.1rem;display:flex;align-items:center;gap:.5rem;justify-content:center;
 }
 .ai-prompt-label::before,.ai-prompt-label::after{content:'';flex:1;max-width:50px;height:1px;background:var(--yellow-border)}
 
-/* Messages */
 .ai-messages{min-height:52px;max-height:240px;overflow-y:auto;margin-bottom:1.4rem;display:flex;flex-direction:column;gap:.55rem;text-align:left}
 .ai-messages::-webkit-scrollbar{width:2px}
 .ai-messages::-webkit-scrollbar-thumb{background:var(--border-md)}
 .msg{display:flex;gap:.55rem;align-items:flex-start;animation:fadeUp .3s ease both}
 .msg.user{flex-direction:row-reverse}
-.msg-av{width:26px;height:26px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:500}
+.msg-av{width:26px;height:26px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.75rem;line-height:1}
 .msg-av.ai{background:var(--yellow-dim);border:1px solid var(--yellow-border);color:var(--yellow)}
 .msg-av.user{background:var(--white-08);border:1px solid var(--border-md);color:var(--white-40)}
 .msg-bubble{font-size:.86rem;line-height:1.65;color:var(--white);background:var(--white-08);border:1px solid var(--border);padding:.55rem .85rem;max-width:calc(100% - 38px)}
 .msg-bubble a{color:var(--yellow)}
 .msg.user .msg-bubble{background:var(--yellow-dim);border-color:var(--yellow-border)}
 
-/* ── INPUT STYLE (Search-inspired: full border radius, inline CTA) ── */
-.ai-input-wrap{
-  display:flex;align-items:center;
-  background:var(--white);
-  border-radius:100px;
-  padding:.25rem .25rem .25rem 1.4rem;
-  transition:box-shadow .2s;
-}
+/* Input pill style */
+.ai-input-wrap{display:flex;align-items:center;background:var(--white);border-radius:100px;padding:.25rem .25rem .25rem 1.4rem;transition:box-shadow .2s}
 .ai-input-wrap:focus-within{box-shadow:0 0 0 3px rgba(245,200,66,.25)}
-.ai-input{
-  flex:1;background:transparent;border:none;outline:none;
-  font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:400;
-  color:#0C0C0C;
-  min-width:0;
-}
+.ai-input{flex:1;background:transparent;border:none;outline:none;font-family:'DM Sans',sans-serif;font-size:.95rem;color:#0C0C0C;min-width:0}
 .ai-input::placeholder{color:rgba(12,12,12,.45);font-style:italic}
-.ai-send{
-  flex-shrink:0;
-  background:#0C0C0C;color:var(--white);border:none;cursor:pointer;
-  font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:500;
-  letter-spacing:.04em;
-  padding:.6rem 1.4rem;
-  border-radius:100px;
-  display:flex;align-items:center;gap:.4rem;
-  transition:background .18s,color .18s;
-  white-space:nowrap;
-}
+.ai-send{flex-shrink:0;background:#0C0C0C;color:var(--white);border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:500;letter-spacing:.04em;padding:.6rem 1.4rem;border-radius:100px;display:flex;align-items:center;gap:.4rem;transition:background .18s,color .18s;white-space:nowrap}
 .ai-send:hover{background:#222;color:var(--yellow)}
 .ai-send svg{width:13px;height:13px;fill:currentColor}
 
-/* Limit */
 .limit-row{display:flex;align-items:center;gap:.65rem;margin-top:.85rem;justify-content:center}
 .limit-track{height:1px;width:100px;background:var(--border-md);position:relative}
 .limit-fill{position:absolute;top:0;left:0;height:100%;background:var(--yellow);transition:width .4s}
 .limit-label{font-size:.68rem;color:var(--white-40);letter-spacing:.04em}
 .limit-label span{color:var(--yellow)}
 
-/* Quick tags */
 .quick-tags{display:flex;flex-wrap:wrap;gap:.38rem;justify-content:center;margin-top:1.2rem;animation:fadeUp .8s .2s ease both}
-.tag{font-size:.73rem;font-weight:400;letter-spacing:.02em;padding:.3rem .85rem;border:1px solid var(--border-md);background:transparent;color:var(--white-40);cursor:pointer;transition:all .16s;border-radius:0}
+.tag{font-size:.73rem;font-weight:400;letter-spacing:.02em;padding:.3rem .85rem;border:1px solid var(--border-md);background:transparent;color:var(--white-40);cursor:pointer;transition:all .16s}
 .tag:hover{border-color:var(--yellow);color:var(--yellow);background:var(--yellow-dim)}
 
 .typing{display:flex;gap:4px;align-items:center;padding:3px 0}
@@ -170,31 +138,34 @@ nav{
 .typing span:nth-child(3){animation-delay:.4s}
 @keyframes tb{0%,60%,100%{opacity:1}30%{opacity:.15}}
 
-/* API notice */
 .api-notice{font-size:.7rem;color:var(--white-40);padding:.6rem 0;margin:.75rem auto 0;display:flex;gap:.45rem;align-items:flex-start;max-width:520px;text-align:left;border-top:1px solid var(--border)}
 .api-notice a{color:var(--yellow)}
 #api-key-input{display:block;width:100%;margin-top:.3rem;padding:.3rem 0;border:none;border-bottom:1px solid var(--border-md);background:transparent;color:var(--white);font-family:'DM Sans',sans-serif;font-size:.8rem;outline:none}
 #api-key-input::placeholder{color:var(--white-40)}
 #api-key-input:focus{border-bottom-color:var(--yellow)}
 
-.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.35rem;color:var(--white-40);font-size:.67rem;letter-spacing:.1em;text-transform:uppercase;animation:fadeUp 1s .5s ease both}
-.scroll-arrow{animation:sa 1.8s ease infinite}
+/* Scroll hint — clickable, yellow hover */
+.scroll-hint{
+  position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:.35rem;
+  color:var(--white-40);font-size:.67rem;letter-spacing:.1em;text-transform:uppercase;
+  animation:fadeUp 1s .5s ease both;
+  text-decoration:none;cursor:pointer;transition:color .18s;
+}
+.scroll-hint:hover{color:var(--yellow)}
+.scroll-arrow{animation:sa 1.8s ease infinite;display:block}
 @keyframes sa{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
 
 /* ── MARQUEE ── */
 .marquee-strip{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:.5rem 0;background:var(--bg)}
 .marquee-inner{display:flex;gap:3rem;white-space:nowrap;animation:marquee 24s linear infinite}
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.marquee-item{
-  font-family:'Kanit',sans-serif;font-weight:300;
-  font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;
-  color:rgba(238,234,226,0.55);
-  display:inline-flex;align-items:center;gap:.75rem;
-}
+.marquee-item{font-family:'Kanit',sans-serif;font-weight:300;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(238,234,226,0.55);display:inline-flex;align-items:center;gap:.75rem}
 .marquee-item::after{content:'✦';font-size:.45rem;color:var(--yellow);opacity:.7}
 
-/* ── SECTION ── */
+/* ── SECTIONS ── */
 .section{padding:5rem 2rem;max-width:1100px;margin:0 auto}
+.section-projects{padding:0 2rem 5rem;max-width:1100px;margin:0 auto}
 .sec-label{font-size:.66rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow);margin-bottom:.35rem}
 .sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:700;line-height:1.15;letter-spacing:-.02em;margin-bottom:2.2rem}
 
@@ -208,7 +179,6 @@ nav{
 .bc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--yellow);transform:scaleX(0);transform-origin:left;transition:transform .28s ease}
 .bc:hover::after{transform:scaleX(1)}
 
-/* Grid slots */
 .b-intro{grid-column:1/8}
 .b-sep{grid-column:8/13;background:var(--bg2)}
 .b-sep .seph-logo{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;letter-spacing:.06em;color:var(--white);margin-bottom:.4rem}
@@ -231,10 +201,8 @@ nav{
 .plist li:last-child{border-bottom:none}
 .plist li::before{content:'→';color:var(--yellow);font-size:.7rem;margin-top:.1rem;flex-shrink:0}
 
-.b-ptitle{grid-column:1/13;background:transparent;padding:2.5rem 2rem 1rem}
-.b-ptitle:hover{background:transparent}
-.b-ptitle::after{display:none}
-.b-ptitle .ttl{font-size:2rem}
+/* Séparateur 64px entre Portfolio et Réalisations */
+.projects-header{padding:4rem 2rem 1rem;max-width:1100px;margin:0 auto;border-top:1px solid var(--border)}
 
 .b-panda{grid-column:1/5;min-height:230px}
 .b-sncf{grid-column:5/9;min-height:230px;background:var(--bg2)}
@@ -244,7 +212,6 @@ nav{
 .plink{display:inline-flex;align-items:center;gap:.35rem;font-size:.78rem;font-weight:500;text-decoration:none;color:var(--yellow);margin-top:.9rem;border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .15s,gap .15s}
 .plink:hover{border-bottom-color:var(--yellow);gap:.55rem}
 
-/* Approche légale block */
 .b-legal{grid-column:1/7;background:var(--bg2)}
 .b-legal .ttl{color:var(--yellow)}
 .legal-icon{font-size:2.8rem;line-height:1;margin-bottom:.7rem;opacity:.6}
@@ -255,19 +222,31 @@ nav{
 .clink:hover{border-color:var(--yellow-border);color:var(--yellow);background:var(--yellow-dim)}
 .clink-icon{font-size:.72rem;color:var(--yellow);min-width:14px}
 
-/* ── TIGER CARD ── */
+/* ── TIGER CARD — purple background ── */
 .tiger-section{max-width:1100px;margin:0 auto;padding:0 2rem 5rem}
-.tiger-card{background:var(--bg2);border:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;overflow:hidden;transition:border-color .22s}
-.tiger-card:hover{border-color:var(--yellow-border)}
-.tiger-img{overflow:hidden;display:flex;align-items:center;justify-content:center;background:#1E1320;padding:2.5rem;min-height:340px}
+.tiger-card{
+  border:1px solid rgba(208,194,236,0.2);
+  display:grid;grid-template-columns:1fr 1fr;
+  overflow:hidden;transition:border-color .22s;
+}
+.tiger-card:hover{border-color:rgba(208,194,236,0.45)}
+.tiger-img{
+  overflow:hidden;display:flex;align-items:center;justify-content:center;
+  background:#2A1F42;
+  padding:2.5rem;min-height:340px;
+}
 .tiger-img img{width:100%;max-width:300px;height:auto;display:block}
-.tiger-copy{padding:3rem 2.5rem;display:flex;flex-direction:column;justify-content:center;border-left:1px solid var(--border)}
-.tiger-copy .lbl{font-size:.64rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow);margin-bottom:.75rem}
-.tiger-copy h3{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,2.8vw,2rem);font-weight:700;line-height:1.2;margin-bottom:.9rem}
-.tiger-copy .body{font-size:.9rem;line-height:1.75;color:var(--white-70);font-weight:300}
+.tiger-copy{
+  padding:3rem 2.5rem;display:flex;flex-direction:column;justify-content:center;
+  background:#1A1526;
+  border-left:1px solid rgba(208,194,236,0.15);
+}
+.tiger-copy .lbl{font-size:.64rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--purple);margin-bottom:.75rem}
+.tiger-copy h3{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,2.8vw,2rem);font-weight:700;line-height:1.2;margin-bottom:.9rem;color:var(--white)}
+.tiger-copy .body{font-size:.9rem;line-height:1.75;color:rgba(238,234,226,0.65);font-weight:300}
 .tiger-links{display:flex;flex-direction:column;gap:.45rem;margin-top:1.5rem}
-.tiger-link{display:inline-flex;align-items:center;gap:.5rem;font-size:.82rem;font-weight:500;text-decoration:none;color:var(--yellow);border-bottom:1px solid transparent;padding-bottom:1px;width:fit-content;transition:border-color .15s,gap .15s}
-.tiger-link:hover{border-bottom-color:var(--yellow);gap:.7rem}
+.tiger-link{display:inline-flex;align-items:center;gap:.5rem;font-size:.82rem;font-weight:500;text-decoration:none;color:var(--purple);border-bottom:1px solid transparent;padding-bottom:1px;width:fit-content;transition:border-color .15s,gap .15s,color .15s}
+.tiger-link:hover{border-bottom-color:var(--purple);gap:.7rem;color:#E8DDFF}
 
 /* ── FOOTER ── */
 footer{border-top:1px solid var(--border);padding:2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
@@ -283,10 +262,12 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem;display:flex;align
   .hero{padding:6rem 1.2rem 4rem}
   .section{padding:3.5rem 1.2rem}
   .bento{grid-template-columns:1fr;gap:0}
-  .b-intro,.b-sep,.b-quote,.b-skills,.b-passion,.b-ptitle,.b-panda,.b-sncf,.b-aigle,.b-legal,.b-contact{grid-column:1/2}
+  .b-intro,.b-sep,.b-quote,.b-skills,.b-passion,.b-panda,.b-sncf,.b-aigle,.b-legal,.b-contact{grid-column:1/2}
+  .section-projects{padding:0 1.2rem 4rem}
+  .projects-header{padding:3rem 1.2rem 1rem}
   .tiger-card{grid-template-columns:1fr}
-  .tiger-img{border-bottom:1px solid var(--border);min-height:260px}
-  .tiger-copy{border-left:none;border-top:1px solid var(--border);padding:2rem 1.5rem}
+  .tiger-img{border-bottom:1px solid rgba(208,194,236,0.15);min-height:260px}
+  .tiger-copy{border-left:none;border-top:1px solid rgba(208,194,236,0.15);padding:2rem 1.5rem}
   .tiger-section{padding:0 1.2rem 4rem}
   footer{flex-direction:column;text-align:center}
 }
@@ -296,9 +277,11 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem;display:flex;align
 
 <!-- ── NAV ── -->
 <nav>
-  <!-- Full App Icon as img (must be in same folder) -->
   <a href="#" class="nav-logo" aria-label="Eko Design">
-    <img src="App_Icon.svg" alt="Eko Design icon" />
+    <!-- Tiger SVG — complete, white, viewBox 212x174 -->
+    <svg width="54" height="44" viewBox="0 0 212 174" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M114.426 119.035C112.839 124.151 107.447 116.037 110.394 115.013C112.983 114.121 115.309 116.227 114.426 119.035ZM120.546 130.755C119.711 130.577 118.447 128.994 118.447 127.983V120.166C118.805 118.821 122.586 119.345 123.576 119.856C127.859 122.069 122.777 131.231 120.546 130.767V130.755ZM148.951 111.659C145.281 115.523 141.676 119.319 142.355 125.222C143.441 126.662 165.654 109.505 155.239 102.889C154.025 106.315 151.472 109.003 148.951 111.659ZM61.3606 84.8629C53.7252 77.9618 42.5827 65.4567 51.1605 55.6643C55.8439 51.4797 63.2798 55.5662 69.9256 59.2183C73.5218 61.1946 76.8866 63.0438 79.4586 63.3863C85.8293 64.243 80.2941 57.0802 77.4547 55.0574C47.4622 33.7593 28.0275 54.8314 49.0843 83.459C36.7724 97.4634 39.9223 110.861 45.8635 126.924C35.5425 125.768 32.1335 114.809 29.565 106.553L29.495 106.328C20.3684 117.167 27.586 126.924 35.5196 135.515L19.9031 140.214C18.8771 140.524 18.1493 141.428 18.0419 142.487C17.8471 144.509 18.3721 144.055 19.1526 143.38C19.6628 142.939 20.2822 142.404 20.8812 142.404C23.6029 142.404 26.9212 142.27 30.4291 142.128C38.0842 141.819 46.644 141.474 51.8881 142.404C56.8749 143.272 64.7848 150.411 66.6697 155.194C71.4418 167.283 60.0722 173.411 59.6188 168.985C60.776 160.727 56.0161 147.187 45.8635 150.126C57.9369 156.206 52.4607 178.765 40.5782 170.829C40.1475 170.54 39.9374 169.101 39.648 167.121C38.8071 161.366 37.2973 151.033 27.7649 151.006C26.6431 153.502 28.4024 155.331 30.2538 157.256C31.7297 158.791 33.2641 160.386 33.444 162.429C33.8377 166.629 27.5503 174.184 23.3627 170.853C22.5562 170.211 22.1541 168.628 21.6973 166.83C20.9851 164.026 20.1398 160.699 17.4215 159.597C19.2468 170.674 2.91475 177.254 1.0775 167.307C-0.950893 156.372 0.296384 141.415 1.46693 127.379C2.11395 119.62 2.73752 112.142 2.77149 105.78C2.90667 105.238 4.32877 104.47 6.39831 103.352C12.7308 99.9318 25.1252 93.2372 25.26 79.7229C25.2639 79.4108 25.2803 79.1193 25.2953 78.8529C25.373 77.4742 25.4138 76.7501 23.4944 77.1289C24.4846 83.2447 5.10986 93.2751 2.81926 90.8479L3.05751 77.3432C13.6754 74.1425 25.4151 66.4442 25.2123 53.927L8.04455 62.6604C0.150765 65.1502 0.621785 57.7508 1.01397 51.5899C1.09596 50.3018 1.17451 49.0678 1.17245 47.9897C9.63097 47.2639 19.1515 45.8718 23.4822 37.6143C8.23537 36.9123 -6.58207 20.1593 8.44999 7.80871C21.4778 -2.88797 39.6121 -2.17405 52.9739 7.38038C53.5801 7.81735 54.2081 7.99396 54.7603 8.14925C55.5012 8.35761 56.1056 8.5276 56.338 9.23661C56.7556 10.4859 55.5623 11.6996 54.2619 11.4616C43.2384 9.54596 32.8118 8.96286 23.0767 14.3528C20.6788 15.6736 19.4735 18.4579 20.1058 21.1231C20.7978 24.062 23.6732 26.0372 26.608 25.4184C28.4093 25.0379 30.1877 24.0753 31.974 23.1083C33.5949 22.2308 35.2225 21.3498 36.8798 20.897C61.7185 14.0673 79.8406 25.5374 89.8142 47.8827C92.3763 48.4976 92.3792 46.8928 92.3821 45.3033C92.385 43.725 92.3878 42.1618 94.8962 42.802C96.6439 43.247 98.7006 44.3413 100.942 45.5339C105.173 47.785 110.062 50.3861 114.772 49.6317C117.683 52.4082 109.929 54.2031 104.893 55.3687C102.829 55.8464 101.222 56.2185 100.993 56.509C104.323 60.2159 109.524 60.2277 115.049 60.2403C120.271 60.2522 125.783 60.2647 130.281 63.3983C130.892 67.2102 127.971 67.0636 124.593 66.8941C121.508 66.7392 118.041 66.5653 116.538 69.3711C116.551 70.9728 119.915 71.353 124.031 71.8181C130.77 72.5797 139.525 73.5691 138.895 80.52L130.294 81.3768C132.707 83.9779 135.989 85.5142 139.248 87.0397C143.994 89.2614 148.691 91.4602 150.587 96.8922C147.744 102.072 143.657 101.164 139.226 100.18C136.869 99.6567 134.415 99.1116 131.999 99.4504L140.255 112.348C133.234 120.945 127.319 118.253 120.786 115.28C115.085 112.686 108.913 109.877 101.124 114.169C91.0191 119.749 98.3683 131.564 104.5 140.512C107.364 144.688 112.243 147.02 117.301 146.663L128.301 145.866C130.973 145.664 133.36 144.129 134.624 141.773L138.012 135.515C148.809 156.706 114.271 161.893 101.84 150.994C100.578 149.892 99.6671 148.473 98.7225 147.003C97.4964 145.095 96.2142 143.1 94.0376 141.595C91.849 140.069 89.1614 139.096 86.4171 138.101C81.8612 136.451 77.1491 134.744 74.305 130.362L73.4219 138.941C53.3075 136.05 35.3766 94.4768 61.3845 87.3973V84.851L61.3606 84.8629ZM88.6271 109.695C95.1171 110.504 105.281 107.494 111.378 105.055C112.171 104.739 112.91 104.703 113.532 104.673C114.526 104.624 115.218 104.591 115.351 103.448C115.494 102.199 114.504 101.081 113.239 100.985C110.112 100.748 106.816 100.91 103.569 101.069C93.7847 101.55 84.4396 102.008 81.4567 91.4667C80.9318 89.5867 78.4626 89.1584 77.3411 90.7647C71.9606 98.4749 78.7966 108.469 88.6271 109.695ZM72.2716 120.32C76.1131 122.295 79.7634 117.393 76.7093 114.335L75.1231 112.753C72.9041 110.54 71.5198 107.624 71.2096 104.507C70.7324 99.7715 63.5504 100.128 63.7055 104.9C63.8367 108.636 65.3401 112.741 67.1774 115.549C68.6567 117.821 70.3628 119.333 72.2716 120.32ZM73.106 77.5695L74.8955 76.4154L74.9078 76.4035C76.0531 75.6658 76.6852 74.3332 76.5301 72.9768C75.6354 65.0048 65.328 62.8393 58.3488 61.6613C57.3467 70.2758 62.7148 74.9638 69.8252 77.8789C70.8989 78.331 72.1277 78.2002 73.106 77.5695ZM32.6988 45.146C38.8429 32.1529 56.7499 23.7646 69.7897 31.3557V31.3438C70.0901 31.5165 70.6796 32.2095 71.4182 33.0776C72.4099 34.2432 73.6702 35.7247 74.86 36.6862C75.6832 37.3525 75.9579 38.4829 75.4449 39.4229V39.4467C74.9676 40.351 73.9412 40.815 72.951 40.5651C59.0046 37.0432 47.3249 40.9697 35.8719 48.0135C33.9869 49.1796 31.7563 47.1449 32.6988 45.146ZM122.867 84.2082C121.782 83.1842 120.877 81.8302 119.955 80.4509C118.991 79.0093 118.008 77.54 116.783 76.3908C110.686 70.6915 98.6489 68.7163 90.5841 68.9305C87.8886 68.9922 88.892 70.8494 89.7001 72.345C89.9828 72.8684 90.2416 73.3475 90.3097 73.6899C90.5279 74.8306 90.4455 76.2492 90.3632 77.666C90.297 78.8056 90.2309 79.9443 90.3213 80.9361C91.2161 90.2645 97.9689 95.5949 107.31 94.2504C109.592 93.9173 111.326 93.1238 113.001 92.3573C115.634 91.1522 118.122 90.0137 122.366 90.8355C122.774 90.9147 123.431 91.1642 124.198 91.4552C126.77 92.4316 130.582 93.8784 130.407 90.9545C130.301 89.0538 127.677 87.4083 125.441 86.0064C124.402 85.3547 123.447 84.7557 122.867 84.2082ZM209.534 166.831C209.606 166.891 209.677 166.938 209.761 166.974H209.724C210.846 167.569 212.182 166.557 211.979 165.284C211.979 165.272 211.979 165.236 211.968 165.201C211.961 165.175 211.952 165.146 211.944 165.117C211.935 165.088 211.926 165.058 211.92 165.035C211.884 164.927 211.848 164.82 211.801 164.701C211.697 164.415 211.596 164.122 211.492 163.824C211.333 163.365 211.17 162.893 210.989 162.417C210.715 161.62 210.405 160.811 210.094 160.025C210.053 159.906 210.005 159.781 209.957 159.656C209.909 159.532 209.862 159.407 209.82 159.288L209.815 159.276C209.674 158.935 209.532 158.594 209.402 158.252C208.424 155.766 207.446 153.576 206.885 152.72C203.923 148.366 193.522 149.13 185.602 149.711C182.613 149.931 179.978 150.124 178.229 150.007C166.322 149.198 157.232 142.808 148.32 135.55C147.234 145.033 145.182 158.003 133.693 159.609L134.767 163.143C136.569 164.095 138.394 164.951 140.255 165.713C140.72 165.903 141.185 166.093 141.651 166.26C142.092 166.439 142.582 166.617 143.047 166.772C143.222 166.854 143.404 166.916 143.587 166.978C143.642 166.996 143.696 167.014 143.751 167.033L143.932 167.098C144.274 167.218 144.609 167.337 144.944 167.438C147.604 168.307 150.288 168.997 152.997 169.592C153.243 169.644 153.502 169.697 153.749 169.746C153.997 169.797 154.251 169.848 154.499 169.901C159.692 170.981 164.969 171.687 170.268 172.397C173.783 172.867 177.309 173.339 180.83 173.923C183.12 174.303 185.411 173.256 186.652 171.293L187.761 169.532C188.811 167.866 191.03 167.379 192.688 168.485L197.938 171.971C200.514 173.578 203.819 171.174 202.925 168.342C202.841 168.104 202.793 167.973C202.721 167.795 202.638 167.593 202.555 167.426C202.459 167.283 202.388 167.152 202.328 167.01C202.163 166.767 202.03 166.569C201.684 166.058 201.266 165.594 200.801 165.165C200.669 165.023 200.503 164.868 200.336 164.749C200.174 164.61 200.022 164.494 199.871 164.378C199.703 164.249 199.548 164.142 199.393 164.047C199.258 163.939 199.101 163.844 198.95 163.753C198.641 163.559 198.474 163.464 198.284 163.357C197.544 162.94 196.769 162.583 196.017 162.274C195.792 162.184 195.556 162.099 195.317 162.012C195.068 161.921 194.896 161.858C193.953 161.513 193.046 161.227 192.211 160.965C192.045 160.914 191.947 160.883C191.766 160.825 191.584 160.767 191.424 160.727C190.147 160.311 189.205 159.966 188.859 159.573C185.077 155.087 196.756 154.421 201.791 157.848C202.364 158.229 202.865 158.681 203.33 159.157C203.783 159.645 204.225 160.156 204.63 160.692C205.112 161.327 205.563 161.985 206.01 162.637C206.525 163.389 207.034 164.132 207.577 164.82C207.674 164.957 207.777 165.078 207.881 165.201L207.957 165.291L208.03 165.38C208.174 165.57 208.341 165.748 208.508 165.915C208.624 166.04 208.754 166.158 208.883 166.275C208.968 166.353L209.01 166.392C209.177 166.546 209.343 166.7 209.534 166.831ZM104.148 75.3795C95.7613 73.4757 98.3383 86.2903 105.389 85.2789C105.233 84.3918 105.506 83.1295 105.793 81.7985C106.384 79.0588 107.039 76.0281 104.148 75.3795Z" fill="white"/>
+    </svg>
   </a>
   <ul class="nav-center">
     <li><a href="#about">À propos</a></li>
@@ -315,7 +298,7 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem;display:flex;align
 <section class="hero">
   <div class="hero-content">
 
-    <!-- EKO wordmark -->
+    <!-- EKO wordmark — paths white -->
     <div class="hero-logo">
       <svg viewBox="0 0 203 81" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M167.762 80.6101C155.899 80.6101 147.06 78.1745 141.246 73.3033C135.511 68.4321 132.643 61.1646 132.643 51.5008C132.643 41.8371 135.511 34.5696 141.246 29.6984C147.06 24.8272 155.899 22.3916 167.762 22.3916C191.254 22.3916 203 32.0947 203 51.5008C203 70.907 191.254 80.6101 167.762 80.6101ZM167.762 60.2218C169.805 60.2218 171.337 59.5933 172.359 58.3362C173.38 57.0791 173.891 54.8007 173.891 51.5008C173.891 48.201 173.38 45.9226 172.359 44.6655C171.337 43.4084 169.805 42.7799 167.762 42.7799C165.798 42.7799 164.306 43.4084 163.284 44.6655C162.263 45.9226 161.752 48.201 161.752 51.5008C161.752 54.8007 162.263 57.0791 163.284 58.3362C164.306 59.5933 165.798 60.2218 167.762 60.2218Z" fill="white"/>
@@ -324,23 +307,18 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem;display:flex;align
       </svg>
     </div>
 
-    <!-- DESIGN subline in Kanit -->
     <div class="hero-design-sub">Design</div>
-
-    <!-- Tagline -->
     <p class="hero-tagline">Product designer senior</p>
 
     <!-- AI Zone -->
     <div class="ai-zone">
       <div class="ai-prompt-label">Posez une question à Marie</div>
-
       <div class="ai-messages" id="messages">
         <div class="msg ai">
-          <div class="msg-av ai">エ</div>
+          <div class="msg-av ai">✦</div>
           <div class="msg-bubble">Bonjour, je suis l'assistant de Marie. Posez-moi n'importe quelle question sur son profil, ses projets ou pour la contacter.</div>
         </div>
       </div>
-
       <div class="ai-input-wrap">
         <input class="ai-input" id="chat-input" type="text" placeholder="Quelles sont ses spécialités ?" />
         <button class="ai-send" id="send-btn" aria-label="Envoyer">
@@ -348,7 +326,6 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem;display:flex;align
           <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
         </button>
       </div>
-
       <div class="limit-row">
         <div class="limit-track"><div class="limit-fill" id="limit-fill" style="width:100%"></div></div>
         <div class="limit-label"><span id="q-count">5</span>/5 questions</div>
@@ -372,10 +349,11 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem;display:flex;align
     </div>
   </div>
 
-  <div class="scroll-hint">
+  <!-- Scroll hint — cliquable, scroll vers #about -->
+  <a href="#about" class="scroll-hint">
     <span>Découvrir</span>
     <span class="scroll-arrow">↓</span>
-  </div>
+  </a>
 </section>
 
 <!-- ── MARQUEE ── -->
@@ -402,7 +380,7 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem;display:flex;align
   </div>
 </div>
 
-<!-- ── BENTO ── -->
+<!-- ── PORTFOLIO BENTO ── -->
 <section class="section" id="about">
   <div class="sec-label">// Portfolio</div>
   <div class="sec-title">Marie Arnaud</div>
@@ -412,7 +390,7 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem;display:flex;align
     <div class="bc b-intro">
       <div class="lbl">Profil</div>
       <div class="ttl">Product Designer senior,<br>spécialiste conversion</div>
-      <p class="body">Basée entre Nantes et Paris, je conçois des solutions scalables qui réconcilent les contraintes business, tech et légales. Du panier à la confirmation d'achat.</p>
+      <p class="body">Basée à Nantes (avec des sauts réguliers à Paris), je pilote l'expérience du checkout. Mon job consiste à réconcilier les besoins business, les contraintes tech et les exigences du juridique pour en faire un parcours fluide... le tout en participant à la construction de notre Design System.<br><br>Mon quotidien ? Transformer des contraintes business, techniques et légales complexes en parcours fluides, tout en contribuant activement à la structuration de notre Design System.</p>
     </div>
 
     <div class="bc b-sep">
@@ -457,10 +435,17 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem;display:flex;align
       </ul>
     </div>
 
-    <div class="bc b-ptitle" id="projects">
-      <div class="sec-label">// Réalisations</div>
-      <div class="ttl">Projets en production</div>
-    </div>
+  </div>
+</section>
+
+<!-- ── RÉALISATIONS — séparées avec 64px de marge ── -->
+<div class="projects-header" id="projects">
+  <div class="sec-label">// Réalisations</div>
+  <div class="sec-title">Projets en production</div>
+</div>
+
+<section class="section-projects">
+  <div class="bento">
 
     <div class="bc b-panda">
       <span class="plabel">E-commerce</span>
@@ -483,7 +468,6 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem;display:flex;align
       <a href="https://www.aigle.com/fr/fr/p/aiw25mout003-BJ99_avocat.html" target="_blank" class="plink">Voir le projet →</a>
     </div>
 
-    <!-- APPROCHE LÉGALE — remplace Rigueur & Craft -->
     <div class="bc b-legal">
       <div class="lbl">À noter</div>
       <div class="legal-icon">⚖️</div>
@@ -518,8 +502,8 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem;display:flex;align
     </div>
     <div class="tiger-copy">
       <div class="lbl">Univers créatif</div>
-      <h3>Une designer avec du caractère</h3>
-      <p class="body">Au-delà des wireframes, je nourris ma pratique d'une culture visuelle riche — illustration, graphisme japonais, narration visuelle. Tiger Pink, c'est cette énergie : dynamique, affirmée, mémorable.</p>
+      <h3>Le plaisir de libérer l'esprit</h3>
+      <p class="body">Je nourris ma pratique du gribouillis pendant mes voyages.</p>
       <div class="tiger-links">
         <a href="https://www.behance.net/mariearnaud" target="_blank" class="tiger-link">Voir mon Behance →</a>
         <a href="mailto:m.arnaud85@icloud.com" class="tiger-link">Me contacter →</a>
@@ -550,11 +534,10 @@ const qCountEl=document.getElementById('q-count');
 const limitFill=document.getElementById('limit-fill');
 
 const SYSTEM=`Tu es l'assistant IA du portfolio de Marie Arnaud, Product Designer senior. Réponds en français, 2-3 phrases max, ton chaleureux et pro.
-Marie Arnaud — Eko Design (エコ, "écho" en japonais, elle porte la voix des utilisateurs).
-Poste : Product Designer Sephora depuis 4 ans. Scope Convert (panier→confirmation). Web & App. International. Tech/Marketing/Juridique.
+Marie Arnaud — Eko Design. Product Designer Sephora depuis 4 ans. Scope Convert (panier→confirmation). Web & App. International. Tech/Marketing/Juridique.
 Spécialités : Figma, Design System, UX Research, tests utilisateurs, Baymard, A/B testing, accessibilité, cadrage complexe (iOS 26).
-Projets : Pandacraft (pandacraft.fr), SNCF Abonnement TER, Aigle, Axa & Juridica, Qui.Sncf, Digi-Parc. NB : beaucoup de projets sont sous NDA.
-Passions : doublage/voix off, rénovation, Zelda TOTK, culture japonaise, illustration florale.
+Projets : Pandacraft (pandacraft.fr), SNCF Abonnement TER, Aigle, Axa & Juridica, Qui.Sncf, Digi-Parc. Beaucoup sont sous NDA.
+Passions : doublage/voix off, rénovation, Zelda TOTK, culture japonaise, illustration florale, gribouillis en voyage.
 Contact : linkedin.com/in/marie-arnaud-437a3b172/ — m.arnaud85@icloud.com — Behance.
 Philosophie : "Transformer des contraintes exigeantes en parcours fluides, performants et pérennes."`;
 
@@ -577,13 +560,13 @@ function updateLimit(){
 function addMsg(role,html){
   const d=document.createElement('div');
   d.className='msg '+(role==='ai'?'ai':'user');
-  d.innerHTML=`<div class="msg-av ${role}">${role==='ai'?'エ':'→'}</div><div class="msg-bubble">${html}</div>`;
+  d.innerHTML=`<div class="msg-av ${role}">${role==='ai'?'✦':'→'}</div><div class="msg-bubble">${html}</div>`;
   msgsEl.appendChild(d);msgsEl.scrollTop=msgsEl.scrollHeight;
 }
 
 function showTyping(){
   const d=document.createElement('div');d.className='msg ai';d.id='typing';
-  d.innerHTML=`<div class="msg-av ai">エ</div><div class="msg-bubble"><div class="typing"><span></span><span></span><span></span></div></div>`;
+  d.innerHTML=`<div class="msg-av ai">✦</div><div class="msg-bubble"><div class="typing"><span></span><span></span><span></span></div></div>`;
   msgsEl.appendChild(d);msgsEl.scrollTop=msgsEl.scrollHeight;
 }
 
