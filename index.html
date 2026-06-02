@@ -138,11 +138,7 @@ nav{
 .typing span:nth-child(3){animation-delay:.4s}
 @keyframes tb{0%,60%,100%{opacity:1}30%{opacity:.15}}
 
-.api-notice{font-size:.7rem;color:var(--white-40);padding:.6rem 0;margin:.75rem auto 0;display:flex;gap:.45rem;align-items:flex-start;max-width:520px;text-align:left;border-top:1px solid var(--border)}
-.api-notice a{color:var(--yellow)}
-#api-key-input{display:block;width:100%;margin-top:.3rem;padding:.3rem 0;border:none;border-bottom:1px solid var(--border-md);background:transparent;color:var(--white);font-family:'DM Sans',sans-serif;font-size:.8rem;outline:none}
-#api-key-input::placeholder{color:var(--white-40)}
-#api-key-input:focus{border-bottom-color:var(--yellow)}
+
 
 /* Scroll hint — clickable, yellow hover */
 .scroll-hint{
@@ -340,13 +336,7 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem;display:flex;align
       <button class="tag" data-q="linkedin">LinkedIn</button>
     </div>
 
-    <div class="api-notice" id="api-notice">
-      <span>🔑</span>
-      <div style="flex:1">
-        Activer l'IA — clé Anthropic API (<a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a>) :
-        <input type="password" id="api-key-input" placeholder="sk-ant-api03-…" />
-      </div>
-    </div>
+
   </div>
 
   <!-- Scroll hint — cliquable, scroll vers #about -->
@@ -526,25 +516,14 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem;display:flex;align
 </footer>
 
 <script>
-const MAX_Q=5;let remaining=MAX_Q,msgs=[],apiKey='';
+const MAX_Q=5;let remaining=MAX_Q,msgs=[];
 const msgsEl=document.getElementById('messages');
 const inputEl=document.getElementById('chat-input');
 const sendBtn=document.getElementById('send-btn');
 const qCountEl=document.getElementById('q-count');
 const limitFill=document.getElementById('limit-fill');
 
-const SYSTEM=`Tu es l'assistant IA du portfolio de Marie Arnaud, Product Designer senior. Réponds en français, 2-3 phrases max, ton chaleureux et pro.
-Marie Arnaud — Eko Design. Product Designer Sephora depuis 4 ans. Scope Convert (panier→confirmation). Web & App. International. Tech/Marketing/Juridique.
-Spécialités : Figma, Design System, UX Research, tests utilisateurs, Baymard, A/B testing, accessibilité, cadrage complexe (iOS 26).
-Projets : Pandacraft (pandacraft.fr), SNCF Abonnement TER, Aigle, Axa & Juridica, Qui.Sncf, Digi-Parc. Beaucoup sont sous NDA.
-Passions : doublage/voix off, rénovation, Zelda TOTK, culture japonaise, illustration florale, gribouillis en voyage.
-Contact : linkedin.com/in/marie-arnaud-437a3b172/ — m.arnaud85@icloud.com — Behance.
-Philosophie : "Transformer des contraintes exigeantes en parcours fluides, performants et pérennes."`;
 
-document.getElementById('api-key-input').addEventListener('input',e=>{
-  apiKey=e.target.value.trim();
-  if(apiKey.startsWith('sk-ant'))document.getElementById('api-notice').style.opacity='.4';
-});
 
 function updateLimit(){
   qCountEl.textContent=remaining;
@@ -581,16 +560,12 @@ async function send(text){
   addMsg('user',text.replace(/</g,'&lt;'));
   msgs.push({role:'user',content:text});
   inputEl.value='';remaining--;updateLimit();
-  if(!apiKey){
-    addMsg('ai','Entrez votre clé API Anthropic ci-dessous pour activer l\'IA 🔑 (<a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a>)');
-    return;
-  }
   showTyping();sendBtn.disabled=true;
   try{
-    const res=await fetch('https://api.anthropic.com/v1/messages',{
+    const res=await fetch('https://long-sky-b5a2.m-arnaud85.workers.dev',{
       method:'POST',
-      headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01'},
-      body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:200,system:SYSTEM,messages:msgs.slice(-6)})
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({messages:msgs.slice(-6)})
     });
     const data=await res.json();
     document.getElementById('typing')?.remove();
@@ -601,7 +576,7 @@ async function send(text){
     }else if(data.error){addMsg('ai',`Erreur : ${data.error.message}`);}
   }catch(e){
     document.getElementById('typing')?.remove();
-    addMsg('ai','Connexion impossible. Vérifiez votre clé API.');
+    addMsg('ai','Connexion impossible. Réessayez dans un instant.');
   }
   sendBtn.disabled=false;
 }
