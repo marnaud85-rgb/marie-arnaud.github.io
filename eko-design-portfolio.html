@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eko Design — Marie Arnaud, Product Designer</title>
+<link rel="canonical" href="http://marie-arnaud.com" />
+<meta name="description" content="Marie Arnaud — Product Designer senior spécialisée dans l'expérience de conversion. Sephora, SNCF, Pandacraft, Aigle. Nantes / Paris." />
+<meta property="og:title" content="Eko Design — Marie Arnaud, Product Designer" />
+<meta property="og:url" content="http://marie-arnaud.com" />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,300;0,400;0,600;0,700;0,900;1,300;1,400&family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0C0C0C;
+  --bg2:#111111;
+  --bg3:#171717;
+  --yellow:#F5C842;
+  --yellow-dim:rgba(245,200,66,0.1);
+  --yellow-border:rgba(245,200,66,0.22);
+  --white:#EEEAE2;
+  --white-70:rgba(238,234,226,0.7);
+  --white-40:rgba(238,234,226,0.4);
+  --white-18:rgba(238,234,226,0.18);
+  --white-08:rgba(238,234,226,0.08);
+  --border:rgba(238,234,226,0.09);
+  --border-md:rgba(238,234,226,0.16);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);line-height:1.6;overflow-x:hidden}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 2.5rem;height:68px;
+  background:rgba(12,12,12,0.95);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{display:flex;align-items:center;text-decoration:none;height:44px}
+.nav-logo img{height:44px;width:44px;object-fit:contain;display:block}
+.nav-center{position:absolute;left:50%;transform:translateX(-50%);display:flex;gap:2.2rem;list-style:none}
+.nav-center a{font-size:.78rem;font-weight:400;letter-spacing:.06em;color:var(--white-40);text-decoration:none;text-transform:uppercase;transition:color .18s}
+.nav-center a:hover{color:var(--white)}
+.nav-right{display:flex;align-items:center;gap:1.4rem}
+.nav-right a{font-size:.78rem;letter-spacing:.04em;color:var(--white-40);text-decoration:none;transition:color .18s}
+.nav-right a:hover{color:var(--yellow)}
+.nav-cta{font-size:.75rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:.4rem 1.1rem;border:1px solid var(--white-18);color:var(--white)!important;transition:border-color .18s,background .18s!important}
+.nav-cta:hover{border-color:var(--yellow)!important;background:var(--yellow-dim)!important;color:var(--yellow)!important}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:8rem 2rem 6rem;
+  text-align:center;
+  position:relative;overflow:hidden;
+  border-bottom:1px solid var(--border);
+  /* Même noir que le header + pointillés FigJam */
+  background-color:var(--bg);
+  background-image:radial-gradient(circle, rgba(238,234,226,0.07) 1px, transparent 1px);
+  background-size:28px 28px;
+}
+
+.hero-content{position:relative;z-index:1;max-width:760px;width:100%;animation:fadeUp .7s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* EKO wordmark */
+.hero-logo{display:inline-block;margin-bottom:.6rem}
+.hero-logo svg{width:auto;height:clamp(48px,8vw,96px)}
+.hero-logo svg path{fill:var(--white)}
+
+/* DESIGN subline — Kanit Bold */
+.hero-design-sub{
+  font-family:'Kanit',sans-serif;
+  font-weight:600;
+  font-size:clamp(.7rem,1.4vw,1rem);
+  letter-spacing:.5em;
+  text-transform:uppercase;
+  color:var(--white-40);
+  margin-bottom:1.4rem;
+}
+
+/* Tagline */
+.hero-tagline{
+  font-family:'DM Sans',sans-serif;
+  font-size:clamp(.85rem,1.4vw,1rem);
+  font-weight:300;
+  font-style:italic;
+  color:var(--white-40);
+  letter-spacing:.04em;
+  margin-bottom:2.8rem;
+}
+
+/* ── AI ZONE ── */
+.ai-zone{max-width:560px;margin:0 auto;animation:fadeUp .8s .1s ease both}
+
+.ai-prompt-label{
+  font-size:.68rem;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--yellow);
+  margin-bottom:1.1rem;
+  display:flex;align-items:center;gap:.5rem;justify-content:center;
+}
+.ai-prompt-label::before,.ai-prompt-label::after{content:'';flex:1;max-width:50px;height:1px;background:var(--yellow-border)}
+
+/* Messages */
+.ai-messages{min-height:52px;max-height:240px;overflow-y:auto;margin-bottom:1.4rem;display:flex;flex-direction:column;gap:.55rem;text-align:left}
+.ai-messages::-webkit-scrollbar{width:2px}
+.ai-messages::-webkit-scrollbar-thumb{background:var(--border-md)}
+.msg{display:flex;gap:.55rem;align-items:flex-start;animation:fadeUp .3s ease both}
+.msg.user{flex-direction:row-reverse}
+.msg-av{width:26px;height:26px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:500}
+.msg-av.ai{background:var(--yellow-dim);border:1px solid var(--yellow-border);color:var(--yellow)}
+.msg-av.user{background:var(--white-08);border:1px solid var(--border-md);color:var(--white-40)}
+.msg-bubble{font-size:.86rem;line-height:1.65;color:var(--white);background:var(--white-08);border:1px solid var(--border);padding:.55rem .85rem;max-width:calc(100% - 38px)}
+.msg-bubble a{color:var(--yellow)}
+.msg.user .msg-bubble{background:var(--yellow-dim);border-color:var(--yellow-border)}
+
+/* ── INPUT STYLE (Search-inspired: full border radius, inline CTA) ── */
+.ai-input-wrap{
+  display:flex;align-items:center;
+  background:var(--white);
+  border-radius:100px;
+  padding:.25rem .25rem .25rem 1.4rem;
+  transition:box-shadow .2s;
+}
+.ai-input-wrap:focus-within{box-shadow:0 0 0 3px rgba(245,200,66,.25)}
+.ai-input{
+  flex:1;background:transparent;border:none;outline:none;
+  font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:400;
+  color:#0C0C0C;
+  min-width:0;
+}
+.ai-input::placeholder{color:rgba(12,12,12,.45);font-style:italic}
+.ai-send{
+  flex-shrink:0;
+  background:#0C0C0C;color:var(--white);border:none;cursor:pointer;
+  font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:500;
+  letter-spacing:.04em;
+  padding:.6rem 1.4rem;
+  border-radius:100px;
+  display:flex;align-items:center;gap:.4rem;
+  transition:background .18s,color .18s;
+  white-space:nowrap;
+}
+.ai-send:hover{background:#222;color:var(--yellow)}
+.ai-send svg{width:13px;height:13px;fill:currentColor}
+
+/* Limit */
+.limit-row{display:flex;align-items:center;gap:.65rem;margin-top:.85rem;justify-content:center}
+.limit-track{height:1px;width:100px;background:var(--border-md);position:relative}
+.limit-fill{position:absolute;top:0;left:0;height:100%;background:var(--yellow);transition:width .4s}
+.limit-label{font-size:.68rem;color:var(--white-40);letter-spacing:.04em}
+.limit-label span{color:var(--yellow)}
+
+/* Quick tags */
+.quick-tags{display:flex;flex-wrap:wrap;gap:.38rem;justify-content:center;margin-top:1.2rem;animation:fadeUp .8s .2s ease both}
+.tag{font-size:.73rem;font-weight:400;letter-spacing:.02em;padding:.3rem .85rem;border:1px solid var(--border-md);background:transparent;color:var(--white-40);cursor:pointer;transition:all .16s;border-radius:0}
+.tag:hover{border-color:var(--yellow);color:var(--yellow);background:var(--yellow-dim)}
+
+.typing{display:flex;gap:4px;align-items:center;padding:3px 0}
+.typing span{width:5px;height:5px;background:var(--yellow);border-radius:50%;animation:tb 1.1s ease infinite}
+.typing span:nth-child(2){animation-delay:.2s}
+.typing span:nth-child(3){animation-delay:.4s}
+@keyframes tb{0%,60%,100%{opacity:1}30%{opacity:.15}}
+
+/* API notice */
+.api-notice{font-size:.7rem;color:var(--white-40);padding:.6rem 0;margin:.75rem auto 0;display:flex;gap:.45rem;align-items:flex-start;max-width:520px;text-align:left;border-top:1px solid var(--border)}
+.api-notice a{color:var(--yellow)}
+#api-key-input{display:block;width:100%;margin-top:.3rem;padding:.3rem 0;border:none;border-bottom:1px solid var(--border-md);background:transparent;color:var(--white);font-family:'DM Sans',sans-serif;font-size:.8rem;outline:none}
+#api-key-input::placeholder{color:var(--white-40)}
+#api-key-input:focus{border-bottom-color:var(--yellow)}
+
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.35rem;color:var(--white-40);font-size:.67rem;letter-spacing:.1em;text-transform:uppercase;animation:fadeUp 1s .5s ease both}
+.scroll-arrow{animation:sa 1.8s ease infinite}
+@keyframes sa{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+
+/* ── MARQUEE ── */
+.marquee-strip{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:.5rem 0;background:var(--bg)}
+.marquee-inner{display:flex;gap:3rem;white-space:nowrap;animation:marquee 24s linear infinite}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.marquee-item{
+  font-family:'Kanit',sans-serif;font-weight:300;
+  font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;
+  color:rgba(238,234,226,0.55);
+  display:inline-flex;align-items:center;gap:.75rem;
+}
+.marquee-item::after{content:'✦';font-size:.45rem;color:var(--yellow);opacity:.7}
+
+/* ── SECTION ── */
+.section{padding:5rem 2rem;max-width:1100px;margin:0 auto}
+.sec-label{font-size:.66rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow);margin-bottom:.35rem}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:700;line-height:1.15;letter-spacing:-.02em;margin-bottom:2.2rem}
+
+/* ── BENTO ── */
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:1px;background:var(--border)}
+.bc{background:var(--bg);padding:2rem;position:relative;overflow:hidden;transition:background .22s}
+.bc:hover{background:var(--bg3)}
+.bc .lbl{font-size:.64rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--white-40);margin-bottom:.55rem}
+.bc .ttl{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;line-height:1.25;margin-bottom:.7rem;letter-spacing:-.01em;color:var(--white)}
+.bc .body{font-size:.875rem;line-height:1.78;color:var(--white-70);font-weight:300}
+.bc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--yellow);transform:scaleX(0);transform-origin:left;transition:transform .28s ease}
+.bc:hover::after{transform:scaleX(1)}
+
+/* Grid slots */
+.b-intro{grid-column:1/8}
+.b-sep{grid-column:8/13;background:var(--bg2)}
+.b-sep .seph-logo{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;letter-spacing:.06em;color:var(--white);margin-bottom:.4rem}
+
+.b-quote{grid-column:1/5;background:var(--yellow)!important}
+.b-quote:hover{background:var(--yellow)!important}
+.b-quote::after{display:none}
+.b-quote .lbl{color:rgba(12,12,12,.5)}
+.b-quote blockquote{font-family:'Playfair Display',serif;font-size:1.1rem;font-style:italic;font-weight:400;line-height:1.6;color:#0C0C0C}
+.b-quote cite{font-size:.74rem;color:rgba(12,12,12,.5);font-style:normal;display:block;margin-top:.85rem}
+
+.b-skills{grid-column:5/9}
+.skill-tags{display:flex;flex-wrap:wrap;gap:.32rem;margin-top:.8rem}
+.st{font-size:.72rem;padding:.26rem .68rem;border:1px solid var(--border-md);color:var(--white-40);white-space:nowrap;transition:all .15s;background:transparent}
+.st:hover{border-color:var(--yellow);color:var(--yellow)}
+
+.b-passion{grid-column:9/13;background:var(--bg2)}
+.plist{list-style:none;margin-top:.7rem;display:flex;flex-direction:column;gap:.45rem}
+.plist li{font-size:.875rem;color:var(--white-70);font-weight:300;display:flex;align-items:flex-start;gap:.55rem;padding-bottom:.45rem;border-bottom:1px solid var(--border)}
+.plist li:last-child{border-bottom:none}
+.plist li::before{content:'→';color:var(--yellow);font-size:.7rem;margin-top:.1rem;flex-shrink:0}
+
+.b-ptitle{grid-column:1/13;background:transparent;padding:2.5rem 2rem 1rem}
+.b-ptitle:hover{background:transparent}
+.b-ptitle::after{display:none}
+.b-ptitle .ttl{font-size:2rem}
+
+.b-panda{grid-column:1/5;min-height:230px}
+.b-sncf{grid-column:5/9;min-height:230px;background:var(--bg2)}
+.b-aigle{grid-column:9/13;min-height:230px}
+
+.plabel{display:inline-block;font-size:.63rem;font-weight:500;letter-spacing:.09em;text-transform:uppercase;padding:.2rem .62rem;margin-bottom:.8rem;border:1px solid var(--border-md);color:var(--white-40)}
+.plink{display:inline-flex;align-items:center;gap:.35rem;font-size:.78rem;font-weight:500;text-decoration:none;color:var(--yellow);margin-top:.9rem;border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .15s,gap .15s}
+.plink:hover{border-bottom-color:var(--yellow);gap:.55rem}
+
+/* Approche légale block */
+.b-legal{grid-column:1/7;background:var(--bg2)}
+.b-legal .ttl{color:var(--yellow)}
+.legal-icon{font-size:2.8rem;line-height:1;margin-bottom:.7rem;opacity:.6}
+
+.b-contact{grid-column:7/13}
+.clinks{display:flex;flex-direction:column;gap:.42rem;margin-top:.85rem}
+.clink{display:flex;align-items:center;gap:.6rem;font-size:.86rem;text-decoration:none;color:var(--white-70);padding:.6rem .85rem;border:1px solid var(--border);background:transparent;transition:all .16s}
+.clink:hover{border-color:var(--yellow-border);color:var(--yellow);background:var(--yellow-dim)}
+.clink-icon{font-size:.72rem;color:var(--yellow);min-width:14px}
+
+/* ── TIGER CARD ── */
+.tiger-section{max-width:1100px;margin:0 auto;padding:0 2rem 5rem}
+.tiger-card{background:var(--bg2);border:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;overflow:hidden;transition:border-color .22s}
+.tiger-card:hover{border-color:var(--yellow-border)}
+.tiger-img{overflow:hidden;display:flex;align-items:center;justify-content:center;background:#1E1320;padding:2.5rem;min-height:340px}
+.tiger-img img{width:100%;max-width:300px;height:auto;display:block}
+.tiger-copy{padding:3rem 2.5rem;display:flex;flex-direction:column;justify-content:center;border-left:1px solid var(--border)}
+.tiger-copy .lbl{font-size:.64rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow);margin-bottom:.75rem}
+.tiger-copy h3{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,2.8vw,2rem);font-weight:700;line-height:1.2;margin-bottom:.9rem}
+.tiger-copy .body{font-size:.9rem;line-height:1.75;color:var(--white-70);font-weight:300}
+.tiger-links{display:flex;flex-direction:column;gap:.45rem;margin-top:1.5rem}
+.tiger-link{display:inline-flex;align-items:center;gap:.5rem;font-size:.82rem;font-weight:500;text-decoration:none;color:var(--yellow);border-bottom:1px solid transparent;padding-bottom:1px;width:fit-content;transition:border-color .15s,gap .15s}
+.tiger-link:hover{border-bottom-color:var(--yellow);gap:.7rem}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--border);padding:2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.f-logo svg{height:20px;width:auto}
+.f-logo svg path{fill:rgba(238,234,226,.28)}
+.f-copy{font-size:.74rem;color:var(--white-40)}
+.f-kanji{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:900;color:var(--yellow);opacity:.18}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){.nav-center{display:none}.nav-cta{display:none}}
+@media(max-width:768px){
+  nav{padding:0 1.2rem}
+  .hero{padding:6rem 1.2rem 4rem}
+  .section{padding:3.5rem 1.2rem}
+  .bento{grid-template-columns:1fr;gap:0}
+  .b-intro,.b-sep,.b-quote,.b-skills,.b-passion,.b-ptitle,.b-panda,.b-sncf,.b-aigle,.b-legal,.b-contact{grid-column:1/2}
+  .tiger-card{grid-template-columns:1fr}
+  .tiger-img{border-bottom:1px solid var(--border);min-height:260px}
+  .tiger-copy{border-left:none;border-top:1px solid var(--border);padding:2rem 1.5rem}
+  .tiger-section{padding:0 1.2rem 4rem}
+  footer{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <!-- Full App Icon as img (must be in same folder) -->
+  <a href="#" class="nav-logo" aria-label="Eko Design">
+    <img src="App_Icon.svg" alt="Eko Design icon" />
+  </a>
+  <ul class="nav-center">
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#projects">Projets</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="https://www.linkedin.com/in/marie-arnaud-437a3b172/" target="_blank">LinkedIn</a>
+    <a href="https://www.behance.net/mariearnaud" target="_blank" class="nav-cta">Behance ↗</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-content">
+
+    <!-- EKO wordmark -->
+    <div class="hero-logo">
+      <svg viewBox="0 0 203 81" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M167.762 80.6101C155.899 80.6101 147.06 78.1745 141.246 73.3033C135.511 68.4321 132.643 61.1646 132.643 51.5008C132.643 41.8371 135.511 34.5696 141.246 29.6984C147.06 24.8272 155.899 22.3916 167.762 22.3916C191.254 22.3916 203 32.0947 203 51.5008C203 70.907 191.254 80.6101 167.762 80.6101ZM167.762 60.2218C169.805 60.2218 171.337 59.5933 172.359 58.3362C173.38 57.0791 173.891 54.8007 173.891 51.5008C173.891 48.201 173.38 45.9226 172.359 44.6655C171.337 43.4084 169.805 42.7799 167.762 42.7799C165.798 42.7799 164.306 43.4084 163.284 44.6655C162.263 45.9226 161.752 48.201 161.752 51.5008C161.752 54.8007 162.263 57.0791 163.284 58.3362C164.306 59.5933 165.798 60.2218 167.762 60.2218Z" fill="white"/>
+        <path d="M65.3705 79.4317V0H93.8905V34.7661L104.144 23.5702H136.199L114.161 47.7297L137.378 79.4317H107.208L96.4833 62.579L93.8905 65.5253V79.4317H65.3705Z" fill="white"/>
+        <path d="M0 79.4316V3.5354H60.6934V24.0415H28.52V30.8769H56.215V52.0901H28.52V58.9255H60.6934V79.4316H0Z" fill="white"/>
+      </svg>
+    </div>
+
+    <!-- DESIGN subline in Kanit -->
+    <div class="hero-design-sub">Design</div>
+
+    <!-- Tagline -->
+    <p class="hero-tagline">Product designer senior</p>
+
+    <!-- AI Zone -->
+    <div class="ai-zone">
+      <div class="ai-prompt-label">Posez une question à Marie</div>
+
+      <div class="ai-messages" id="messages">
+        <div class="msg ai">
+          <div class="msg-av ai">エ</div>
+          <div class="msg-bubble">Bonjour, je suis l'assistant de Marie. Posez-moi n'importe quelle question sur son profil, ses projets ou pour la contacter.</div>
+        </div>
+      </div>
+
+      <div class="ai-input-wrap">
+        <input class="ai-input" id="chat-input" type="text" placeholder="Quelles sont ses spécialités ?" />
+        <button class="ai-send" id="send-btn" aria-label="Envoyer">
+          Envoyer
+          <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+        </button>
+      </div>
+
+      <div class="limit-row">
+        <div class="limit-track"><div class="limit-fill" id="limit-fill" style="width:100%"></div></div>
+        <div class="limit-label"><span id="q-count">5</span>/5 questions</div>
+      </div>
+    </div>
+
+    <div class="quick-tags">
+      <button class="tag" data-q="Résume le profil de Marie en 3 points clés">Résumer le profil</button>
+      <button class="tag" data-q="Quels sont les projets en production de Marie ?">Projets</button>
+      <button class="tag" data-q="Quelles sont les passions de Marie ?">Passions</button>
+      <button class="tag" data-q="Comment contacter Marie ?">Contact</button>
+      <button class="tag" data-q="linkedin">LinkedIn</button>
+    </div>
+
+    <div class="api-notice" id="api-notice">
+      <span>🔑</span>
+      <div style="flex:1">
+        Activer l'IA — clé Anthropic API (<a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a>) :
+        <input type="password" id="api-key-input" placeholder="sk-ant-api03-…" />
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Découvrir</span>
+    <span class="scroll-arrow">↓</span>
+  </div>
+</section>
+
+<!-- ── MARQUEE ── -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-inner">
+    <span class="marquee-item">Product Design</span>
+    <span class="marquee-item">UX Research</span>
+    <span class="marquee-item">Design System</span>
+    <span class="marquee-item">Sephora · 4 ans</span>
+    <span class="marquee-item">Expérience de conversion</span>
+    <span class="marquee-item">iOS 26</span>
+    <span class="marquee-item">Figma</span>
+    <span class="marquee-item">Baymard Standards</span>
+    <span class="marquee-item">Nantes · Paris</span>
+    <span class="marquee-item">Product Design</span>
+    <span class="marquee-item">UX Research</span>
+    <span class="marquee-item">Design System</span>
+    <span class="marquee-item">Sephora · 4 ans</span>
+    <span class="marquee-item">Expérience de conversion</span>
+    <span class="marquee-item">iOS 26</span>
+    <span class="marquee-item">Figma</span>
+    <span class="marquee-item">Baymard Standards</span>
+    <span class="marquee-item">Nantes · Paris</span>
+  </div>
+</div>
+
+<!-- ── BENTO ── -->
+<section class="section" id="about">
+  <div class="sec-label">// Portfolio</div>
+  <div class="sec-title">Marie Arnaud</div>
+
+  <div class="bento">
+
+    <div class="bc b-intro">
+      <div class="lbl">Profil</div>
+      <div class="ttl">Product Designer senior,<br>spécialiste conversion</div>
+      <p class="body">Basée entre Nantes et Paris, je conçois des solutions scalables qui réconcilent les contraintes business, tech et légales. Du panier à la confirmation d'achat.</p>
+    </div>
+
+    <div class="bc b-sep">
+      <div class="lbl">Poste actuel · 4 ans</div>
+      <div class="seph-logo">SEPHORA</div>
+      <div class="ttl" style="font-size:1rem">PD · Scope Convert · Web & App</div>
+      <p class="body">Solutions "Core" scalables à l'international · Tech, Marketing, Juridique · iOS 26</p>
+    </div>
+
+    <div class="bc b-quote">
+      <div class="lbl">Philosophie</div>
+      <blockquote>"Transformer des contraintes exigeantes en parcours fluides, performants et pérennes."</blockquote>
+      <cite>— Marie Arnaud</cite>
+    </div>
+
+    <div class="bc b-skills">
+      <div class="lbl">Expertise</div>
+      <div class="ttl">Compétences</div>
+      <div class="skill-tags">
+        <span class="st">Figma</span>
+        <span class="st">Design System</span>
+        <span class="st">UX Research</span>
+        <span class="st">User Testing</span>
+        <span class="st">Baymard</span>
+        <span class="st">A/B Testing</span>
+        <span class="st">iOS 26</span>
+        <span class="st">Web & App</span>
+        <span class="st">Cadrage complexe</span>
+        <span class="st">Accessibilité</span>
+      </div>
+    </div>
+
+    <div class="bc b-passion">
+      <div class="lbl">Hors-design</div>
+      <div class="ttl">Passions</div>
+      <ul class="plist">
+        <li>Doublage & voix off</li>
+        <li>Rénovation & décoration</li>
+        <li>Zelda — Tears of the Kingdom</li>
+        <li>Culture japonaise & manga</li>
+        <li>Illustration florale</li>
+      </ul>
+    </div>
+
+    <div class="bc b-ptitle" id="projects">
+      <div class="sec-label">// Réalisations</div>
+      <div class="ttl">Projets en production</div>
+    </div>
+
+    <div class="bc b-panda">
+      <span class="plabel">E-commerce</span>
+      <div class="ttl">Pandacraft</div>
+      <p class="body">Optimisation UX de la page produit, renforcement UI sur les modules gammes & kits, conception d'un design system cohérent.</p>
+      <a href="https://www.pandacraft.fr" target="_blank" class="plink">Voir le site →</a>
+    </div>
+
+    <div class="bc b-sncf">
+      <span class="plabel">Transport</span>
+      <div class="ttl">SNCF Abonnement</div>
+      <p class="body">Refonte d'une plateforme d'abonnement TER en marque blanche. Souscription, paiement et espace abonné responsive.</p>
+      <a href="https://www.abonnement-regional.sncf/region/PDL/produit/UF08_DIGITAL_Abonnement%20tutti%20annuel%20monomodal%20NASA" target="_blank" class="plink">Voir le projet →</a>
+    </div>
+
+    <div class="bc b-aigle">
+      <span class="plabel">Mode & Outdoor</span>
+      <div class="ttl">Aigle</div>
+      <p class="body">Refonte de la page produit pour valoriser les caractéristiques techniques et améliorer la conversion.</p>
+      <a href="https://www.aigle.com/fr/fr/p/aiw25mout003-BJ99_avocat.html" target="_blank" class="plink">Voir le projet →</a>
+    </div>
+
+    <!-- APPROCHE LÉGALE — remplace Rigueur & Craft -->
+    <div class="bc b-legal">
+      <div class="lbl">À noter</div>
+      <div class="legal-icon">⚖️</div>
+      <div class="ttl">Approche légale</div>
+      <p class="body">La majorité des projets clients avec lesquels j'ai travaillé ont une clause de confidentialité. Les réalisations présentées ici sont celles pour lesquelles j'ai obtenu l'autorisation de partage.</p>
+    </div>
+
+    <div class="bc b-contact" id="contact">
+      <div class="lbl">Contact</div>
+      <div class="ttl">Discutons ☕</div>
+      <div class="clinks">
+        <a href="https://www.linkedin.com/in/marie-arnaud-437a3b172/" target="_blank" class="clink">
+          <span class="clink-icon">in</span> LinkedIn — Marie Arnaud
+        </a>
+        <a href="https://www.behance.net/mariearnaud" target="_blank" class="clink">
+          <span class="clink-icon">✦</span> Behance — Portfolio visuel
+        </a>
+        <a href="mailto:m.arnaud85@icloud.com" class="clink">
+          <span class="clink-icon">@</span> m.arnaud85@icloud.com
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── TIGER CARD ── -->
+<div class="tiger-section">
+  <div class="tiger-card">
+    <div class="tiger-img">
+      <img src="TigerPink.gif" alt="Tiger Pink — illustration dynamique" loading="lazy" />
+    </div>
+    <div class="tiger-copy">
+      <div class="lbl">Univers créatif</div>
+      <h3>Une designer avec du caractère</h3>
+      <p class="body">Au-delà des wireframes, je nourris ma pratique d'une culture visuelle riche — illustration, graphisme japonais, narration visuelle. Tiger Pink, c'est cette énergie : dynamique, affirmée, mémorable.</p>
+      <div class="tiger-links">
+        <a href="https://www.behance.net/mariearnaud" target="_blank" class="tiger-link">Voir mon Behance →</a>
+        <a href="mailto:m.arnaud85@icloud.com" class="tiger-link">Me contacter →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="f-logo">
+    <svg viewBox="0 0 203 81" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M167.762 80.6101C155.899 80.6101 147.06 78.1745 141.246 73.3033C135.511 68.4321 132.643 61.1646 132.643 51.5008C132.643 41.8371 135.511 34.5696 141.246 29.6984C147.06 24.8272 155.899 22.3916 167.762 22.3916C191.254 22.3916 203 32.0947 203 51.5008C203 70.907 191.254 80.6101 167.762 80.6101ZM167.762 60.2218C169.805 60.2218 171.337 59.5933 172.359 58.3362C173.38 57.0791 173.891 54.8007 173.891 51.5008C173.891 48.201 173.38 45.9226 172.359 44.6655C171.337 43.4084 169.805 42.7799 167.762 42.7799C165.798 42.7799 164.306 43.4084 163.284 44.6655C162.263 45.9226 161.752 48.201 161.752 51.5008C161.752 54.8007 162.263 57.0791 163.284 58.3362C164.306 59.5933 165.798 60.2218 167.762 60.2218Z" fill="white"/>
+      <path d="M65.3705 79.4317V0H93.8905V34.7661L104.144 23.5702H136.199L114.161 47.7297L137.378 79.4317H107.208L96.4833 62.579L93.8905 65.5253V79.4317H65.3705Z" fill="white"/>
+      <path d="M0 79.4316V3.5354H60.6934V24.0415H28.52V30.8769H56.215V52.0901H28.52V58.9255H60.6934V79.4316H0Z" fill="white"/>
+    </svg>
+  </div>
+  <div class="f-copy">© Marie Arnaud · 2026 · Nantes / Paris</div>
+  <div class="f-kanji">声</div>
+</footer>
+
+<script>
+const MAX_Q=5;let remaining=MAX_Q,msgs=[],apiKey='';
+const msgsEl=document.getElementById('messages');
+const inputEl=document.getElementById('chat-input');
+const sendBtn=document.getElementById('send-btn');
+const qCountEl=document.getElementById('q-count');
+const limitFill=document.getElementById('limit-fill');
+
+const SYSTEM=`Tu es l'assistant IA du portfolio de Marie Arnaud, Product Designer senior. Réponds en français, 2-3 phrases max, ton chaleureux et pro.
+Marie Arnaud — Eko Design (エコ, "écho" en japonais, elle porte la voix des utilisateurs).
+Poste : Product Designer Sephora depuis 4 ans. Scope Convert (panier→confirmation). Web & App. International. Tech/Marketing/Juridique.
+Spécialités : Figma, Design System, UX Research, tests utilisateurs, Baymard, A/B testing, accessibilité, cadrage complexe (iOS 26).
+Projets : Pandacraft (pandacraft.fr), SNCF Abonnement TER, Aigle, Axa & Juridica, Qui.Sncf, Digi-Parc. NB : beaucoup de projets sont sous NDA.
+Passions : doublage/voix off, rénovation, Zelda TOTK, culture japonaise, illustration florale.
+Contact : linkedin.com/in/marie-arnaud-437a3b172/ — m.arnaud85@icloud.com — Behance.
+Philosophie : "Transformer des contraintes exigeantes en parcours fluides, performants et pérennes."`;
+
+document.getElementById('api-key-input').addEventListener('input',e=>{
+  apiKey=e.target.value.trim();
+  if(apiKey.startsWith('sk-ant'))document.getElementById('api-notice').style.opacity='.4';
+});
+
+function updateLimit(){
+  qCountEl.textContent=remaining;
+  limitFill.style.width=(remaining/MAX_Q*100)+'%';
+  if(remaining<=0){
+    limitFill.style.background='#c0392b';
+    inputEl.placeholder='Limite atteinte — contactez Marie directement !';
+    inputEl.disabled=true;sendBtn.disabled=true;
+    document.querySelectorAll('.tag').forEach(t=>t.disabled=true);
+  }
+}
+
+function addMsg(role,html){
+  const d=document.createElement('div');
+  d.className='msg '+(role==='ai'?'ai':'user');
+  d.innerHTML=`<div class="msg-av ${role}">${role==='ai'?'エ':'→'}</div><div class="msg-bubble">${html}</div>`;
+  msgsEl.appendChild(d);msgsEl.scrollTop=msgsEl.scrollHeight;
+}
+
+function showTyping(){
+  const d=document.createElement('div');d.className='msg ai';d.id='typing';
+  d.innerHTML=`<div class="msg-av ai">エ</div><div class="msg-bubble"><div class="typing"><span></span><span></span><span></span></div></div>`;
+  msgsEl.appendChild(d);msgsEl.scrollTop=msgsEl.scrollHeight;
+}
+
+async function send(text){
+  if(!text.trim()||remaining<=0)return;
+  if(text.toLowerCase().includes('linkedin')){
+    addMsg('user',text);
+    addMsg('ai','Profil LinkedIn de Marie 👉 <a href="https://www.linkedin.com/in/marie-arnaud-437a3b172/" target="_blank">linkedin.com/in/marie-arnaud-437a3b172/</a>');
+    msgs.push({role:'user',content:text},{role:'assistant',content:'LinkedIn partagé.'});
+    inputEl.value='';remaining--;updateLimit();return;
+  }
+  addMsg('user',text.replace(/</g,'&lt;'));
+  msgs.push({role:'user',content:text});
+  inputEl.value='';remaining--;updateLimit();
+  if(!apiKey){
+    addMsg('ai','Entrez votre clé API Anthropic ci-dessous pour activer l\'IA 🔑 (<a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a>)');
+    return;
+  }
+  showTyping();sendBtn.disabled=true;
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01'},
+      body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:200,system:SYSTEM,messages:msgs.slice(-6)})
+    });
+    const data=await res.json();
+    document.getElementById('typing')?.remove();
+    if(data.content?.[0]?.text){
+      const r=data.content[0].text;
+      addMsg('ai',r.replace(/\n/g,'<br>'));
+      msgs.push({role:'assistant',content:r});
+    }else if(data.error){addMsg('ai',`Erreur : ${data.error.message}`);}
+  }catch(e){
+    document.getElementById('typing')?.remove();
+    addMsg('ai','Connexion impossible. Vérifiez votre clé API.');
+  }
+  sendBtn.disabled=false;
+}
+
+sendBtn.addEventListener('click',()=>send(inputEl.value));
+inputEl.addEventListener('keydown',e=>{if(e.key==='Enter')send(inputEl.value);});
+document.querySelectorAll('.tag').forEach(t=>t.addEventListener('click',()=>send(t.dataset.q)));
+</script>
+</body>
+</html>
