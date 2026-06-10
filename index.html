@@ -1,589 +1,917 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Eko Design — Marie Arnaud, Product Designer</title>
-<link rel="canonical" href="http://marie-arnaud.com" />
-<meta name="description" content="Marie Arnaud — Product Designer senior spécialisée dans l'expérience de conversion. Sephora, SNCF, Pandacraft, Aigle. Nantes / Paris." />
-<meta property="og:title" content="Eko Design — Marie Arnaud, Product Designer" />
-<meta property="og:url" content="http://marie-arnaud.com" />
-<meta property="og:type" content="website" />
+<link rel="canonical" href="http://marie-arnaud.com"/>
+<meta name="description" content="Marie Arnaud — Product Designer senior spécialisée dans l'expérience de conversion. Sephora, SNCF, Pandacraft, Aigle. Nantes / Paris."/>
+<meta property="og:title" content="Eko Design — Marie Arnaud, Product Designer"/>
+<meta property="og:url" content="http://marie-arnaud.com"/>
+<meta property="og:type" content="website"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,300;0,400;0,600;0,700;0,900;1,300;1,400&family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,600&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --bg:#0C0C0C;
-  --bg2:#111111;
-  --bg3:#171717;
-  --yellow:#F5C842;
-  --yellow-dim:rgba(245,200,66,0.1);
-  --yellow-border:rgba(245,200,66,0.22);
-  --white:#EEEAE2;
-  --white-70:rgba(238,234,226,0.7);
-  --white-40:rgba(238,234,226,0.4);
-  --white-18:rgba(238,234,226,0.18);
-  --white-08:rgba(238,234,226,0.08);
-  --border:rgba(238,234,226,0.09);
-  --border-md:rgba(238,234,226,0.16);
-  --purple:#D0C2EC;
-  --purple-dark:#1A1526;
+/* ─────────────────────────────────────────
+   TOKENS
+───────────────────────────────────────── */
+:root {
+  /* Accent — identiques dark & light */
+  --indigo:        #4F46E5;
+  --indigo-700:    #4338CA;
+  --indigo-m:      #6366F1;
+  --indigo-l:      #A5B4FC;
+  --indigo-xl:     #C7D2FE;
+  --indigo-dim:    rgba(79,70,229,0.12);
+  --indigo-border: rgba(99,102,241,0.30);
+  --purple:        #D0C2EC;
+  --purple-soft:   #1A1535;
+  /* Spacing */
+  --s4:4px; --s8:8px; --s12:12px; --s16:16px;
+  --s24:24px; --s32:32px; --s48:48px; --s64:64px;
+  /* Radius */
+  --r4:4px; --r8:8px; --r12:12px; --r16:16px; --rpill:100px;
 }
+
+/* ── DARK ── */
+[data-theme="dark"] {
+  --bg:       #0F0F14;
+  --bg2:      #1C1C2E;
+  --bg3:      #131320;
+  --nav-bg:   rgba(15,15,20,0.95);
+  --t1:       #EEEAE2;
+  --t2:       rgba(238,234,226,0.80);
+  --t3:       rgba(238,234,226,0.55);
+  --border:   rgba(238,234,226,0.08);
+  --border-m: rgba(238,234,226,0.15);
+  --card:     #1C1C2E;
+  --inp-bg:   #0F0F14;
+  --inp-t:    #EEEAE2;
+}
+
+/* ── LIGHT ── */
+[data-theme="light"] {
+  --bg:       #F7F6F2;
+  --bg2:      #FFFFFF;
+  --bg3:      #F0EEF8;
+  --nav-bg:   rgba(247,246,242,0.95);
+  --t1:       #1A1A2E;
+  --t2:       rgba(26,26,46,0.80);
+  --t3:       rgba(26,26,46,0.55);
+  --border:   rgba(26,26,46,0.08);
+  --border-m: rgba(26,26,46,0.14);
+  --card:     #FFFFFF;
+  --inp-bg:   #FFFFFF;
+  --inp-t:    #1A1A2E;
+}
+
+/* ─────────────────────────────────────────
+   RESET & BASE
+───────────────────────────────────────── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);line-height:1.6;overflow-x:hidden}
+body{
+  font-family:'Nunito',sans-serif;
+  background:var(--bg);color:var(--t1);
+  line-height:1.6;overflow-x:hidden;
+  transition:background .3s,color .3s;
+}
 
-/* ── NAV ── */
+/* ─────────────────────────────────────────
+   NAVIGATION
+───────────────────────────────────────── */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:200;
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 2.5rem;height:68px;
-  background:rgba(12,12,12,0.95);
+  padding:0 var(--s24);height:72px;
+  background:var(--nav-bg);
   backdrop-filter:blur(20px);
   border-bottom:1px solid var(--border);
 }
-/* App Icon inline SVG — always white, full visible */
-.nav-logo{display:flex;align-items:center;text-decoration:none;height:44px;flex-shrink:0}
-.nav-logo svg{width:auto;height:36px;display:block}
-.nav-center{position:absolute;left:50%;transform:translateX(-50%);display:flex;gap:2.2rem;list-style:none}
-.nav-center a{font-size:.78rem;font-weight:400;letter-spacing:.06em;color:var(--white-40);text-decoration:none;text-transform:uppercase;transition:color .18s}
-.nav-center a:hover{color:var(--white)}
-.nav-right{display:flex;align-items:center;gap:1.4rem}
-.nav-right a{font-size:.78rem;letter-spacing:.04em;color:var(--white-40);text-decoration:none;transition:color .18s}
-.nav-right a:hover{color:var(--yellow)}
-.nav-cta{font-size:.75rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:.4rem 1.1rem;border:1px solid var(--white-18);color:var(--white)!important;transition:border-color .18s,background .18s,color .18s!important}
-.nav-cta:hover{border-color:var(--yellow)!important;background:var(--yellow-dim)!important;color:var(--yellow)!important}
 
-/* ── HERO ── */
+/* Logo box */
+.nav-logo{
+  width:40px;height:40px;border-radius:var(--r8);
+  background:var(--indigo);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;text-decoration:none;
+  transition:background .18s,transform .18s;
+}
+.nav-logo:hover{background:var(--indigo-700);transform:scale(1.05)}
+.nav-logo svg{width:26px;height:26px}
+
+/* Nav links */
+.nav-links{
+  position:absolute;left:50%;transform:translateX(-50%);
+  display:flex;gap:var(--s64);list-style:none;
+}
+.nav-links a{
+  font-size:16px;font-weight:600;color:var(--t2);
+  text-decoration:none;
+  padding-bottom:2px;border-bottom:2px solid transparent;
+  transition:color .18s,border-color .18s;
+}
+.nav-links a:hover{color:var(--t1);border-bottom-color:var(--indigo-m)}
+
+/* Nav CTA buttons */
+.nav-right{display:flex;align-items:center;gap:var(--s16)}
+
+/* Secondary button */
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:var(--s8);
+  height:40px;padding:var(--s8) var(--s24);
+  font-family:'Nunito',sans-serif;font-size:14px;font-weight:600;
+  border:1px solid var(--indigo-l);border-radius:var(--r4);
+  background:transparent;color:var(--purple);
+  text-decoration:none;cursor:pointer;
+  box-shadow:0 2px 4px rgba(165,180,252,0.3);
+  transition:background .18s,border-color .18s,color .18s,box-shadow .18s;
+}
+.btn-secondary:hover{
+  background:var(--indigo-dim);
+  border-color:var(--indigo-m);
+  color:var(--indigo-l);
+  box-shadow:0 2px 8px rgba(165,180,252,0.45);
+}
+.btn-secondary svg{width:16px;height:16px;fill:currentColor;flex-shrink:0}
+
+/* Icon button (theme toggle) */
+.btn-icon{
+  width:40px;height:40px;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--indigo-l);border-radius:var(--r4);
+  background:transparent;cursor:pointer;
+  box-shadow:0 2px 4px rgba(165,180,252,0.3);
+  transition:all .18s;color:var(--t2);
+}
+.btn-icon:hover{
+  background:var(--indigo-dim);
+  border-color:var(--indigo-m);
+  color:var(--indigo-l);
+}
+.btn-icon svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* ─────────────────────────────────────────
+   HERO
+───────────────────────────────────────── */
 .hero{
   min-height:100vh;
   display:flex;flex-direction:column;
   align-items:center;justify-content:center;
-  padding:8rem 2rem 6rem;
-  text-align:center;
+  padding:calc(72px + var(--s32)) var(--s24) var(--s48);
   position:relative;overflow:hidden;
-  border-bottom:1px solid var(--border);
-  background-color:var(--bg);
-  background-image:radial-gradient(circle, rgba(238,234,226,0.07) 1px, transparent 1px);
-  background-size:28px 28px;
+  background:var(--bg);
+}
+.hero-dots{
+  position:absolute;inset:0;
+  background-image:radial-gradient(circle,rgba(99,102,241,0.08) 1px,transparent 1px);
+  background-size:28px 28px;pointer-events:none;z-index:0;
+}
+.hero-inner{
+  position:relative;z-index:1;
+  width:100%;max-width:1152px;
+  display:flex;flex-direction:column;align-items:center;gap:var(--s64);
 }
 
-.hero-content{position:relative;z-index:1;max-width:760px;width:100%;animation:fadeUp .7s ease both}
-@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-
-/* EKO wordmark — white paths */
-.hero-logo{display:inline-block;margin-bottom:.5rem}
-.hero-logo svg{width:auto;height:clamp(48px,8vw,96px)}
-.hero-logo svg path{fill:var(--white)}
-
-/* DESIGN subline Kanit */
-.hero-design-sub{
-  font-family:'Kanit',sans-serif;font-weight:600;
-  font-size:clamp(.7rem,1.4vw,1rem);letter-spacing:.5em;
-  text-transform:uppercase;color:var(--white-40);margin-bottom:1.2rem;
+/* Visuals: EKO logo + illustration */
+.hero-visuals{
+  display:flex;align-items:flex-end;justify-content:center;
+  width:100%;position:relative;
+}
+.hero-eko{
+  height:240px;width:auto;
+  margin-right:-96px;position:relative;z-index:1;
+  object-fit:contain;
+  /* filter for light theme — inverted colors */
+  transition:filter .3s;
+}
+[data-theme="light"] .hero-eko{filter:invert(1) sepia(1) saturate(0) brightness(0.15)}
+.hero-illus{
+  height:405px;width:518px;
+  object-fit:cover;flex-shrink:0;position:relative;z-index:2;
 }
 
-/* Tagline */
-.hero-tagline{
-  font-family:'DM Sans',sans-serif;font-size:clamp(.85rem,1.4vw,1rem);
-  font-weight:300;font-style:italic;color:var(--white-40);
-  letter-spacing:.04em;margin-bottom:2.8rem;
+/* ─────────────────────────────────────────
+   MOKA — AI zone
+───────────────────────────────────────── */
+.moka{width:100%;max-width:876px}
+
+.moka-title{
+  font-size:32px;font-weight:800;
+  color:var(--indigo);margin-bottom:var(--s24);
 }
 
-/* ── AI ZONE ── */
-.ai-zone{max-width:560px;margin:0 auto;animation:fadeUp .8s .1s ease both}
-.ai-prompt-label{
-  font-size:.68rem;font-weight:500;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--yellow);
-  margin-bottom:1.1rem;display:flex;align-items:center;gap:.5rem;justify-content:center;
+/* Messages */
+.moka-msgs{
+  display:flex;flex-direction:column;gap:var(--s16);
+  max-height:220px;overflow-y:auto;
+  margin-bottom:var(--s16);
 }
-.ai-prompt-label::before,.ai-prompt-label::after{content:'';flex:1;max-width:50px;height:1px;background:var(--yellow-border)}
+.moka-msgs::-webkit-scrollbar{width:2px}
+.moka-msgs::-webkit-scrollbar-thumb{background:var(--indigo-border)}
 
-.ai-messages{min-height:52px;max-height:240px;overflow-y:auto;margin-bottom:1.4rem;display:flex;flex-direction:column;gap:.55rem;text-align:left}
-.ai-messages::-webkit-scrollbar{width:2px}
-.ai-messages::-webkit-scrollbar-thumb{background:var(--border-md)}
-.msg{display:flex;gap:.55rem;align-items:flex-start;animation:fadeUp .3s ease both}
+.msg{display:flex;gap:var(--s8);align-items:flex-start;animation:fadeUp .3s ease both}
 .msg.user{flex-direction:row-reverse}
-.msg-av{width:26px;height:26px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.75rem;line-height:1}
-.msg-av.ai{background:var(--yellow-dim);border:1px solid var(--yellow-border);color:var(--yellow)}
-.msg-av.user{background:var(--white-08);border:1px solid var(--border-md);color:var(--white-40)}
-.msg-bubble{font-size:.86rem;line-height:1.65;color:var(--white);background:var(--white-08);border:1px solid var(--border);padding:.55rem .85rem;max-width:calc(100% - 38px)}
-.msg-bubble a{color:var(--yellow)}
-.msg.user .msg-bubble{background:var(--yellow-dim);border-color:var(--yellow-border)}
+.msg-av{
+  width:28px;height:28px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;
+}
+.msg-av.ai{background:var(--indigo-dim);border:1px solid var(--indigo-border);color:var(--indigo-l)}
+.msg-av.user{background:rgba(79,70,229,0.08);border:1px solid var(--border-m);color:var(--t3)}
+.msg-bubble{
+  font-size:14px;font-weight:600;line-height:1.65;
+  color:var(--t1);background:var(--indigo-dim);
+  border:1px solid var(--indigo-border);
+  padding:var(--r12);max-width:calc(100% - 38px);
+}
+.msg.ai .msg-bubble{border-radius:var(--r12) var(--r12) var(--r12) var(--r4)}
+.msg.user .msg-bubble{border-radius:var(--r12) var(--r12) var(--r4) var(--r12)}
+.msg-bubble a{color:var(--indigo-l);text-decoration:underline}
 
-/* Input pill style */
-.ai-input-wrap{display:flex;align-items:center;background:var(--white);border-radius:100px;padding:.25rem .25rem .25rem 1.4rem;transition:box-shadow .2s}
-.ai-input-wrap:focus-within{box-shadow:0 0 0 3px rgba(245,200,66,.25)}
-.ai-input{flex:1;background:transparent;border:none;outline:none;font-family:'DM Sans',sans-serif;font-size:.95rem;color:#0C0C0C;min-width:0}
-.ai-input::placeholder{color:rgba(12,12,12,.45);font-style:italic}
-.ai-send{flex-shrink:0;background:#0C0C0C;color:var(--white);border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:500;letter-spacing:.04em;padding:.6rem 1.4rem;border-radius:100px;display:flex;align-items:center;gap:.4rem;transition:background .18s,color .18s;white-space:nowrap}
-.ai-send:hover{background:#222;color:var(--yellow)}
-.ai-send svg{width:13px;height:13px;fill:currentColor}
+/* Search bar */
+.moka-bar{
+  display:flex;align-items:center;gap:var(--s8);
+  background:var(--card);
+  border:1px solid var(--indigo-border);
+  border-radius:var(--r12);
+  padding:var(--r12) var(--s8) var(--r12) var(--s16);
+  transition:border-color .2s,box-shadow .2s;
+}
+.moka-bar:focus-within{
+  border-color:var(--indigo-m);
+  box-shadow:0 0 0 3px var(--indigo-dim);
+}
+.moka-input{
+  flex:1;background:transparent;border:none;outline:none;
+  font-family:'Nunito',sans-serif;font-size:14px;font-weight:600;
+  color:var(--inp-t);min-width:0;
+}
+.moka-input::placeholder{color:var(--t3);font-style:normal}
 
-.limit-row{display:flex;align-items:center;gap:.65rem;margin-top:.85rem;justify-content:center}
-.limit-track{height:1px;width:100px;background:var(--border-md);position:relative}
-.limit-fill{position:absolute;top:0;left:0;height:100%;background:var(--yellow);transition:width .4s}
-.limit-label{font-size:.68rem;color:var(--white-40);letter-spacing:.04em}
-.limit-label span{color:var(--yellow)}
+/* Primary button */
+.btn-primary{
+  display:inline-flex;align-items:center;gap:var(--s8);
+  height:40px;padding:var(--s8) var(--s24);
+  font-family:'Nunito',sans-serif;font-size:14px;font-weight:600;
+  background:var(--indigo-m);color:#EEEAE2;
+  border:none;border-radius:var(--r8);cursor:pointer;
+  flex-shrink:0;white-space:nowrap;
+  transition:background .18s,transform .1s;
+}
+.btn-primary:hover{background:var(--indigo)}
+.btn-primary:active{transform:scale(.97)}
+.btn-primary svg{width:14px;height:14px;fill:white}
 
-.quick-tags{display:flex;flex-wrap:wrap;gap:.38rem;justify-content:center;margin-top:1.2rem;animation:fadeUp .8s .2s ease both}
-.tag{font-size:.73rem;font-weight:400;letter-spacing:.02em;padding:.3rem .85rem;border:1px solid var(--border-md);background:transparent;color:var(--white-40);cursor:pointer;transition:all .16s}
-.tag:hover{border-color:var(--yellow);color:var(--yellow);background:var(--yellow-dim)}
+/* Gauge */
+.gauge-row{display:flex;align-items:center;gap:var(--r8);margin-top:var(--s8)}
+.gauge-track{height:2px;width:120px;background:var(--border-m);position:relative;flex-shrink:0}
+.gauge-fill{position:absolute;top:0;left:0;height:100%;background:var(--indigo-l);transition:width .4s,background .3s}
+.gauge-label{font-size:12px;font-weight:600;color:var(--t2);white-space:nowrap}
+.gauge-label b{color:var(--indigo);font-weight:600}
 
+/* Pills */
+.pills-row{display:flex;flex-wrap:wrap;gap:var(--s8);margin-top:var(--s24)}
+/* Default pill */
+.pill{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:var(--s8) var(--s24);
+  border:1px solid var(--indigo-border);border-radius:var(--rpill);
+  font-family:'Nunito',sans-serif;font-size:14px;font-weight:600;
+  color:var(--t1);background:transparent;cursor:pointer;
+  transition:background .16s,border-color .16s,color .16s;
+}
+/* Hover pill */
+.pill:hover{
+  background:var(--indigo-dim);
+  border-color:var(--indigo-m);
+  color:var(--indigo-l);
+}
+
+/* Typing indicator */
 .typing{display:flex;gap:4px;align-items:center;padding:3px 0}
-.typing span{width:5px;height:5px;background:var(--yellow);border-radius:50%;animation:tb 1.1s ease infinite}
+.typing span{width:5px;height:5px;background:var(--indigo-m);border-radius:50%;animation:tb 1.1s ease infinite}
 .typing span:nth-child(2){animation-delay:.2s}
 .typing span:nth-child(3){animation-delay:.4s}
 @keyframes tb{0%,60%,100%{opacity:1}30%{opacity:.15}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
-
-
-/* Scroll hint — clickable, yellow hover */
-.scroll-hint{
-  position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
-  display:flex;flex-direction:column;align-items:center;gap:.35rem;
-  color:var(--white-40);font-size:.67rem;letter-spacing:.1em;text-transform:uppercase;
-  animation:fadeUp 1s .5s ease both;
-  text-decoration:none;cursor:pointer;transition:color .18s;
+/* ─────────────────────────────────────────
+   MARQUEE
+───────────────────────────────────────── */
+.marquee-strip{
+  overflow:hidden;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:var(--s24) 0;
+  background:var(--bg);
 }
-.scroll-hint:hover{color:var(--yellow)}
-.scroll-arrow{animation:sa 1.8s ease infinite;display:block}
-@keyframes sa{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
-
-/* ── MARQUEE ── */
-.marquee-strip{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:.5rem 0;background:var(--bg)}
-.marquee-inner{display:flex;gap:3rem;white-space:nowrap;animation:marquee 24s linear infinite}
+.marquee-inner{
+  display:flex;gap:var(--s48);white-space:nowrap;
+  animation:marquee 28s linear infinite;
+}
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.marquee-item{font-family:'Kanit',sans-serif;font-weight:300;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(238,234,226,0.55);display:inline-flex;align-items:center;gap:.75rem}
-.marquee-item::after{content:'✦';font-size:.45rem;color:var(--yellow);opacity:.7}
+.marquee-item{
+  font-size:14px;font-weight:500;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--t3);
+  display:inline-flex;align-items:center;gap:var(--s8);
+}
+.marquee-dot{font-size:10px;color:var(--indigo-m)}
 
-/* ── SECTIONS ── */
-.section{padding:5rem 2rem;max-width:1100px;margin:0 auto}
-.section-projects{padding:0 2rem 5rem;max-width:1100px;margin:0 auto}
-.sec-label{font-size:.66rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow);margin-bottom:.35rem}
-.sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:700;line-height:1.15;letter-spacing:-.02em;margin-bottom:2.2rem}
+/* ─────────────────────────────────────────
+   SECTIONS
+───────────────────────────────────────── */
+.section{padding:var(--s32) var(--s48)}
+.sec-label{font-size:16px;font-weight:600;color:var(--indigo);margin-bottom:4px}
+.sec-title{font-size:32px;font-weight:800;color:var(--t1);margin-bottom:var(--s24);line-height:1.2}
 
-/* ── BENTO ── */
-.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:1px;background:var(--border)}
-.bc{background:var(--bg);padding:2rem;position:relative;overflow:hidden;transition:background .22s}
-.bc:hover{background:var(--bg3)}
-.bc .lbl{font-size:.64rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--white-40);margin-bottom:.55rem}
-.bc .ttl{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;line-height:1.25;margin-bottom:.7rem;letter-spacing:-.01em;color:var(--white)}
-.bc .body{font-size:.875rem;line-height:1.78;color:var(--white-70);font-weight:300}
-.bc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--yellow);transform:scaleX(0);transform-origin:left;transition:transform .28s ease}
-.bc:hover::after{transform:scaleX(1)}
+/* ─────────────────────────────────────────
+   CARDS GRID (À propos)
+───────────────────────────────────────── */
+.cards-grid{display:flex;flex-wrap:wrap;gap:var(--s24);width:100%}
 
-.b-intro{grid-column:1/8}
-.b-sep{grid-column:8/13;background:var(--bg2)}
-.b-sep .seph-logo{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;letter-spacing:.06em;color:var(--white);margin-bottom:.4rem}
+.card{
+  background:var(--card);
+  border-radius:var(--r8);
+  padding:var(--s16);
+  overflow:hidden;flex-shrink:0;
+  /* Default — no visible border */
+  border:1px solid transparent;
+  transition:transform .2s,box-shadow .2s,border-color .2s;
+}
+/* Card hover */
+.card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(79,70,229,0.14);
+  border-color:var(--indigo-m);
+}
+.card-lbl{font-size:14px;font-weight:500;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s8)}
+.card-ttl{font-size:18px;font-weight:800;color:var(--t1);margin-bottom:var(--s8);line-height:1.3}
+.card-body{font-size:14px;font-weight:600;color:var(--t2);line-height:1.65}
 
-.b-quote{grid-column:1/5;background:var(--yellow)!important}
-.b-quote:hover{background:var(--yellow)!important}
-.b-quote::after{display:none}
-.b-quote .lbl{color:rgba(12,12,12,.5)}
-.b-quote blockquote{font-family:'Playfair Display',serif;font-size:1.1rem;font-style:italic;font-weight:400;line-height:1.6;color:#0C0C0C}
-.b-quote cite{font-size:.74rem;color:rgba(12,12,12,.5);font-style:normal;display:block;margin-top:.85rem}
+/* Philosophie card — indigo bg */
+.card-phil{background:var(--indigo)!important;border-color:var(--indigo)!important}
+.card-phil:hover{box-shadow:0 8px 24px rgba(79,70,229,0.35)!important;border-color:var(--indigo-700)!important}
+.card-phil .card-lbl{color:rgba(255,255,255,.65)}
+.card-phil .card-body{color:#EEEAE2;font-style:italic;font-size:14px}
 
-.b-skills{grid-column:5/9}
-.skill-tags{display:flex;flex-wrap:wrap;gap:.32rem;margin-top:.8rem}
-.st{font-size:.72rem;padding:.26rem .68rem;border:1px solid var(--border-md);color:var(--white-40);white-space:nowrap;transition:all .15s;background:transparent}
-.st:hover{border-color:var(--yellow);color:var(--yellow)}
+/* Skill pills inside card */
+.skill-tags{display:flex;flex-wrap:wrap;gap:var(--s8);margin-top:var(--s8)}
+.skill-pill{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:var(--s8) var(--s24);
+  border:1px solid var(--indigo-border);border-radius:var(--rpill);
+  font-size:14px;font-weight:600;color:var(--t1);
+  background:transparent;
+  transition:border-color .15s,color .15s;
+}
+.skill-pill:hover{border-color:var(--indigo-m);color:var(--indigo-l)}
 
-.b-passion{grid-column:9/13;background:var(--bg2)}
-.plist{list-style:none;margin-top:.7rem;display:flex;flex-direction:column;gap:.45rem}
-.plist li{font-size:.875rem;color:var(--white-70);font-weight:300;display:flex;align-items:flex-start;gap:.55rem;padding-bottom:.45rem;border-bottom:1px solid var(--border)}
-.plist li:last-child{border-bottom:none}
-.plist li::before{content:'→';color:var(--yellow);font-size:.7rem;margin-top:.1rem;flex-shrink:0}
+/* ─────────────────────────────────────────
+   PROJECTS GRID
+───────────────────────────────────────── */
+.projects-grid{
+  display:flex;width:100%;
+  border:1px solid var(--indigo);border-radius:var(--r8);
+  overflow:hidden;
+}
+.proj-card{
+  flex:1;background:var(--card);
+  padding:var(--s16);
+  border-right:1px solid var(--indigo-m);
+  display:flex;flex-direction:column;gap:var(--s32);
+  transition:background .2s;
+}
+.proj-card:last-child{border-right:none}
+.proj-card:hover{background:var(--bg2)}
 
-/* Séparateur 64px entre Portfolio et Réalisations */
-.projects-header{padding:4rem 2rem 1rem;max-width:1100px;margin:0 auto;border-top:1px solid var(--border)}
+.proj-top{display:flex;flex-direction:column;gap:var(--s16)}
+.proj-italic{font-size:14px;font-weight:600;font-style:italic;color:var(--t2);line-height:1.65}
 
-.b-panda{grid-column:1/5;min-height:230px}
-.b-sncf{grid-column:5/9;min-height:230px;background:var(--bg2)}
-.b-aigle{grid-column:9/13;min-height:230px}
+/* Visit button — full width inside card */
+.btn-visit{
+  display:flex;align-items:center;gap:var(--s8);
+  height:40px;padding:var(--s8) 10px;
+  background:var(--indigo-m);border:none;border-radius:var(--r4);
+  cursor:pointer;width:100%;
+  transition:background .18s;
+}
+.btn-visit:hover{background:var(--indigo)}
+.btn-visit a{
+  flex:1;font-size:14px;font-weight:600;color:#EEEAE2;
+  text-decoration:none;
+}
+.btn-visit-icon{
+  display:flex;align-items:center;justify-content:center;
+  padding:var(--s8) var(--s24);
+  background:var(--bg3);border-radius:var(--r4);flex-shrink:0;
+  transition:background .18s;
+}
+.btn-visit:hover .btn-visit-icon{background:var(--indigo-700)}
+.btn-visit-icon svg{width:16px;height:16px;fill:var(--t1)}
 
-.plabel{display:inline-block;font-size:.63rem;font-weight:500;letter-spacing:.09em;text-transform:uppercase;padding:.2rem .62rem;margin-bottom:.8rem;border:1px solid var(--border-md);color:var(--white-40)}
-.plink{display:inline-flex;align-items:center;gap:.35rem;font-size:.78rem;font-weight:500;text-decoration:none;color:var(--yellow);margin-top:.9rem;border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .15s,gap .15s}
-.plink:hover{border-bottom-color:var(--yellow);gap:.55rem}
+/* ─────────────────────────────────────────
+   CONTACT
+───────────────────────────────────────── */
+.contact-grid{display:flex;gap:var(--s24);width:100%}
 
-.b-legal{grid-column:1/7;background:var(--bg2)}
-.b-legal .ttl{color:var(--yellow)}
-.legal-icon{font-size:2.8rem;line-height:1;margin-bottom:.7rem;opacity:.6}
+/* Contact card */
+.contact-card{
+  flex:1;background:var(--purple-soft);
+  border:1px solid var(--indigo-m);border-radius:var(--r8);
+  padding:var(--s16);display:flex;flex-direction:column;gap:var(--s32);
+  transition:border-color .2s,box-shadow .2s;
+}
+.contact-card:hover{
+  border-color:var(--indigo-l);
+  box-shadow:0 4px 20px rgba(79,70,229,0.15);
+}
 
-.b-contact{grid-column:7/13}
-.clinks{display:flex;flex-direction:column;gap:.42rem;margin-top:.85rem}
-.clink{display:flex;align-items:center;gap:.6rem;font-size:.86rem;text-decoration:none;color:var(--white-70);padding:.6rem .85rem;border:1px solid var(--border);background:transparent;transition:all .16s}
-.clink:hover{border-color:var(--yellow-border);color:var(--yellow);background:var(--yellow-dim)}
-.clink-icon{font-size:.72rem;color:var(--yellow);min-width:14px}
+.contact-links{display:flex;flex-direction:column;gap:var(--s16)}
+.contact-row{
+  display:flex;align-items:center;gap:var(--s8);
+  height:40px;padding:var(--s8) 10px;
+  border:1px solid var(--indigo);border-radius:var(--r4);
+  transition:border-color .18s,background .18s;
+}
+.contact-row:hover{border-color:var(--indigo-l);background:var(--indigo-dim)}
+.contact-row img{width:28px;height:24px;object-fit:contain;flex-shrink:0}
+.contact-row svg{width:24px;height:24px;flex-shrink:0;stroke:var(--t3);fill:none;stroke-width:1.5}
+.contact-row a{
+  flex:1;font-size:14px;font-weight:600;color:var(--t1);text-decoration:none;
+  transition:color .15s;
+}
+.contact-row:hover a{color:var(--indigo-l)}
+.contact-arrow{
+  display:flex;align-items:center;justify-content:center;
+  padding:var(--s8) var(--s24);background:var(--indigo);
+  border-radius:var(--r4);flex-shrink:0;
+  transition:background .18s;
+}
+.contact-row:hover .contact-arrow{background:var(--indigo-700)}
+.contact-arrow svg{width:16px;height:16px;fill:#EEEAE2}
 
-/* ── TIGER CARD — purple background ── */
-.tiger-section{max-width:1100px;margin:0 auto;padding:0 2rem 5rem}
+/* Tiger / univers card */
 .tiger-card{
-  border:1px solid rgba(208,194,236,0.2);
-  display:grid;grid-template-columns:1fr 1fr;
-  overflow:hidden;transition:border-color .22s;
+  flex:1;border:1px solid var(--indigo-m);border-radius:var(--r8);
+  display:flex;overflow:hidden;min-height:220px;
+  transition:border-color .2s,box-shadow .2s;
 }
-.tiger-card:hover{border-color:rgba(208,194,236,0.45)}
-.tiger-img{
-  overflow:hidden;display:flex;align-items:center;justify-content:center;
-  background:#2A1F42;
-  padding:2.5rem;min-height:340px;
+.tiger-card:hover{
+  border-color:var(--indigo-l);
+  box-shadow:0 4px 20px rgba(79,70,229,0.15);
 }
-.tiger-img img{width:100%;max-width:300px;height:auto;display:block}
+.tiger-img-col{
+  background:var(--purple-soft);
+  display:flex;align-items:center;justify-content:center;
+  padding:var(--s16);flex-shrink:0;
+}
+.tiger-img-col img{
+  height:188px;width:auto;border-radius:var(--r4);
+  object-fit:cover;
+  transition:transform .3s;
+}
+.tiger-card:hover .tiger-img-col img{transform:scale(1.03)}
 .tiger-copy{
-  padding:3rem 2.5rem;display:flex;flex-direction:column;justify-content:center;
-  background:#1A1526;
-  border-left:1px solid rgba(208,194,236,0.15);
+  background:var(--purple-soft);flex:1;padding:var(--s16);
+  display:flex;flex-direction:column;gap:var(--s32);
 }
-.tiger-copy .lbl{font-size:.64rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--purple);margin-bottom:.75rem}
-.tiger-copy h3{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,2.8vw,2rem);font-weight:700;line-height:1.2;margin-bottom:.9rem;color:var(--white)}
-.tiger-copy .body{font-size:.9rem;line-height:1.75;color:rgba(238,234,226,0.65);font-weight:300}
-.tiger-links{display:flex;flex-direction:column;gap:.45rem;margin-top:1.5rem}
-.tiger-link{display:inline-flex;align-items:center;gap:.5rem;font-size:.82rem;font-weight:500;text-decoration:none;color:var(--purple);border-bottom:1px solid transparent;padding-bottom:1px;width:fit-content;transition:border-color .15s,gap .15s,color .15s}
-.tiger-link:hover{border-bottom-color:var(--purple);gap:.7rem;color:#E8DDFF}
+.tiger-link-row{
+  display:flex;align-items:center;gap:var(--s8);
+  height:40px;padding:var(--s8) 10px;
+  border:1px solid var(--indigo);border-radius:var(--r4);
+  transition:border-color .18s,background .18s;
+}
+.tiger-link-row:hover{border-color:var(--indigo-l);background:var(--indigo-dim)}
+.tiger-link-row img{width:24px;height:24px;object-fit:contain;flex-shrink:0}
+.tiger-link-row a{flex:1;font-size:14px;font-weight:600;color:var(--t1);text-decoration:none;transition:color .15s}
+.tiger-link-row:hover a{color:var(--indigo-l)}
 
-/* ── FOOTER ── */
-footer{border-top:1px solid var(--border);padding:2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
-.f-logo svg{height:20px;width:auto}
-.f-logo svg path{fill:rgba(238,234,226,.28)}
-.f-copy{font-size:.74rem;color:var(--white-40)}
-.f-kanji{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:900;color:var(--yellow);opacity:.18}
+/* ─────────────────────────────────────────
+   FOOTER
+───────────────────────────────────────── */
+footer{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:var(--s24);
+  background:var(--nav-bg);
+  border-top:1px solid var(--border);
+}
+.footer-logo img{height:24px;width:auto;object-fit:contain;opacity:.45;transition:opacity .18s}
+.footer-logo:hover img{opacity:.8}
+.footer-copy{font-size:14px;font-weight:600;color:var(--indigo-m)}
+.footer-kanji{font-size:18px;font-weight:800;color:var(--indigo-m);opacity:.5}
 
-/* ── RESPONSIVE ── */
-@media(max-width:900px){.nav-center{display:none}.nav-cta{display:none}}
+/* ─────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────── */
+@media(max-width:1024px){
+  .nav-links{display:none}
+  .section{padding:var(--s32) var(--s24)}
+}
 @media(max-width:768px){
-  nav{padding:0 1.2rem}
-  .hero{padding:6rem 1.2rem 4rem}
-  .section{padding:3.5rem 1.2rem}
-  .bento{grid-template-columns:1fr;gap:0}
-  .b-intro,.b-sep,.b-quote,.b-skills,.b-passion,.b-panda,.b-sncf,.b-aigle,.b-legal,.b-contact{grid-column:1/2}
-  .section-projects{padding:0 1.2rem 4rem}
-  .projects-header{padding:3rem 1.2rem 1rem}
-  .tiger-card{grid-template-columns:1fr}
-  .tiger-img{border-bottom:1px solid rgba(208,194,236,0.15);min-height:260px}
-  .tiger-copy{border-left:none;border-top:1px solid rgba(208,194,236,0.15);padding:2rem 1.5rem}
-  .tiger-section{padding:0 1.2rem 4rem}
-  footer{flex-direction:column;text-align:center}
+  nav{padding:0 var(--s16)}
+  .btn-secondary span{display:none}
+  .hero{padding:calc(72px + var(--s24)) var(--s16) var(--s32)}
+  .hero-visuals{flex-direction:column;align-items:center;gap:var(--s16)}
+  .hero-eko{height:100px;margin-right:0}
+  .hero-illus{width:100%;height:240px}
+  .moka{max-width:100%}
+  .section{padding:var(--s24) var(--s16)}
+  .cards-grid{gap:var(--s16)}
+  .projects-grid{flex-direction:column}
+  .proj-card{border-right:none;border-bottom:1px solid var(--indigo-m)}
+  .proj-card:last-child{border-bottom:none}
+  .contact-grid{flex-direction:column}
+  .tiger-card{flex-direction:column}
+  footer{flex-direction:column;gap:var(--s8);text-align:center}
 }
 </style>
 </head>
 <body>
 
-<!-- ── NAV ── -->
+<!-- ══ NAV ══ -->
 <nav>
   <a href="#" class="nav-logo" aria-label="Eko Design">
-    <!-- Tiger SVG — complete, white, viewBox 212x174 -->
-    <svg width="54" height="44" viewBox="0 0 212 174" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M114.426 119.035C112.839 124.151 107.447 116.037 110.394 115.013C112.983 114.121 115.309 116.227 114.426 119.035ZM120.546 130.755C119.711 130.577 118.447 128.994 118.447 127.983V120.166C118.805 118.821 122.586 119.345 123.576 119.856C127.859 122.069 122.777 131.231 120.546 130.767V130.755ZM148.951 111.659C145.281 115.523 141.676 119.319 142.355 125.222C143.441 126.662 165.654 109.505 155.239 102.889C154.025 106.315 151.472 109.003 148.951 111.659ZM61.3606 84.8629C53.7252 77.9618 42.5827 65.4567 51.1605 55.6643C55.8439 51.4797 63.2798 55.5662 69.9256 59.2183C73.5218 61.1946 76.8866 63.0438 79.4586 63.3863C85.8293 64.243 80.2941 57.0802 77.4547 55.0574C47.4622 33.7593 28.0275 54.8314 49.0843 83.459C36.7724 97.4634 39.9223 110.861 45.8635 126.924C35.5425 125.768 32.1335 114.809 29.565 106.553L29.495 106.328C20.3684 117.167 27.586 126.924 35.5196 135.515L19.9031 140.214C18.8771 140.524 18.1493 141.428 18.0419 142.487C17.8471 144.509 18.3721 144.055 19.1526 143.38C19.6628 142.939 20.2822 142.404 20.8812 142.404C23.6029 142.404 26.9212 142.27 30.4291 142.128C38.0842 141.819 46.644 141.474 51.8881 142.404C56.8749 143.272 64.7848 150.411 66.6697 155.194C71.4418 167.283 60.0722 173.411 59.6188 168.985C60.776 160.727 56.0161 147.187 45.8635 150.126C57.9369 156.206 52.4607 178.765 40.5782 170.829C40.1475 170.54 39.9374 169.101 39.648 167.121C38.8071 161.366 37.2973 151.033 27.7649 151.006C26.6431 153.502 28.4024 155.331 30.2538 157.256C31.7297 158.791 33.2641 160.386 33.444 162.429C33.8377 166.629 27.5503 174.184 23.3627 170.853C22.5562 170.211 22.1541 168.628 21.6973 166.83C20.9851 164.026 20.1398 160.699 17.4215 159.597C19.2468 170.674 2.91475 177.254 1.0775 167.307C-0.950893 156.372 0.296384 141.415 1.46693 127.379C2.11395 119.62 2.73752 112.142 2.77149 105.78C2.90667 105.238 4.32877 104.47 6.39831 103.352C12.7308 99.9318 25.1252 93.2372 25.26 79.7229C25.2639 79.4108 25.2803 79.1193 25.2953 78.8529C25.373 77.4742 25.4138 76.7501 23.4944 77.1289C24.4846 83.2447 5.10986 93.2751 2.81926 90.8479L3.05751 77.3432C13.6754 74.1425 25.4151 66.4442 25.2123 53.927L8.04455 62.6604C0.150765 65.1502 0.621785 57.7508 1.01397 51.5899C1.09596 50.3018 1.17451 49.0678 1.17245 47.9897C9.63097 47.2639 19.1515 45.8718 23.4822 37.6143C8.23537 36.9123 -6.58207 20.1593 8.44999 7.80871C21.4778 -2.88797 39.6121 -2.17405 52.9739 7.38038C53.5801 7.81735 54.2081 7.99396 54.7603 8.14925C55.5012 8.35761 56.1056 8.5276 56.338 9.23661C56.7556 10.4859 55.5623 11.6996 54.2619 11.4616C43.2384 9.54596 32.8118 8.96286 23.0767 14.3528C20.6788 15.6736 19.4735 18.4579 20.1058 21.1231C20.7978 24.062 23.6732 26.0372 26.608 25.4184C28.4093 25.0379 30.1877 24.0753 31.974 23.1083C33.5949 22.2308 35.2225 21.3498 36.8798 20.897C61.7185 14.0673 79.8406 25.5374 89.8142 47.8827C92.3763 48.4976 92.3792 46.8928 92.3821 45.3033C92.385 43.725 92.3878 42.1618 94.8962 42.802C96.6439 43.247 98.7006 44.3413 100.942 45.5339C105.173 47.785 110.062 50.3861 114.772 49.6317C117.683 52.4082 109.929 54.2031 104.893 55.3687C102.829 55.8464 101.222 56.2185 100.993 56.509C104.323 60.2159 109.524 60.2277 115.049 60.2403C120.271 60.2522 125.783 60.2647 130.281 63.3983C130.892 67.2102 127.971 67.0636 124.593 66.8941C121.508 66.7392 118.041 66.5653 116.538 69.3711C116.551 70.9728 119.915 71.353 124.031 71.8181C130.77 72.5797 139.525 73.5691 138.895 80.52L130.294 81.3768C132.707 83.9779 135.989 85.5142 139.248 87.0397C143.994 89.2614 148.691 91.4602 150.587 96.8922C147.744 102.072 143.657 101.164 139.226 100.18C136.869 99.6567 134.415 99.1116 131.999 99.4504L140.255 112.348C133.234 120.945 127.319 118.253 120.786 115.28C115.085 112.686 108.913 109.877 101.124 114.169C91.0191 119.749 98.3683 131.564 104.5 140.512C107.364 144.688 112.243 147.02 117.301 146.663L128.301 145.866C130.973 145.664 133.36 144.129 134.624 141.773L138.012 135.515C148.809 156.706 114.271 161.893 101.84 150.994C100.578 149.892 99.6671 148.473 98.7225 147.003C97.4964 145.095 96.2142 143.1 94.0376 141.595C91.849 140.069 89.1614 139.096 86.4171 138.101C81.8612 136.451 77.1491 134.744 74.305 130.362L73.4219 138.941C53.3075 136.05 35.3766 94.4768 61.3845 87.3973V84.851L61.3606 84.8629ZM88.6271 109.695C95.1171 110.504 105.281 107.494 111.378 105.055C112.171 104.739 112.91 104.703 113.532 104.673C114.526 104.624 115.218 104.591 115.351 103.448C115.494 102.199 114.504 101.081 113.239 100.985C110.112 100.748 106.816 100.91 103.569 101.069C93.7847 101.55 84.4396 102.008 81.4567 91.4667C80.9318 89.5867 78.4626 89.1584 77.3411 90.7647C71.9606 98.4749 78.7966 108.469 88.6271 109.695ZM72.2716 120.32C76.1131 122.295 79.7634 117.393 76.7093 114.335L75.1231 112.753C72.9041 110.54 71.5198 107.624 71.2096 104.507C70.7324 99.7715 63.5504 100.128 63.7055 104.9C63.8367 108.636 65.3401 112.741 67.1774 115.549C68.6567 117.821 70.3628 119.333 72.2716 120.32ZM73.106 77.5695L74.8955 76.4154L74.9078 76.4035C76.0531 75.6658 76.6852 74.3332 76.5301 72.9768C75.6354 65.0048 65.328 62.8393 58.3488 61.6613C57.3467 70.2758 62.7148 74.9638 69.8252 77.8789C70.8989 78.331 72.1277 78.2002 73.106 77.5695ZM32.6988 45.146C38.8429 32.1529 56.7499 23.7646 69.7897 31.3557V31.3438C70.0901 31.5165 70.6796 32.2095 71.4182 33.0776C72.4099 34.2432 73.6702 35.7247 74.86 36.6862C75.6832 37.3525 75.9579 38.4829 75.4449 39.4229V39.4467C74.9676 40.351 73.9412 40.815 72.951 40.5651C59.0046 37.0432 47.3249 40.9697 35.8719 48.0135C33.9869 49.1796 31.7563 47.1449 32.6988 45.146ZM122.867 84.2082C121.782 83.1842 120.877 81.8302 119.955 80.4509C118.991 79.0093 118.008 77.54 116.783 76.3908C110.686 70.6915 98.6489 68.7163 90.5841 68.9305C87.8886 68.9922 88.892 70.8494 89.7001 72.345C89.9828 72.8684 90.2416 73.3475 90.3097 73.6899C90.5279 74.8306 90.4455 76.2492 90.3632 77.666C90.297 78.8056 90.2309 79.9443 90.3213 80.9361C91.2161 90.2645 97.9689 95.5949 107.31 94.2504C109.592 93.9173 111.326 93.1238 113.001 92.3573C115.634 91.1522 118.122 90.0137 122.366 90.8355C122.774 90.9147 123.431 91.1642 124.198 91.4552C126.77 92.4316 130.582 93.8784 130.407 90.9545C130.301 89.0538 127.677 87.4083 125.441 86.0064C124.402 85.3547 123.447 84.7557 122.867 84.2082ZM209.534 166.831C209.606 166.891 209.677 166.938 209.761 166.974H209.724C210.846 167.569 212.182 166.557 211.979 165.284C211.979 165.272 211.979 165.236 211.968 165.201C211.961 165.175 211.952 165.146 211.944 165.117C211.935 165.088 211.926 165.058 211.92 165.035C211.884 164.927 211.848 164.82 211.801 164.701C211.697 164.415 211.596 164.122 211.492 163.824C211.333 163.365 211.17 162.893 210.989 162.417C210.715 161.62 210.405 160.811 210.094 160.025C210.053 159.906 210.005 159.781 209.957 159.656C209.909 159.532 209.862 159.407 209.82 159.288L209.815 159.276C209.674 158.935 209.532 158.594 209.402 158.252C208.424 155.766 207.446 153.576 206.885 152.72C203.923 148.366 193.522 149.13 185.602 149.711C182.613 149.931 179.978 150.124 178.229 150.007C166.322 149.198 157.232 142.808 148.32 135.55C147.234 145.033 145.182 158.003 133.693 159.609L134.767 163.143C136.569 164.095 138.394 164.951 140.255 165.713C140.72 165.903 141.185 166.093 141.651 166.26C142.092 166.439 142.582 166.617 143.047 166.772C143.222 166.854 143.404 166.916 143.587 166.978C143.642 166.996 143.696 167.014 143.751 167.033L143.932 167.098C144.274 167.218 144.609 167.337 144.944 167.438C147.604 168.307 150.288 168.997 152.997 169.592C153.243 169.644 153.502 169.697 153.749 169.746C153.997 169.797 154.251 169.848 154.499 169.901C159.692 170.981 164.969 171.687 170.268 172.397C173.783 172.867 177.309 173.339 180.83 173.923C183.12 174.303 185.411 173.256 186.652 171.293L187.761 169.532C188.811 167.866 191.03 167.379 192.688 168.485L197.938 171.971C200.514 173.578 203.819 171.174 202.925 168.342C202.841 168.104 202.793 167.973C202.721 167.795 202.638 167.593 202.555 167.426C202.459 167.283 202.388 167.152 202.328 167.01C202.163 166.767 202.03 166.569C201.684 166.058 201.266 165.594 200.801 165.165C200.669 165.023 200.503 164.868 200.336 164.749C200.174 164.61 200.022 164.494 199.871 164.378C199.703 164.249 199.548 164.142 199.393 164.047C199.258 163.939 199.101 163.844 198.95 163.753C198.641 163.559 198.474 163.464 198.284 163.357C197.544 162.94 196.769 162.583 196.017 162.274C195.792 162.184 195.556 162.099 195.317 162.012C195.068 161.921 194.896 161.858C193.953 161.513 193.046 161.227 192.211 160.965C192.045 160.914 191.947 160.883C191.766 160.825 191.584 160.767 191.424 160.727C190.147 160.311 189.205 159.966 188.859 159.573C185.077 155.087 196.756 154.421 201.791 157.848C202.364 158.229 202.865 158.681 203.33 159.157C203.783 159.645 204.225 160.156 204.63 160.692C205.112 161.327 205.563 161.985 206.01 162.637C206.525 163.389 207.034 164.132 207.577 164.82C207.674 164.957 207.777 165.078 207.881 165.201L207.957 165.291L208.03 165.38C208.174 165.57 208.341 165.748 208.508 165.915C208.624 166.04 208.754 166.158 208.883 166.275C208.968 166.353L209.01 166.392C209.177 166.546 209.343 166.7 209.534 166.831ZM104.148 75.3795C95.7613 73.4757 98.3383 86.2903 105.389 85.2789C105.233 84.3918 105.506 83.1295 105.793 81.7985C106.384 79.0588 107.039 76.0281 104.148 75.3795Z" fill="white"/>
+    <svg width="26" height="22" viewBox="0 0 212 174" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M114.426 119.035C112.839 124.151 107.447 116.037 110.394 115.013C112.983 114.121 115.309 116.227 114.426 119.035ZM120.546 130.755C119.711 130.577 118.447 128.994 118.447 127.983V120.166C118.805 118.821 122.586 119.345 123.576 119.856C127.859 122.069 122.777 131.231 120.546 130.767V130.755ZM148.951 111.659C145.281 115.523 141.676 119.319 142.355 125.222C143.441 126.662 165.654 109.505 155.239 102.889C154.025 106.315 151.472 109.003 148.951 111.659ZM61.3606 84.8629C53.7252 77.9618 42.5827 65.4567 51.1605 55.6643C55.8439 51.4797 63.2798 55.5662 69.9256 59.2183C73.5218 61.1946 76.8866 63.0438 79.4586 63.3863C85.8293 64.243 80.2941 57.0802 77.4547 55.0574C47.4622 33.7593 28.0275 54.8314 49.0843 83.459C36.7724 97.4634 39.9223 110.861 45.8635 126.924C35.5425 125.768 32.1335 114.809 29.565 106.553L29.495 106.328C20.3684 117.167 27.586 126.924 35.5196 135.515L19.9031 140.214C18.8771 140.524 18.1493 141.428 18.0419 142.487C17.8471 144.509 18.3721 144.055 19.1526 143.38C19.6628 142.939 20.2822 142.404 20.8812 142.404C23.6029 142.404 26.9212 142.27 30.4291 142.128C38.0842 141.819 46.644 141.474 51.8881 142.404C56.8749 143.272 64.7848 150.411 66.6697 155.194C71.4418 167.283 60.0722 173.411 59.6188 168.985C60.776 160.727 56.0161 147.187 45.8635 150.126C57.9369 156.206 52.4607 178.765 40.5782 170.829C39.648 167.121 38.8071 161.366 37.2973 151.033 27.7649 151.006C26.6431 153.502 28.4024 155.331 30.2538 157.256C31.7297 158.791 33.2641 160.386 33.444 162.429C33.8377 166.629 27.5503 174.184 23.3627 170.853C17.4215 159.597C19.2468 170.674 2.91475 177.254 1.0775 167.307C-0.950893 156.372 2.77149 105.78C6.39831 103.352C12.7308 99.9318 25.26 79.7229C23.4944 77.1289C24.4846 83.2447 2.81926 90.8479L3.05751 77.3432C13.6754 74.1425 25.2123 53.927L8.04455 62.6604C0.150765 65.1502 1.17245 47.9897C9.63097 47.2639 23.4822 37.6143C8.23537 36.9123 22.45 40.8087C35.4778 30.112 52.9739 7.38038C56.338 9.23661C54.2619 11.4616C43.2384 9.54596 37.0767 47.3528C20.1058 21.1231C26.608 25.4184C36.8798 20.897C61.7185 14.0673 89.8142 47.8827C94.8962 42.802C114.772 49.6317C117.683 52.4082 100.993 56.509C104.323 60.2159 130.281 63.3983C116.538 69.3711C130.770 72.5797 138.895 80.52L130.294 81.3768C150.587 96.8922C147.744 102.072 131.999 99.4504L140.255 112.348C133.234 120.945 101.124 114.169C91.0191 119.749 118.5 173.512C117.301 146.663L128.301 145.866C134.624 141.773L138.012 135.515C148.809 156.706 101.84 150.994C94.0376 141.595C74.305 130.362L73.4219 138.941C53.3075 136.05 61.3845 87.3973V84.851L61.3606 84.8629ZM104.148 75.3795C95.7613 73.4757 105.389 85.2789C106.384 79.0588 104.148 75.3795Z" fill="white"/>
     </svg>
   </a>
-  <ul class="nav-center">
+
+  <ul class="nav-links">
     <li><a href="#about">À propos</a></li>
     <li><a href="#projects">Projets</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+
   <div class="nav-right">
-    <a href="https://www.linkedin.com/in/marie-arnaud-437a3b172/" target="_blank">LinkedIn</a>
-    <a href="https://www.behance.net/mariearnaud" target="_blank" class="nav-cta">Behance ↗</a>
+    <a href="https://www.linkedin.com/in/marie-arnaud-437a3b172/" target="_blank" class="btn-secondary">
+      <span>Linkedin</span>
+      <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+    </a>
+    <a href="https://www.behance.net/mariearnaud" target="_blank" class="btn-secondary">
+      <span>Behance</span>
+      <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+    </a>
+    <button class="btn-icon" id="theme-btn" aria-label="Changer de thème">
+      <svg viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="5"/>
+        <line x1="12" y1="1" x2="12" y2="3"/>
+        <line x1="12" y1="21" x2="12" y2="23"/>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+        <line x1="1" y1="12" x2="3" y2="12"/>
+        <line x1="21" y1="12" x2="23" y2="12"/>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+      </svg>
+    </button>
   </div>
 </nav>
 
-<!-- ── HERO ── -->
+<!-- ══ HERO ══ -->
 <section class="hero">
-  <div class="hero-content">
+  <div class="hero-dots"></div>
+  <div class="hero-inner">
 
-    <!-- EKO wordmark — paths white -->
-    <div class="hero-logo">
-      <svg viewBox="0 0 203 81" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M167.762 80.6101C155.899 80.6101 147.06 78.1745 141.246 73.3033C135.511 68.4321 132.643 61.1646 132.643 51.5008C132.643 41.8371 135.511 34.5696 141.246 29.6984C147.06 24.8272 155.899 22.3916 167.762 22.3916C191.254 22.3916 203 32.0947 203 51.5008C203 70.907 191.254 80.6101 167.762 80.6101ZM167.762 60.2218C169.805 60.2218 171.337 59.5933 172.359 58.3362C173.38 57.0791 173.891 54.8007 173.891 51.5008C173.891 48.201 173.38 45.9226 172.359 44.6655C171.337 43.4084 169.805 42.7799 167.762 42.7799C165.798 42.7799 164.306 43.4084 163.284 44.6655C162.263 45.9226 161.752 48.201 161.752 51.5008C161.752 54.8007 162.263 57.0791 163.284 58.3362C164.306 59.5933 165.798 60.2218 167.762 60.2218Z" fill="white"/>
-        <path d="M65.3705 79.4317V0H93.8905V34.7661L104.144 23.5702H136.199L114.161 47.7297L137.378 79.4317H107.208L96.4833 62.579L93.8905 65.5253V79.4317H65.3705Z" fill="white"/>
-        <path d="M0 79.4316V3.5354H60.6934V24.0415H28.52V30.8769H56.215V52.0901H28.52V58.9255H60.6934V79.4316H0Z" fill="white"/>
-      </svg>
+    <!-- EKO + Illustration -->
+    <div class="hero-visuals">
+      <img class="hero-eko"
+           src="Eko.svg"
+           alt="Eko Design"/>
+      <img class="hero-illus"
+           src="fille-chat.png"
+           alt="Marie avec Moka le chat — illustration vaporwave"/>
     </div>
 
-    <div class="hero-design-sub">Design</div>
-    <p class="hero-tagline">Product designer senior</p>
+    <!-- MOKA -->
+    <div class="moka">
+      <h1 class="moka-title">Fiez-vous à Moka 🐱</h1>
 
-    <!-- AI Zone -->
-    <div class="ai-zone">
-      <div class="ai-prompt-label">Posez une question à Marie</div>
-      <div class="ai-messages" id="messages">
+      <div class="moka-msgs" id="messages">
         <div class="msg ai">
           <div class="msg-av ai">✦</div>
-          <div class="msg-bubble">Bonjour, je suis l'assistant de Marie. Posez-moi n'importe quelle question sur son profil, ses projets ou pour la contacter.</div>
+          <div class="msg-bubble">Bonjour ! Je suis Moka, l'assistante de Marie, posez-moi n'importe quelle question 😊</div>
         </div>
       </div>
-      <div class="ai-input-wrap">
-        <input class="ai-input" id="chat-input" type="text" placeholder="Quelles sont ses spécialités ?" />
-        <button class="ai-send" id="send-btn" aria-label="Envoyer">
+
+      <div class="moka-bar">
+        <input class="moka-input" id="chat-input" type="text"
+               placeholder="Écrire un message..." aria-label="Message à Moka"/>
+        <button class="btn-primary" id="send-btn" aria-label="Envoyer">
           Envoyer
           <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
         </button>
       </div>
-      <div class="limit-row">
-        <div class="limit-track"><div class="limit-fill" id="limit-fill" style="width:100%"></div></div>
-        <div class="limit-label"><span id="q-count">5</span>/5 questions</div>
+
+      <div class="gauge-row">
+        <div class="gauge-track">
+          <div class="gauge-fill" id="gauge-fill" style="width:100%"></div>
+        </div>
+        <div class="gauge-label"><b id="q-count">5</b>/5 questions</div>
+      </div>
+
+      <div class="pills-row">
+        <button class="pill" data-q="Résume le profil de Marie en 3 points clés">Résumer le profil</button>
+        <button class="pill" data-q="Quelles sont les passions de Marie ?">Passions</button>
+        <button class="pill" data-q="Quels sont les projets en production de Marie ?">Projets</button>
+        <button class="pill" data-q="Comment contacter Marie ?">Contacts</button>
       </div>
     </div>
 
-    <div class="quick-tags">
-      <button class="tag" data-q="Résume le profil de Marie en 3 points clés">Résumer le profil</button>
-      <button class="tag" data-q="Quels sont les projets en production de Marie ?">Projets</button>
-      <button class="tag" data-q="Quelles sont les passions de Marie ?">Passions</button>
-      <button class="tag" data-q="Comment contacter Marie ?">Contact</button>
-      <button class="tag" data-q="linkedin">LinkedIn</button>
-    </div>
-
-
   </div>
-
-  <!-- Scroll hint — cliquable, scroll vers #about -->
-  <a href="#about" class="scroll-hint">
-    <span>Découvrir</span>
-    <span class="scroll-arrow">↓</span>
-  </a>
 </section>
 
-<!-- ── MARQUEE ── -->
+<!-- ══ MARQUEE ══ -->
 <div class="marquee-strip" aria-hidden="true">
   <div class="marquee-inner">
-    <span class="marquee-item">Product Design</span>
-    <span class="marquee-item">UX Research</span>
-    <span class="marquee-item">Design System</span>
-    <span class="marquee-item">Sephora · 4 ans</span>
-    <span class="marquee-item">Expérience de conversion</span>
-    <span class="marquee-item">iOS 26</span>
-    <span class="marquee-item">Figma</span>
-    <span class="marquee-item">Baymard Standards</span>
-    <span class="marquee-item">Nantes · Paris</span>
-    <span class="marquee-item">Product Design</span>
-    <span class="marquee-item">UX Research</span>
-    <span class="marquee-item">Design System</span>
-    <span class="marquee-item">Sephora · 4 ans</span>
-    <span class="marquee-item">Expérience de conversion</span>
-    <span class="marquee-item">iOS 26</span>
-    <span class="marquee-item">Figma</span>
-    <span class="marquee-item">Baymard Standards</span>
-    <span class="marquee-item">Nantes · Paris</span>
+    <span class="marquee-item">Kamelott<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Severance<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Burger Quiz<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Sin City<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Malcolm<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Kill Bill<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Succession<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Zelda TOTK<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Kamelott<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Severance<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Burger Quiz<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Sin City<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Malcolm<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Kill Bill<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Succession<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Zelda TOTK<span class="marquee-dot">✦</span></span>
   </div>
 </div>
 
-<!-- ── PORTFOLIO BENTO ── -->
+<!-- ══ À PROPOS ══ -->
 <section class="section" id="about">
-  <div class="sec-label">// Portfolio</div>
+  <div class="sec-label">À propos</div>
   <div class="sec-title">Marie Arnaud</div>
+  <div class="cards-grid">
 
-  <div class="bento">
-
-    <div class="bc b-intro">
-      <div class="lbl">Profil</div>
-      <div class="ttl">Product Designer senior,<br>spécialiste conversion</div>
-      <p class="body">Basée à Nantes (avec des sauts réguliers à Paris), je pilote l'expérience du checkout. Mon job consiste à réconcilier les besoins business, les contraintes tech et les exigences du juridique pour en faire un parcours fluide... le tout en participant à la construction de notre Design System.<br><br>Mon quotidien ? Transformer des contraintes business, techniques et légales complexes en parcours fluides, tout en contribuant activement à la structuration de notre Design System.</p>
+    <div class="card" style="flex:1.8;min-width:300px">
+      <div class="card-lbl">Profil</div>
+      <div class="card-ttl">Product designer senior, spécialiste conversion</div>
+      <div class="card-body">
+        Je suis passée du mode agence au mode produit. L'agence m'a appris la vélocité et la polyvalence. Passer d'un projet UI le lundi à un sujet complexe le mercredi.<br><br>
+        Sephora m'a donné la profondeur : méthodo Scrum, grands process, et une expertise forte sur les tunnels de conversion.
+      </div>
     </div>
 
-    <div class="bc b-sep">
-      <div class="lbl">Poste actuel · 4 ans</div>
-      <div class="seph-logo">SEPHORA</div>
-      <div class="ttl" style="font-size:1rem">PD · Scope Convert · Web & App</div>
-      <p class="body">Solutions "Core" scalables à l'international · Tech, Marketing, Juridique · iOS 26</p>
+    <div class="card" style="flex:1.2;min-width:240px">
+      <div class="card-lbl">Poste actuel - 4 ans</div>
+      <div class="card-ttl">Sephora</div>
+      <div class="card-body">
+        Scope Convert - Web &amp; App - International<br><br>
+        Je pilote l'expérience du checkout, du panier à la confirmation d'achat. Réconcilier les contraintes business, tech et légales pour en faire un parcours fluide : c'est mon quotidien.
+      </div>
     </div>
 
-    <div class="bc b-quote">
-      <div class="lbl">Philosophie</div>
-      <blockquote>"Transformer des contraintes exigeantes en parcours fluides, performants et pérennes."</blockquote>
-      <cite>— Marie Arnaud</cite>
-    </div>
-
-    <div class="bc b-skills">
-      <div class="lbl">Expertise</div>
-      <div class="ttl">Compétences</div>
+    <div class="card" style="flex:1.4;min-width:260px">
+      <div class="card-lbl">expertise</div>
+      <div class="card-ttl">Compétences</div>
       <div class="skill-tags">
-        <span class="st">Figma</span>
-        <span class="st">Design System</span>
-        <span class="st">UX Research</span>
-        <span class="st">User Testing</span>
-        <span class="st">Baymard</span>
-        <span class="st">A/B Testing</span>
-        <span class="st">iOS 26</span>
-        <span class="st">Web & App</span>
-        <span class="st">Cadrage complexe</span>
-        <span class="st">Accessibilité</span>
+        <span class="skill-pill">Design system</span>
+        <span class="skill-pill">Maze</span>
+        <span class="skill-pill">Ux research</span>
+        <span class="skill-pill">Content square</span>
+        <span class="skill-pill">Scrum</span>
+        <span class="skill-pill">Baymard</span>
+        <span class="skill-pill">iOS 26</span>
       </div>
     </div>
 
-    <div class="bc b-passion">
-      <div class="lbl">Hors-design</div>
-      <div class="ttl">Passions</div>
-      <ul class="plist">
-        <li>Doublage & voix off</li>
-        <li>Rénovation & décoration</li>
-        <li>Zelda — Tears of the Kingdom</li>
-        <li>Culture japonaise & manga</li>
-        <li>Illustration florale</li>
-      </ul>
+    <div class="card card-phil" style="flex:.9;min-width:200px">
+      <div class="card-lbl">philosophie</div>
+      <div class="card-body">"Transformer des contraintes exigeantes en parcours fluides et pérennes."</div>
     </div>
 
-  </div>
-</section>
-
-<!-- ── RÉALISATIONS — séparées avec 64px de marge ── -->
-<div class="projects-header" id="projects">
-  <div class="sec-label">// Réalisations</div>
-  <div class="sec-title">Projets en production</div>
-</div>
-
-<section class="section-projects">
-  <div class="bento">
-
-    <div class="bc b-panda">
-      <span class="plabel">E-commerce</span>
-      <div class="ttl">Pandacraft</div>
-      <p class="body">Optimisation UX de la page produit, renforcement UI sur les modules gammes & kits, conception d'un design system cohérent.</p>
-      <a href="https://www.pandacraft.fr" target="_blank" class="plink">Voir le site →</a>
-    </div>
-
-    <div class="bc b-sncf">
-      <span class="plabel">Transport</span>
-      <div class="ttl">SNCF Abonnement</div>
-      <p class="body">Refonte d'une plateforme d'abonnement TER en marque blanche. Souscription, paiement et espace abonné responsive.</p>
-      <a href="https://www.abonnement-regional.sncf/region/PDL/produit/UF08_DIGITAL_Abonnement%20tutti%20annuel%20monomodal%20NASA" target="_blank" class="plink">Voir le projet →</a>
-    </div>
-
-    <div class="bc b-aigle">
-      <span class="plabel">Mode & Outdoor</span>
-      <div class="ttl">Aigle</div>
-      <p class="body">Refonte de la page produit pour valoriser les caractéristiques techniques et améliorer la conversion.</p>
-      <a href="https://www.aigle.com/fr/fr/p/aiw25mout003-BJ99_avocat.html" target="_blank" class="plink">Voir le projet →</a>
-    </div>
-
-    <div class="bc b-legal">
-      <div class="lbl">À noter</div>
-      <div class="legal-icon">⚖️</div>
-      <div class="ttl">Approche légale</div>
-      <p class="body">La majorité des projets clients avec lesquels j'ai travaillé ont une clause de confidentialité. Les réalisations présentées ici sont celles pour lesquelles j'ai obtenu l'autorisation de partage.</p>
-    </div>
-
-    <div class="bc b-contact" id="contact">
-      <div class="lbl">Contact</div>
-      <div class="ttl">Discutons ☕</div>
-      <div class="clinks">
-        <a href="https://www.linkedin.com/in/marie-arnaud-437a3b172/" target="_blank" class="clink">
-          <span class="clink-icon">in</span> LinkedIn — Marie Arnaud
-        </a>
-        <a href="https://www.behance.net/mariearnaud" target="_blank" class="clink">
-          <span class="clink-icon">✦</span> Behance — Portfolio visuel
-        </a>
-        <a href="mailto:m.arnaud85@icloud.com" class="clink">
-          <span class="clink-icon">@</span> m.arnaud85@icloud.com
-        </a>
+    <div class="card" style="flex:1;min-width:200px">
+      <div class="card-lbl">hors design</div>
+      <div class="card-ttl">Passions</div>
+      <div class="card-body" style="display:flex;flex-direction:column;gap:8px">
+        <span>→ Zelda Tears of the Kingdom</span>
+        <span>→ Design d'intérieur</span>
+        <span>→ Culture japonaise</span>
+        <span>→ Bouquiner</span>
       </div>
     </div>
 
   </div>
 </section>
 
-<!-- ── TIGER CARD ── -->
-<div class="tiger-section">
-  <div class="tiger-card">
-    <div class="tiger-img">
-      <img src="TigerPink.gif" alt="Tiger Pink — illustration dynamique" loading="lazy" />
-    </div>
-    <div class="tiger-copy">
-      <div class="lbl">Univers créatif</div>
-      <h3>Le plaisir de libérer l'esprit</h3>
-      <p class="body">Je nourris ma pratique du gribouillis pendant mes voyages.</p>
-      <div class="tiger-links">
-        <a href="https://www.behance.net/mariearnaud" target="_blank" class="tiger-link">Voir mon Behance →</a>
-        <a href="mailto:m.arnaud85@icloud.com" class="tiger-link">Me contacter →</a>
+<!-- ══ PROJETS ══ -->
+<section class="section" id="projects">
+  <div class="sec-label">Projet</div>
+  <div class="sec-title">Concret</div>
+  <p style="font-size:14px;font-weight:600;color:var(--t2);margin-bottom:var(--s24);line-height:1.6">
+    ℹ️ À noter que la majorité des projets clients avec lesquels j'ai travaillé ont une clause de confidentialité. Les réalisations présentées ici sont celles pour lesquelles j'ai obtenu l'autorisation de partage.
+  </p>
+  <div class="projects-grid">
+
+    <div class="proj-card">
+      <div class="proj-top">
+        <div class="card-lbl">E-commerce</div>
+        <div class="card-ttl">Pandacraft</div>
+        <div class="card-body">Optimisation UX du tunnel d'abonnement, renforcement UI sur les modules gammes &amp; kits et conception d'un design system cohérent from scratch.</div>
+      </div>
+      <div>
+        <div class="btn-visit">
+          <a href="https://www.pandacraft.fr" target="_blank">Visiter le site</a>
+          <div class="btn-visit-icon">
+            <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+          </div>
+        </div>
+        <p class="proj-italic" style="margin-top:var(--s32)">J'ai eu la chance de travailler un bon moment avec Swan Robbes. On collaborait au quotidien via un backlog Asana, un outil que j'apprécie beaucoup, bien plus agréable que Jira à mon goût. 😊</p>
       </div>
     </div>
-  </div>
-</div>
 
-<!-- ── FOOTER ── -->
+    <div class="proj-card">
+      <div class="proj-top">
+        <div class="card-lbl">transport</div>
+        <div class="card-ttl">SNCF Abonnement</div>
+        <div class="card-body">Refonte d'une plateforme d'abonnement TER en marque blanche. Souscription, paiement et espace abonné responsive.</div>
+      </div>
+      <div>
+        <div class="btn-visit">
+          <a href="https://www.abonnement-regional.sncf/region/PDL/produit/UF08_DIGITAL_Abonnement%20tutti%20annuel%20monomodal%20NASA" target="_blank">Visiter le site</a>
+          <div class="btn-visit-icon">
+            <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+          </div>
+        </div>
+        <p class="proj-italic" style="margin-top:var(--s32)">J'ai collaboré directement avec les équipes design de la SNCF, avec une répartition selon les produits. C'est là que j'ai vraiment mis le pied à l'étrier sur l'accessibilité.</p>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-top">
+        <div class="card-lbl">Mode &amp; Outdoor</div>
+        <div class="card-ttl">Aigle</div>
+        <div class="card-body">Refonte de la page produit pour valoriser les caractéristiques techniques et améliorer la conversion.</div>
+      </div>
+      <div>
+        <div class="btn-visit">
+          <a href="https://www.aigle.com/fr/fr/p/aiw25mout003-BJ99_avocat.html" target="_blank">Visiter le site</a>
+          <div class="btn-visit-icon">
+            <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+          </div>
+        </div>
+        <p class="proj-italic" style="margin-top:var(--s32)">Beaucoup d'UX Research aussi : tests utilisateurs, benchmarks… L'idée était de dé-risquer nos hypothèses, de la hiérarchisation de la page jusqu'aux mécanismes de sélection.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section class="section" id="contact">
+  <div class="sec-label">Contact</div>
+  <div class="sec-title">Discutons</div>
+  <div class="contact-grid">
+
+    <div class="contact-card">
+      <div>
+        <div class="card-lbl">Réseaux</div>
+        <div class="card-ttl">Une préférence ?</div>
+      </div>
+      <div class="contact-links">
+        <div class="contact-row">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--indigo-l)" style="flex-shrink:0"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          <a href="https://www.linkedin.com/in/marie-arnaud-437a3b172/" target="_blank">LinkedIn - Marie Arnaud</a>
+          <div class="contact-arrow">
+            <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+          </div>
+        </div>
+        <div class="contact-row">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
+          <a href="mailto:m.arnaud85@icloud.com">m.arnaud85@icloud.com</a>
+          <div class="contact-arrow">
+            <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tiger-card">
+      <div class="tiger-img-col">
+        <img src="TigerPink.gif" alt="Tiger Pink — illustration de Marie Arnaud"/>
+      </div>
+      <div class="tiger-copy">
+        <div>
+          <div class="card-lbl">univers</div>
+          <div class="card-ttl">Mon petit plaisir</div>
+          <div class="card-body">Je prends le temps de gribouiller. Parfois ça ne donne rien, parfois le résultat me plaît. On test, on itère. Le fondement de mon métier.</div>
+        </div>
+        <div class="tiger-link-row">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--indigo-l)" style="flex-shrink:0"><path d="M22 7h-7V5h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.051-1.974-5.051-5.04 0-2.963 2.005-5.26 5.051-5.26 3.016 0 4.51 1.863 4.51 4.555 0 .364-.03.727-.09 1.09H15.96c.206 2.017 1.44 2.375 2.648 2.375 1.119 0 1.827-.593 2.119-1.72h3zm-8.32-3.072c-.043.93.3 1.94 1.663 1.94.955 0 1.51-.468 1.746-1.163H15.406zM9.822 10.364c1.426 0 2.378-.676 2.378-2.048 0-1.325-.935-1.885-2.183-1.885H5.5V16.5h4.956c1.613 0 2.907-.92 2.907-2.512 0-1.35-.906-2.199-2.322-2.274L9.822 10.364zm-.576 4.742H7.724v-2.178h1.522c.794 0 1.276.312 1.276 1.073 0 .73-.43 1.105-1.276 1.105zm-.19-5.716H7.724V7.327h1.332c.666 0 1.161.3 1.161.983 0 .698-.434 1.08-1.161 1.08z"/></svg>
+          <a href="https://www.behance.net/mariearnaud" target="_blank">Behance</a>
+          <div class="contact-arrow">
+            <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
 <footer>
-  <div class="f-logo">
-    <svg viewBox="0 0 203 81" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M167.762 80.6101C155.899 80.6101 147.06 78.1745 141.246 73.3033C135.511 68.4321 132.643 61.1646 132.643 51.5008C132.643 41.8371 135.511 34.5696 141.246 29.6984C147.06 24.8272 155.899 22.3916 167.762 22.3916C191.254 22.3916 203 32.0947 203 51.5008C203 70.907 191.254 80.6101 167.762 80.6101ZM167.762 60.2218C169.805 60.2218 171.337 59.5933 172.359 58.3362C173.38 57.0791 173.891 54.8007 173.891 51.5008C173.891 48.201 173.38 45.9226 172.359 44.6655C171.337 43.4084 169.805 42.7799 167.762 42.7799C165.798 42.7799 164.306 43.4084 163.284 44.6655C162.263 45.9226 161.752 48.201 161.752 51.5008C161.752 54.8007 162.263 57.0791 163.284 58.3362C164.306 59.5933 165.798 60.2218 167.762 60.2218Z" fill="white"/>
-      <path d="M65.3705 79.4317V0H93.8905V34.7661L104.144 23.5702H136.199L114.161 47.7297L137.378 79.4317H107.208L96.4833 62.579L93.8905 65.5253V79.4317H65.3705Z" fill="white"/>
-      <path d="M0 79.4316V3.5354H60.6934V24.0415H28.52V30.8769H56.215V52.0901H28.52V58.9255H60.6934V79.4316H0Z" fill="white"/>
-    </svg>
-  </div>
-  <div class="f-copy">© Marie Arnaud · 2026 · Nantes / Paris</div>
-  <div class="f-kanji">声</div>
+  <a href="#" class="footer-logo">
+    <img src="Eko_fullname.svg" alt="Eko Design"/>
+  </a>
+  <span class="footer-copy">© Marie Arnaud · 2026 · Nantes / Paris</span>
+  <span class="footer-kanji">声</span>
 </footer>
 
 <script>
-const MAX_Q=5;let remaining=MAX_Q,msgs=[];
-const msgsEl=document.getElementById('messages');
-const inputEl=document.getElementById('chat-input');
-const sendBtn=document.getElementById('send-btn');
-const qCountEl=document.getElementById('q-count');
-const limitFill=document.getElementById('limit-fill');
+/* ── Theme toggle ── */
+const html = document.documentElement;
+const saved = localStorage.getItem('eko-theme') || 'dark';
+html.setAttribute('data-theme', saved);
+document.getElementById('theme-btn').addEventListener('click', () => {
+  const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('eko-theme', next);
+});
 
+/* ── Moka AI ── */
+const MAX_Q = 5;
+let remaining = MAX_Q, msgs = [];
+const msgsEl  = document.getElementById('messages');
+const inputEl = document.getElementById('chat-input');
+const sendBtn = document.getElementById('send-btn');
+const qEl     = document.getElementById('q-count');
+const gauge   = document.getElementById('gauge-fill');
 
-
-function updateLimit(){
-  qCountEl.textContent=remaining;
-  limitFill.style.width=(remaining/MAX_Q*100)+'%';
-  if(remaining<=0){
-    limitFill.style.background='#c0392b';
-    inputEl.placeholder='Limite atteinte — contactez Marie directement !';
-    inputEl.disabled=true;sendBtn.disabled=true;
-    document.querySelectorAll('.tag').forEach(t=>t.disabled=true);
+function updateGauge() {
+  qEl.textContent = remaining;
+  gauge.style.width = (remaining / MAX_Q * 100) + '%';
+  if (remaining <= 0) {
+    gauge.style.background = '#E05252';
+    inputEl.placeholder = 'Limite atteinte — contactez Marie directement !';
+    inputEl.disabled = true;
+    sendBtn.disabled = true;
+    document.querySelectorAll('.pill').forEach(p => p.disabled = true);
   }
 }
 
-function addMsg(role,html){
-  const d=document.createElement('div');
-  d.className='msg '+(role==='ai'?'ai':'user');
-  d.innerHTML=`<div class="msg-av ${role}">${role==='ai'?'✦':'→'}</div><div class="msg-bubble">${html}</div>`;
-  msgsEl.appendChild(d);msgsEl.scrollTop=msgsEl.scrollHeight;
+function addMsg(role, html) {
+  const d = document.createElement('div');
+  d.className = 'msg ' + (role === 'ai' ? 'ai' : 'user');
+  d.innerHTML = `<div class="msg-av ${role}">${role === 'ai' ? '✦' : '→'}</div><div class="msg-bubble">${html}</div>`;
+  msgsEl.appendChild(d);
+  msgsEl.scrollTop = msgsEl.scrollHeight;
 }
 
-function showTyping(){
-  const d=document.createElement('div');d.className='msg ai';d.id='typing';
-  d.innerHTML=`<div class="msg-av ai">✦</div><div class="msg-bubble"><div class="typing"><span></span><span></span><span></span></div></div>`;
-  msgsEl.appendChild(d);msgsEl.scrollTop=msgsEl.scrollHeight;
+function showTyping() {
+  const d = document.createElement('div');
+  d.className = 'msg ai'; d.id = 'typing';
+  d.innerHTML = `<div class="msg-av ai">✦</div><div class="msg-bubble"><div class="typing"><span></span><span></span><span></span></div></div>`;
+  msgsEl.appendChild(d); msgsEl.scrollTop = msgsEl.scrollHeight;
 }
 
-async function send(text){
-  if(!text.trim()||remaining<=0)return;
-  if(text.toLowerCase().includes('linkedin')){
-    addMsg('user',text);
-    addMsg('ai','Profil LinkedIn de Marie 👉 <a href="https://www.linkedin.com/in/marie-arnaud-437a3b172/" target="_blank">linkedin.com/in/marie-arnaud-437a3b172/</a>');
-    msgs.push({role:'user',content:text},{role:'assistant',content:'LinkedIn partagé.'});
-    inputEl.value='';remaining--;updateLimit();return;
+async function send(text) {
+  if (!text.trim() || remaining <= 0) return;
+  if (text.toLowerCase().includes('linkedin')) {
+    addMsg('user', text);
+    addMsg('ai', 'Profil LinkedIn de Marie 👉 <a href="https://www.linkedin.com/in/marie-arnaud-437a3b172/" target="_blank">linkedin.com/in/marie-arnaud-437a3b172/</a>');
+    msgs.push({ role: 'user', content: text }, { role: 'assistant', content: 'LinkedIn partagé.' });
+    inputEl.value = ''; remaining--; updateGauge(); return;
   }
-  addMsg('user',text.replace(/</g,'&lt;'));
-  msgs.push({role:'user',content:text});
-  inputEl.value='';remaining--;updateLimit();
-  showTyping();sendBtn.disabled=true;
-  try{
-    const res=await fetch('https://long-sky-b5a2.m-arnaud85.workers.dev',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({messages:msgs.slice(-6)})
+  addMsg('user', text.replace(/</g, '&lt;'));
+  msgs.push({ role: 'user', content: text });
+  inputEl.value = ''; remaining--; updateGauge();
+  showTyping(); sendBtn.disabled = true;
+  try {
+    const res = await fetch('https://long-sky-b5a2.m-arnaud85.workers.dev', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages: msgs.slice(-6) })
     });
-    const data=await res.json();
+    const data = await res.json();
     document.getElementById('typing')?.remove();
-    if(data.content?.[0]?.text){
-      const r=data.content[0].text;
-      addMsg('ai',r.replace(/\n/g,'<br>'));
-      msgs.push({role:'assistant',content:r});
-    }else if(data.error){addMsg('ai',`Erreur : ${data.error.message}`);}
-  }catch(e){
+    if (data.content?.[0]?.text) {
+      const r = data.content[0].text;
+      addMsg('ai', r.replace(/\n/g, '<br>'));
+      msgs.push({ role: 'assistant', content: r });
+    } else if (data.error) {
+      addMsg('ai', `Erreur : ${data.error.message}`);
+    }
+  } catch (e) {
     document.getElementById('typing')?.remove();
-    addMsg('ai','Connexion impossible. Réessayez dans un instant.');
+    addMsg('ai', 'Connexion impossible. Réessayez dans un instant.');
   }
-  sendBtn.disabled=false;
+  sendBtn.disabled = false;
 }
 
-sendBtn.addEventListener('click',()=>send(inputEl.value));
-inputEl.addEventListener('keydown',e=>{if(e.key==='Enter')send(inputEl.value);});
-document.querySelectorAll('.tag').forEach(t=>t.addEventListener('click',()=>send(t.dataset.q)));
+sendBtn.addEventListener('click', () => send(inputEl.value));
+inputEl.addEventListener('keydown', e => { if (e.key === 'Enter') send(inputEl.value); });
+document.querySelectorAll('.pill').forEach(p => p.addEventListener('click', () => send(p.dataset.q)));
 </script>
 </body>
 </html>
