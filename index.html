@@ -241,38 +241,32 @@ nav{
   display:flex;align-items:flex-end;justify-content:center;
   width:100%;position:relative;
 }
-/* Hero visuals — desktop default */
+/* Hero visuals */
 .hero-eko{
   height:240px;width:auto;
   margin-right:-96px;
   position:relative;z-index:1;
-  object-fit:contain;
-  flex-shrink:0;
+  object-fit:contain;flex-shrink:0;
   transition:filter .3s;
 }
 [data-theme="light"] .hero-eko{
   filter:invert(1) sepia(1) saturate(0) brightness(0.05);
 }
-.hero-illus{
-  object-fit:contain;flex-shrink:0;position:relative;z-index:2;
-}
-.hero-illus--desktop{
+.hero-illus-desktop{
   height:405px;width:518px;
+  object-fit:contain;flex-shrink:0;
+  position:relative;z-index:2;
   display:block;
 }
-.hero-illus--mobile{
+.hero-illus-mobile{
   display:none;
   width:100%;max-width:354px;height:auto;
 }
-/* Mobile — below 744px */
-@media(max-width:744px){
-  .hero-eko--desktop{ display:none; }
-  .hero-illus--desktop{ display:none; }
-  .hero-illus--mobile{ display:block; }
-  .hero-visuals{
-    justify-content:center;
-    margin-bottom:var(--s24);
-  }
+@media(max-width:400px){
+  .hero-eko{ display:none; }
+  .hero-illus-desktop{ display:none; }
+  .hero-illus-mobile{ display:block; }
+  .hero-visuals{ justify-content:center; margin-bottom:var(--s24); }
 }
 
 /* ─────────────────────────────────────────
@@ -595,8 +589,6 @@ footer{
   .btn-secondary span{display:none}
   .hero{padding:calc(72px + var(--s24)) var(--s16) var(--s32)}
   .hero-visuals{flex-direction:column;align-items:center;gap:var(--s16)}
-  .hero-eko{height:100px;margin-right:0}
-  .hero-illus{width:100%;height:240px}
   .moka{max-width:100%}
   .section{padding:var(--s24) var(--s16)}
   .cards-grid{gap:var(--s16)}
@@ -658,14 +650,17 @@ footer{
   <div class="hero-dots"></div>
   <div class="hero-inner">
 
-    <!-- EKO + Illustration -->
+    <!-- Illustration responsive : desktop au-delà de 400px, mobile en dessous -->
     <div class="hero-visuals">
       <img class="hero-eko"
            src="Eko.svg"
            alt="Eko Design"/>
-      <img class="hero-illus" onerror="this.style.background='var(--purple-soft)'"
-           src="fille-chat.png"
-           alt="Marie avec Moka le chat — illustration vaporwave"/>
+      <img class="hero-illus-desktop"
+           src="visualdesktop.svg"
+           alt="Marie avec Moka le chat"/>
+      <img class="hero-illus-mobile"
+           src="visualmobile.svg"
+           alt="Marie avec Moka le chat"/>
     </div>
 
     <!-- MOKA -->
