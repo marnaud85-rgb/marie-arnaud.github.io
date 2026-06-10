@@ -318,7 +318,7 @@ nav{
   text-transform:uppercase;color:var(--t3);
   display:inline-flex;align-items:center;gap:var(--s8);
 }
-.marquee-dot{font-size:10px;color:var(--indigo-m)}
+.marquee-dot{font-size:10px;color:var(--indigo-m);display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;}
 
 /* ─────────────────────────────────────────
    SECTIONS
@@ -381,14 +381,14 @@ nav{
   flex:1;background:var(--card);
   padding:var(--s16);
   border-right:1px solid var(--indigo-m);
-  display:flex;flex-direction:column;gap:var(--s32);
+  display:flex;flex-direction:column;
   transition:background .2s;
 }
 .proj-card:last-child{border-right:none}
 .proj-card:hover{background:var(--bg2)}
 
-.proj-top{display:flex;flex-direction:column;gap:var(--s16)}
-.proj-italic{font-size:14px;font-weight:600;font-style:italic;color:var(--t2);line-height:1.65}
+.proj-top{display:flex;flex-direction:column;gap:var(--s16);flex:1}
+.proj-italic{font-size:14px;font-weight:600;font-style:italic;color:var(--t2);line-height:1.65;margin-top:var(--s16)}
 
 /* Visit button — full width inside card */
 .btn-visit{
@@ -406,11 +406,12 @@ nav{
 .btn-visit-icon{
   display:flex;align-items:center;justify-content:center;
   padding:var(--s8) var(--s24);
-  background:var(--bg3);border-radius:var(--r4);flex-shrink:0;
+  background:var(--indigo);border-radius:var(--r4);flex-shrink:0;
   transition:background .18s;
 }
 .btn-visit:hover .btn-visit-icon{background:var(--indigo-700)}
-.btn-visit-icon svg{width:16px;height:16px;fill:var(--t1)}
+.btn-visit-icon svg{width:16px;height:16px;fill:white}
+.btn-visit-icon svg{width:16px;height:16px;fill:white}
 
 /* ─────────────────────────────────────────
    CONTACT
@@ -433,17 +434,15 @@ nav{
 .contact-row{
   display:flex;align-items:center;gap:var(--s8);
   height:40px;padding:var(--s8) 10px;
-  border:1px solid var(--indigo);border-radius:var(--r4);
-  transition:border-color .18s,background .18s;
+  background:var(--indigo-m);border:none;border-radius:var(--r4);
+  transition:background .18s;cursor:pointer;
 }
-.contact-row:hover{border-color:var(--indigo-l);background:var(--indigo-dim)}
-.contact-row img{width:28px;height:24px;object-fit:contain;flex-shrink:0}
-.contact-row svg{width:24px;height:24px;flex-shrink:0;stroke:var(--t3);fill:none;stroke-width:1.5}
+.contact-row:hover{background:var(--indigo)}
+.contact-row img{width:24px;height:24px;object-fit:contain;flex-shrink:0}
+.contact-row svg{width:24px;height:24px;flex-shrink:0}
 .contact-row a{
-  flex:1;font-size:14px;font-weight:600;color:var(--t1);text-decoration:none;
-  transition:color .15s;
+  flex:1;font-size:14px;font-weight:600;color:#EEEAE2;text-decoration:none;
 }
-.contact-row:hover a{color:var(--indigo-l)}
 .contact-arrow{
   display:flex;align-items:center;justify-content:center;
   padding:var(--s8) var(--s24);background:var(--indigo);
@@ -451,7 +450,7 @@ nav{
   transition:background .18s;
 }
 .contact-row:hover .contact-arrow{background:var(--indigo-700)}
-.contact-arrow svg{width:16px;height:16px;fill:#EEEAE2}
+.contact-arrow svg{width:16px;height:16px;fill:white}
 
 /* Tiger / univers card */
 .tiger-card{
@@ -481,13 +480,12 @@ nav{
 .tiger-link-row{
   display:flex;align-items:center;gap:var(--s8);
   height:40px;padding:var(--s8) 10px;
-  border:1px solid var(--indigo);border-radius:var(--r4);
-  transition:border-color .18s,background .18s;
+  background:var(--indigo-m);border:none;border-radius:var(--r4);
+  transition:background .18s;cursor:pointer;
 }
-.tiger-link-row:hover{border-color:var(--indigo-l);background:var(--indigo-dim)}
+.tiger-link-row:hover{background:var(--indigo)}
 .tiger-link-row img{width:24px;height:24px;object-fit:contain;flex-shrink:0}
-.tiger-link-row a{flex:1;font-size:14px;font-weight:600;color:var(--t1);text-decoration:none;transition:color .15s}
-.tiger-link-row:hover a{color:var(--indigo-l)}
+.tiger-link-row a{flex:1;font-size:14px;font-weight:600;color:#EEEAE2;text-decoration:none;}
 
 /* ─────────────────────────────────────────
    FOOTER
@@ -534,9 +532,7 @@ footer{
 <!-- ══ NAV ══ -->
 <nav>
   <a href="#" class="nav-logo" aria-label="Eko Design">
-    <svg width="26" height="22" viewBox="0 0 212 174" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M114.426 119.035C112.839 124.151 107.447 116.037 110.394 115.013C112.983 114.121 115.309 116.227 114.426 119.035ZM120.546 130.755C119.711 130.577 118.447 128.994 118.447 127.983V120.166C118.805 118.821 122.586 119.345 123.576 119.856C127.859 122.069 122.777 131.231 120.546 130.767V130.755ZM148.951 111.659C145.281 115.523 141.676 119.319 142.355 125.222C143.441 126.662 165.654 109.505 155.239 102.889C154.025 106.315 151.472 109.003 148.951 111.659ZM61.3606 84.8629C53.7252 77.9618 42.5827 65.4567 51.1605 55.6643C55.8439 51.4797 63.2798 55.5662 69.9256 59.2183C73.5218 61.1946 76.8866 63.0438 79.4586 63.3863C85.8293 64.243 80.2941 57.0802 77.4547 55.0574C47.4622 33.7593 28.0275 54.8314 49.0843 83.459C36.7724 97.4634 39.9223 110.861 45.8635 126.924C35.5425 125.768 32.1335 114.809 29.565 106.553L29.495 106.328C20.3684 117.167 27.586 126.924 35.5196 135.515L19.9031 140.214C18.8771 140.524 18.1493 141.428 18.0419 142.487C17.8471 144.509 18.3721 144.055 19.1526 143.38C19.6628 142.939 20.2822 142.404 20.8812 142.404C23.6029 142.404 26.9212 142.27 30.4291 142.128C38.0842 141.819 46.644 141.474 51.8881 142.404C56.8749 143.272 64.7848 150.411 66.6697 155.194C71.4418 167.283 60.0722 173.411 59.6188 168.985C60.776 160.727 56.0161 147.187 45.8635 150.126C57.9369 156.206 52.4607 178.765 40.5782 170.829C39.648 167.121 38.8071 161.366 37.2973 151.033 27.7649 151.006C26.6431 153.502 28.4024 155.331 30.2538 157.256C31.7297 158.791 33.2641 160.386 33.444 162.429C33.8377 166.629 27.5503 174.184 23.3627 170.853C17.4215 159.597C19.2468 170.674 2.91475 177.254 1.0775 167.307C-0.950893 156.372 2.77149 105.78C6.39831 103.352C12.7308 99.9318 25.26 79.7229C23.4944 77.1289C24.4846 83.2447 2.81926 90.8479L3.05751 77.3432C13.6754 74.1425 25.2123 53.927L8.04455 62.6604C0.150765 65.1502 1.17245 47.9897C9.63097 47.2639 23.4822 37.6143C8.23537 36.9123 22.45 40.8087C35.4778 30.112 52.9739 7.38038C56.338 9.23661C54.2619 11.4616C43.2384 9.54596 37.0767 47.3528C20.1058 21.1231C26.608 25.4184C36.8798 20.897C61.7185 14.0673 89.8142 47.8827C94.8962 42.802C114.772 49.6317C117.683 52.4082 100.993 56.509C104.323 60.2159 130.281 63.3983C116.538 69.3711C130.770 72.5797 138.895 80.52L130.294 81.3768C150.587 96.8922C147.744 102.072 131.999 99.4504L140.255 112.348C133.234 120.945 101.124 114.169C91.0191 119.749 118.5 173.512C117.301 146.663L128.301 145.866C134.624 141.773L138.012 135.515C148.809 156.706 101.84 150.994C94.0376 141.595C74.305 130.362L73.4219 138.941C53.3075 136.05 61.3845 87.3973V84.851L61.3606 84.8629ZM104.148 75.3795C95.7613 73.4757 105.389 85.2789C106.384 79.0588 104.148 75.3795Z" fill="white"/>
-    </svg>
+    <img src="App_Icon.svg" alt="Eko Design" width="26" height="26" style="display:block;filter:brightness(0) invert(1)"/>
   </a>
 
   <ul class="nav-links">
@@ -548,24 +544,14 @@ footer{
   <div class="nav-right">
     <a href="https://www.linkedin.com/in/marie-arnaud-437a3b172/" target="_blank" class="btn-secondary">
       <span>Linkedin</span>
-      <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+      <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" style="filter:brightness(0) invert(1)"/>
     </a>
     <a href="https://www.behance.net/mariearnaud" target="_blank" class="btn-secondary">
       <span>Behance</span>
-      <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+      <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" style="filter:brightness(0) invert(1)"/>
     </a>
     <button class="btn-icon" id="theme-btn" aria-label="Changer de thème">
-      <svg viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="5"/>
-        <line x1="12" y1="1" x2="12" y2="3"/>
-        <line x1="12" y1="21" x2="12" y2="23"/>
-        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-        <line x1="1" y1="12" x2="3" y2="12"/>
-        <line x1="21" y1="12" x2="23" y2="12"/>
-        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-      </svg>
+      <img id="theme-icon" src="light_mode_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="Thème" width="16" height="16" style="filter:brightness(0) invert(1)"/>
     </button>
   </div>
 </nav>
@@ -580,7 +566,7 @@ footer{
       <img class="hero-eko"
            src="Eko.svg"
            alt="Eko Design"/>
-      <img class="hero-illus"
+      <img class="hero-illus" onerror="this.style.background='var(--purple-soft)'"
            src="fille-chat.png"
            alt="Marie avec Moka le chat — illustration vaporwave"/>
     </div>
@@ -626,22 +612,22 @@ footer{
 <!-- ══ MARQUEE ══ -->
 <div class="marquee-strip" aria-hidden="true">
   <div class="marquee-inner">
-    <span class="marquee-item">Kamelott<span class="marquee-dot">✦</span></span>
-    <span class="marquee-item">Severance<span class="marquee-dot">✦</span></span>
-    <span class="marquee-item">Burger Quiz<span class="marquee-dot">✦</span></span>
-    <span class="marquee-item">Sin City<span class="marquee-dot">✦</span></span>
-    <span class="marquee-item">Malcolm<span class="marquee-dot">✦</span></span>
-    <span class="marquee-item">Kill Bill<span class="marquee-dot">✦</span></span>
-    <span class="marquee-item">Succession<span class="marquee-dot">✦</span></span>
-    <span class="marquee-item">Zelda TOTK<span class="marquee-dot">✦</span></span>
-    <span class="marquee-item">Kamelott<span class="marquee-dot">✦</span></span>
-    <span class="marquee-item">Severance<span class="marquee-dot">✦</span></span>
-    <span class="marquee-item">Burger Quiz<span class="marquee-dot">✦</span></span>
-    <span class="marquee-item">Sin City<span class="marquee-dot">✦</span></span>
-    <span class="marquee-item">Malcolm<span class="marquee-dot">✦</span></span>
-    <span class="marquee-item">Kill Bill<span class="marquee-dot">✦</span></span>
-    <span class="marquee-item">Succession<span class="marquee-dot">✦</span></span>
-    <span class="marquee-item">Zelda TOTK<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Kamelott<span class="marquee-dot" aria-hidden="true">✦</span></span>
+    <span class="marquee-item">Severance<span class="marquee-dot" aria-hidden="true">✦</span></span>
+    <span class="marquee-item">Burger Quiz<span class="marquee-dot" aria-hidden="true">✦</span></span>
+    <span class="marquee-item">Sin City<span class="marquee-dot" aria-hidden="true">✦</span></span>
+    <span class="marquee-item">Malcolm<span class="marquee-dot" aria-hidden="true">✦</span></span>
+    <span class="marquee-item">Kill Bill<span class="marquee-dot" aria-hidden="true">✦</span></span>
+    <span class="marquee-item">Succession<span class="marquee-dot" aria-hidden="true">✦</span></span>
+    <span class="marquee-item">Zelda TOTK<span class="marquee-dot" aria-hidden="true">✦</span></span>
+    <span class="marquee-item">Kamelott<span class="marquee-dot" aria-hidden="true">✦</span></span>
+    <span class="marquee-item">Severance<span class="marquee-dot" aria-hidden="true">✦</span></span>
+    <span class="marquee-item">Burger Quiz<span class="marquee-dot" aria-hidden="true">✦</span></span>
+    <span class="marquee-item">Sin City<span class="marquee-dot" aria-hidden="true">✦</span></span>
+    <span class="marquee-item">Malcolm<span class="marquee-dot" aria-hidden="true">✦</span></span>
+    <span class="marquee-item">Kill Bill<span class="marquee-dot" aria-hidden="true">✦</span></span>
+    <span class="marquee-item">Succession<span class="marquee-dot" aria-hidden="true">✦</span></span>
+    <span class="marquee-item">Zelda TOTK<span class="marquee-dot" aria-hidden="true">✦</span></span>
   </div>
 </div>
 
@@ -711,8 +697,8 @@ footer{
   </p>
   <div class="projects-grid">
 
-    <div class="proj-card">
-      <div class="proj-top">
+    <div class="proj-card" style="display:flex;flex-direction:column;">
+      <div class="proj-top" style="flex:1">
         <div class="card-lbl">E-commerce</div>
         <div class="card-ttl">Pandacraft</div>
         <div class="card-body">Optimisation UX du tunnel d'abonnement, renforcement UI sur les modules gammes &amp; kits et conception d'un design system cohérent from scratch.</div>
@@ -721,15 +707,15 @@ footer{
         <div class="btn-visit">
           <a href="https://www.pandacraft.fr" target="_blank">Visiter le site</a>
           <div class="btn-visit-icon">
-            <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+            <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" style="filter:brightness(0) invert(1)"/>
           </div>
         </div>
         <p class="proj-italic" style="margin-top:var(--s32)">J'ai eu la chance de travailler un bon moment avec Swan Robbes. On collaborait au quotidien via un backlog Asana, un outil que j'apprécie beaucoup, bien plus agréable que Jira à mon goût. 😊</p>
       </div>
     </div>
 
-    <div class="proj-card">
-      <div class="proj-top">
+    <div class="proj-card" style="display:flex;flex-direction:column;">
+      <div class="proj-top" style="flex:1">
         <div class="card-lbl">transport</div>
         <div class="card-ttl">SNCF Abonnement</div>
         <div class="card-body">Refonte d'une plateforme d'abonnement TER en marque blanche. Souscription, paiement et espace abonné responsive.</div>
@@ -738,15 +724,15 @@ footer{
         <div class="btn-visit">
           <a href="https://www.abonnement-regional.sncf/region/PDL/produit/UF08_DIGITAL_Abonnement%20tutti%20annuel%20monomodal%20NASA" target="_blank">Visiter le site</a>
           <div class="btn-visit-icon">
-            <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+            <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" style="filter:brightness(0) invert(1)"/>
           </div>
         </div>
         <p class="proj-italic" style="margin-top:var(--s32)">J'ai collaboré directement avec les équipes design de la SNCF, avec une répartition selon les produits. C'est là que j'ai vraiment mis le pied à l'étrier sur l'accessibilité.</p>
       </div>
     </div>
 
-    <div class="proj-card">
-      <div class="proj-top">
+    <div class="proj-card" style="display:flex;flex-direction:column;">
+      <div class="proj-top" style="flex:1">
         <div class="card-lbl">Mode &amp; Outdoor</div>
         <div class="card-ttl">Aigle</div>
         <div class="card-body">Refonte de la page produit pour valoriser les caractéristiques techniques et améliorer la conversion.</div>
@@ -755,7 +741,7 @@ footer{
         <div class="btn-visit">
           <a href="https://www.aigle.com/fr/fr/p/aiw25mout003-BJ99_avocat.html" target="_blank">Visiter le site</a>
           <div class="btn-visit-icon">
-            <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+            <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" style="filter:brightness(0) invert(1)"/>
           </div>
         </div>
         <p class="proj-italic" style="margin-top:var(--s32)">Beaucoup d'UX Research aussi : tests utilisateurs, benchmarks… L'idée était de dé-risquer nos hypothèses, de la hiérarchisation de la page jusqu'aux mécanismes de sélection.</p>
@@ -778,19 +764,17 @@ footer{
       </div>
       <div class="contact-links">
         <div class="contact-row">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--indigo-l)" style="flex-shrink:0"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          <img src="LI-In-Bug.png" alt="LinkedIn" width="24" height="24" style="flex-shrink:0;object-fit:contain"/>
           <a href="https://www.linkedin.com/in/marie-arnaud-437a3b172/" target="_blank">LinkedIn - Marie Arnaud</a>
           <div class="contact-arrow">
-            <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+            <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" style="filter:brightness(0) invert(1)"/>
           </div>
         </div>
         <div class="contact-row">
-          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-          </svg>
+          <img src="alternate_email_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="Email" width="24" height="24" style="flex-shrink:0;filter:brightness(0) invert(1)"/>
           <a href="mailto:m.arnaud85@icloud.com">m.arnaud85@icloud.com</a>
           <div class="contact-arrow">
-            <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+            <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" style="filter:brightness(0) invert(1)"/>
           </div>
         </div>
       </div>
@@ -807,10 +791,10 @@ footer{
           <div class="card-body">Je prends le temps de gribouiller. Parfois ça ne donne rien, parfois le résultat me plaît. On test, on itère. Le fondement de mon métier.</div>
         </div>
         <div class="tiger-link-row">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--indigo-l)" style="flex-shrink:0"><path d="M22 7h-7V5h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.051-1.974-5.051-5.04 0-2.963 2.005-5.26 5.051-5.26 3.016 0 4.51 1.863 4.51 4.555 0 .364-.03.727-.09 1.09H15.96c.206 2.017 1.44 2.375 2.648 2.375 1.119 0 1.827-.593 2.119-1.72h3zm-8.32-3.072c-.043.93.3 1.94 1.663 1.94.955 0 1.51-.468 1.746-1.163H15.406zM9.822 10.364c1.426 0 2.378-.676 2.378-2.048 0-1.325-.935-1.885-2.183-1.885H5.5V16.5h4.956c1.613 0 2.907-.92 2.907-2.512 0-1.35-.906-2.199-2.322-2.274L9.822 10.364zm-.576 4.742H7.724v-2.178h1.522c.794 0 1.276.312 1.276 1.073 0 .73-.43 1.105-1.276 1.105zm-.19-5.716H7.724V7.327h1.332c.666 0 1.161.3 1.161.983 0 .698-.434 1.08-1.161 1.08z"/></svg>
+          <img src="icons8-behance.svg" alt="Behance" width="24" height="24" style="flex-shrink:0;object-fit:contain"/>
           <a href="https://www.behance.net/mariearnaud" target="_blank">Behance</a>
           <div class="contact-arrow">
-            <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+            <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" style="filter:brightness(0) invert(1)"/>
           </div>
         </div>
       </div>
@@ -837,6 +821,10 @@ document.getElementById('theme-btn').addEventListener('click', () => {
   const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
   html.setAttribute('data-theme', next);
   localStorage.setItem('eko-theme', next);
+  const icon = document.getElementById('theme-icon');
+  if (icon) icon.src = next === 'dark'
+    ? 'light_mode_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg'
+    : 'dark_mode_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg';
 });
 
 /* ── Moka AI ── */
