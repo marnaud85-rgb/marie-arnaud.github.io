@@ -53,18 +53,77 @@
 
 /* ── LIGHT ── */
 [data-theme="light"] {
-  --bg:       #F7F6F2;
-  --bg2:      #FFFFFF;
-  --bg3:      #F0EEF8;
-  --nav-bg:   rgba(247,246,242,0.95);
-  --t1:       #1A1A2E;
-  --t2:       rgba(26,26,46,0.80);
-  --t3:       rgba(26,26,46,0.55);
-  --border:   rgba(26,26,46,0.08);
-  --border-m: rgba(26,26,46,0.14);
-  --card:     #FFFFFF;
-  --inp-bg:   #FFFFFF;
-  --inp-t:    #1A1A2E;
+  --bg:        #F7F6F2;
+  --bg2:       #EEEAF8;
+  --bg3:       #E8E4F4;
+  --nav-bg:    rgba(247,246,242,0.97);
+  --t1:        #1A1A2E;
+  --t2:        rgba(26,26,46,0.80);
+  --t3:        rgba(26,26,46,0.55);
+  --border:    rgba(26,26,46,0.10);
+  --border-m:  rgba(26,26,46,0.18);
+  --card:      #FFFFFF;
+  --inp-bg:    #FFFFFF;
+  --inp-t:     #1A1A2E;
+  /* Override purple-soft for light */
+  --purple-soft: #EDE8FA;
+}
+
+/* Light mode — nav buttons visible */
+[data-theme="light"] .btn-secondary {
+  border-color: var(--indigo);
+  color: var(--indigo);
+  box-shadow: 0 2px 4px rgba(79,70,229,0.2);
+}
+[data-theme="light"] .btn-secondary:hover {
+  background: var(--indigo-dim);
+  border-color: var(--indigo-700);
+  color: var(--indigo-700);
+}
+[data-theme="light"] .btn-icon {
+  border-color: var(--indigo);
+  color: var(--indigo);
+}
+[data-theme="light"] .btn-icon:hover {
+  background: var(--indigo-dim);
+}
+[data-theme="light"] .btn-icon img {
+  filter: none;
+}
+[data-theme="light"] .btn-secondary svg {
+  fill: var(--indigo);
+}
+/* Light — nav links */
+[data-theme="light"] .nav-links a {
+  color: var(--t1);
+}
+/* Light — cards */
+[data-theme="light"] .card {
+  box-shadow: 0 1px 4px rgba(26,26,46,0.08);
+}
+/* Light — moka bar */
+[data-theme="light"] .moka-bar {
+  background: #FFFFFF;
+  border-color: var(--indigo);
+}
+/* Light — contact/tiger cards */
+[data-theme="light"] .contact-card,
+[data-theme="light"] .tiger-card,
+[data-theme="light"] .tiger-img-col,
+[data-theme="light"] .tiger-copy {
+  background: var(--bg2);
+  border-color: var(--indigo);
+}
+/* Light — proj cards */
+[data-theme="light"] .projects-grid {
+  border-color: var(--indigo);
+}
+[data-theme="light"] .proj-card {
+  border-color: var(--indigo-m);
+}
+/* Light — App Icon invert to show on light bg */
+[data-theme="light"] .nav-logo {
+  background: var(--indigo);
 }
 
 /* ─────────────────────────────────────────
@@ -100,7 +159,7 @@ nav{
   transition:background .18s,transform .18s;
 }
 .nav-logo:hover{background:var(--indigo-700);transform:scale(1.05)}
-.nav-logo svg{width:26px;height:26px}
+.nav-logo img{width:28px;height:28px;object-fit:contain;display:block}
 
 /* Nav links */
 .nav-links{
@@ -525,6 +584,21 @@ footer{
   .tiger-card{flex-direction:column}
   footer{flex-direction:column;gap:var(--s8);text-align:center}
 }
+
+/* Light mode — dark icons instead of white */
+[data-theme="light"] .moka-send-btn img,
+[data-theme="light"] .contact-row img,
+[data-theme="light"] .contact-arrow img,
+[data-theme="light"] .tiger-link-row img,
+[data-theme="light"] .btn-visit-icon img {
+  filter: brightness(0) invert(1);
+}
+[data-theme="light"] .moka-bar .moka-input {
+  color: #1A1A2E;
+}
+[data-theme="light"] .marquee-strip {
+  border-color: rgba(26,26,46,0.10);
+}
 </style>
 </head>
 <body>
@@ -532,7 +606,7 @@ footer{
 <!-- ══ NAV ══ -->
 <nav>
   <a href="#" class="nav-logo" aria-label="Eko Design">
-    <img src="App_Icon.svg" alt="Eko Design" width="26" height="26" style="display:block;filter:brightness(0) invert(1)"/>
+    <img src="App_Icon.svg" alt="Eko Design" width="28" height="28" style="display:block;object-fit:contain"/>
   </a>
 
   <ul class="nav-links">
