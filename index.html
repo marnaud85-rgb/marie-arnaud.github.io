@@ -659,14 +659,8 @@ footer{
   filter:brightness(0); /* #1A1A2E */
 }
 
-/* Theme icon — precise color control */
-#theme-icon{
-  filter:brightness(0) invert(1); /* white in dark */
-  transition:filter .2s;
-}
-[data-theme="light"] #theme-icon{
-  filter:brightness(0) saturate(0); /* pure #000 → close to #1A1A2E */
-}
+/* Theme icon — uses currentColor, inherits from btn-icon */
+#theme-icon{ transition:color .2s; }
 </style>
 </head>
 <body>
@@ -693,7 +687,9 @@ footer{
       <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" class="nav-icon-img"/>
     </a>
     <button class="btn-icon" id="theme-btn" aria-label="Changer de thème">
-      <img id="theme-icon" src="light_mode_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="Thème" width="16" height="16" style="filter:brightness(0) invert(1)"/>
+      <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true">
+          <path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Zm0-80q88 0 158-48.5T740-375q-20 5-40 8t-40 3q-123 0-209.5-86.5T364-660q0-20 3-40t8-40q-78 32-126.5 102T200-480q0 116 82 198t198 82Zm-10-270Z"/>
+        </svg>
     </button>
   </div>
 </nav>
@@ -707,19 +703,19 @@ footer{
     <div class="hero-visuals">
       <!-- Desktop light (>400px) -->
       <img class="hero-illus hero-illus-desktop hero-illus-light"
-           src="visualdesktop.svg"
+           src="lightthemedesktop.svg"
            alt="Eko Design — Marie avec Moka le chat"/>
       <!-- Desktop dark (>400px) -->
       <img class="hero-illus hero-illus-desktop hero-illus-dark"
-           src="Visualsdesktopdarktheme.svg"
+           src="Darkthemedesktop.svg"
            alt="Eko Design — Marie avec Moka le chat"/>
       <!-- Mobile light (≤400px) -->
       <img class="hero-illus hero-illus-mobile hero-illus-light"
-           src="visualmobile.svg"
+           src="lightthememobile.svg"
            alt="Eko Design — Marie avec Moka le chat"/>
       <!-- Mobile dark (≤400px) -->
       <img class="hero-illus hero-illus-mobile hero-illus-dark"
-           src="Visualsmobiledarktheme.svg"
+           src="Darkthememobile.svg"
            alt="Eko Design — Marie avec Moka le chat"/>
     </div>
 
@@ -978,18 +974,18 @@ html.setAttribute('data-theme', saved);
 // Set correct theme icon on load
 const themeIcon = document.getElementById('theme-icon');
 if (themeIcon) {
-  themeIcon.src = saved === 'dark'
-    ? 'light_mode_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg'
-    : 'dark_mode_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg';
+  // Set correct path on load based on saved theme
+  themeIcon.querySelector('path').setAttribute('d', saved === 'dark' ? 'M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Zm0-80q88 0 158-48.5T740-375q-20 5-40 8t-40 3q-123 0-209.5-86.5T364-660q0-20 3-40t8-40q-78 32-126.5 102T200-480q0 116 82 198t198 82Zm-10-270Z' : 'M480-360q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35Zm0-80q17 0 28.5-11.5T520-480q0-17-11.5-28.5T480-520q-17 0-28.5 11.5T440-480q0 17 11.5 28.5T480-440Zm0-360q-17 0-28.5-11.5T440-840v-80q0-17 11.5-28.5T480-960q17 0 28.5 11.5T520-920v80q0 17-11.5 28.5T480-800Zm0 720q-17 0-28.5-11.5T440-120v-80q0-17 11.5-28.5T480-240q17 0 28.5 11.5T520-200v80q0 17-11.5 28.5T480-80ZM226-678l-43-42q-12-11-11.5-28t11.5-29q12-12 29-12t28 12l42 43q11 12 11 28t-11 28q-11 12-27.5 11.5T226-678Zm494 495-42-43q-11-12-11-28.5t11-27.5q11-12 27.5-11.5T734-282l43 42q12 11 11.5 28T777-183q-12 12-29 12t-28-12Zm-42-495q-12-11-11.5-27.5T678-734l42-43q11-12 28-11.5t29 11.5q12 12 12 29t-12 28l-43 42q-12 11-28 11t-28-11ZM183-183q-12-12-12-29t12-28l43-42q12-11 28.5-11t27.5 11q12 11 11.5 27.5T282-226l-42 43q-11 12-28 11.5T183-183Z');
 }
 document.getElementById('theme-btn').addEventListener('click', () => {
   const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
   html.setAttribute('data-theme', next);
   localStorage.setItem('eko-theme', next);
   const icon = document.getElementById('theme-icon');
-  if (icon) icon.src = next === 'dark'
-    ? 'light_mode_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg'
-    : 'dark_mode_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg';
+  if (icon) {
+    // Swap SVG path: sun in dark mode, moon in light mode
+    icon.querySelector('path').setAttribute('d', next === 'dark' ? 'M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Zm0-80q88 0 158-48.5T740-375q-20 5-40 8t-40 3q-123 0-209.5-86.5T364-660q0-20 3-40t8-40q-78 32-126.5 102T200-480q0 116 82 198t198 82Zm-10-270Z' : 'M480-360q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35Zm0-80q17 0 28.5-11.5T520-480q0-17-11.5-28.5T480-520q-17 0-28.5 11.5T440-480q0 17 11.5 28.5T480-440Zm0-360q-17 0-28.5-11.5T440-840v-80q0-17 11.5-28.5T480-960q17 0 28.5 11.5T520-920v80q0 17-11.5 28.5T480-800Zm0 720q-17 0-28.5-11.5T440-120v-80q0-17 11.5-28.5T480-240q17 0 28.5 11.5T520-200v80q0 17-11.5 28.5T480-80ZM226-678l-43-42q-12-11-11.5-28t11.5-29q12-12 29-12t28 12l42 43q11 12 11 28t-11 28q-11 12-27.5 11.5T226-678Zm494 495-42-43q-11-12-11-28.5t11-27.5q11-12 27.5-11.5T734-282l43 42q12 11 11.5 28T777-183q-12 12-29 12t-28-12Zm-42-495q-12-11-11.5-27.5T678-734l42-43q11-12 28-11.5t29 11.5q12 12 12 29t-12 28l-43 42q-12 11-28 11t-28-11ZM183-183q-12-12-12-29t12-28l43-42q12-11 28.5-11t27.5 11q12 11 11.5 27.5T282-226l-42 43q-11 12-28 11.5T183-183Z');
+  }
 });
 
 /* ── Moka AI ── */
