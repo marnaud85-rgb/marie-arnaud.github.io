@@ -11,7 +11,7 @@
 <meta property="og:type" content="website"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&display=swap" rel="stylesheet">
 
 <style>
 /* ─────────────────────────────────────────
@@ -488,7 +488,7 @@ nav{
 .proj-card:hover{background:var(--bg2)}
 
 .proj-top{display:flex;flex-direction:column;gap:var(--s16);flex:1}
-.proj-italic{font-size:14px;font-weight:600;font-style:italic;color:var(--t2);line-height:1.65;margin-top:var(--s16)}
+.proj-italic{font-size:14px;font-weight:500;font-style:italic;color:var(--t2);line-height:1.65;margin-top:var(--s16)}
 
 /* Visit button — full width inside card */
 .btn-visit{
@@ -659,13 +659,14 @@ footer{
   filter:brightness(0); /* #1A1A2E */
 }
 
-/* Behance icon — white in dark, dark in light */
-[data-theme="dark"] .behance-icon{ filter:brightness(0) invert(1); }
-[data-theme="light"] .behance-icon{ filter:brightness(0); }
-
-/* Theme toggle icon color */
-[data-theme="dark"] #theme-icon{ filter:brightness(0) invert(1); }
-[data-theme="light"] #theme-icon{ filter:brightness(0); /* #1A1A2E */ }
+/* Theme icon — precise color control */
+#theme-icon{
+  filter:brightness(0) invert(1); /* white in dark */
+  transition:filter .2s;
+}
+[data-theme="light"] #theme-icon{
+  filter:brightness(0) saturate(0); /* pure #000 → close to #1A1A2E */
+}
 </style>
 </head>
 <body>
@@ -946,7 +947,9 @@ footer{
           <div class="card-body">Je prends le temps de gribouiller. Parfois ça ne donne rien, parfois le résultat me plaît. On teste, on itère. Le fondement de mon métier.</div>
         </div>
         <div class="btn-visit" style="text-decoration:none">
-          <img src="icons8-behance.svg" alt="Behance" width="20" height="20" class="behance-icon" style="flex-shrink:0;object-fit:contain"/>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+  <path d="M7.803 5.731c.589 0 1.119.051 1.605.155.483.103.895.273 1.243.508.343.235.611.547.804.938.188.387.285.863.285 1.416 0 .607-.145 1.113-.435 1.511-.29.397-.717.719-1.271.974.758.219 1.318.599 1.689 1.146.374.549.557 1.209.557 1.989 0 .607-.116 1.138-.35 1.587-.235.45-.557.826-.962 1.12-.406.292-.876.511-1.413.651-.534.139-1.087.21-1.657.21H2V5.731h5.803zm-.351 4.972c.487 0 .882-.114 1.192-.342.309-.227.462-.588.462-1.078 0-.267-.051-.49-.151-.663-.1-.174-.235-.312-.406-.413-.171-.101-.365-.172-.58-.214-.218-.043-.443-.063-.668-.063H4.654v2.773h2.798zm.157 5.239c.253 0 .495-.026.729-.08.231-.052.435-.14.611-.263.174-.121.314-.284.419-.488.102-.203.154-.461.154-.772 0-.612-.172-1.057-.516-1.334-.345-.276-.803-.415-1.37-.415H4.654v3.352h2.955zm8.532.686c.378.369.921.553 1.634.553.509 0 .948-.127 1.321-.385.371-.256.599-.529.685-.815h2.097c-.336 1.044-.851 1.793-1.551 2.241-.697.449-1.539.673-2.525.673-.685 0-1.302-.11-1.857-.33-.552-.219-1.022-.531-1.41-.938-.386-.406-.684-.894-.895-1.462-.209-.568-.314-1.193-.314-1.87 0-.654.108-1.265.325-1.836.214-.57.519-1.062.912-1.476.392-.411.861-.736 1.405-.971.543-.234 1.141-.352 1.795-.352.73 0 1.371.14 1.923.42.549.28 1.003.657 1.362 1.13.357.472.615 1.015.771 1.628.158.614.209 1.26.154 1.933h-6.249c.039.752.279 1.298.657 1.657zm2.866-4.45c-.303-.334-.784-.5-1.432-.5-.405 0-.742.068-1.009.203-.267.136-.48.305-.641.509-.161.203-.273.42-.335.647-.062.229-.099.441-.109.636h3.867c-.101-.662-.338-1.161-.341-1.495zM14.5 7h4v1h-4V7z"/>
+</svg>
           <a href="https://www.behance.net/mariearnaud" target="_blank" style="color:#EEEAE2;text-decoration:none;flex:1;font-size:13px;font-weight:600;">Behance</a>
           <div class="btn-visit-icon">
             <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" class="nav-icon-img"/>
