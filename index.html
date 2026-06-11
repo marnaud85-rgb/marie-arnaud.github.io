@@ -285,7 +285,7 @@ nav{
 /* ─────────────────────────────────────────
    MOKA — AI zone
 ───────────────────────────────────────── */
-.moka{width:100%;max-width:876px}
+.moka{width:100%;max-width:875px}
 
 .moka-title{
   font-size:32px;font-weight:800;
@@ -307,20 +307,25 @@ nav{
   width:28px;height:28px;border-radius:50%;flex-shrink:0;
   display:flex;align-items:center;justify-content:center;
   font-size:12px;font-weight:700;
+  line-height:1;
+  text-align:center;
 }
 .msg-av.ai{background:var(--indigo-dim);border:1px solid var(--indigo-border);color:var(--indigo-l)}
 .msg-av.user{background:rgba(79,70,229,0.08);border:1px solid var(--border-m);color:var(--t3)}
 .msg-bubble{
   font-size:14px;font-weight:600;line-height:1.65;
-  color:var(--t1);background:var(--indigo-dim);
-  border:1px solid var(--indigo-border);
+  color:var(--t1);
   padding:var(--r12);max-width:calc(100% - 38px);
+}
+.msg.ai .msg-bubble{
+  background:var(--indigo-border);
+  border:1px solid rgba(99,102,241,0.45);
 }
 .msg.ai .msg-bubble{border-radius:var(--r12) var(--r12) var(--r12) var(--r4)}
 .msg.user .msg-bubble{
   border-radius:var(--r12) var(--r12) var(--r4) var(--r12);
-  background:rgba(109,40,217,0.18);
-  border-color:rgba(139,92,246,0.35);
+  background:var(--indigo-dim);
+  border:1px solid var(--indigo-border);
   color:var(--t1);
 }
 .msg-bubble a{color:var(--indigo-l);text-decoration:underline}
@@ -404,7 +409,8 @@ nav{
 }
 .marquee-inner{
   display:flex;gap:var(--s48);white-space:nowrap;
-  animation:marquee 28s linear infinite;
+  width:max-content;
+  animation:marquee 36s linear infinite;
 }
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .marquee-item{
@@ -652,6 +658,14 @@ footer{
 [data-theme="light"] .nav-icon-img{
   filter:brightness(0); /* #1A1A2E */
 }
+
+/* Behance icon — white in dark, dark in light */
+[data-theme="dark"] .behance-icon{ filter:brightness(0) invert(1); }
+[data-theme="light"] .behance-icon{ filter:brightness(0); }
+
+/* Theme toggle icon color */
+[data-theme="dark"] #theme-icon{ filter:brightness(0) invert(1); }
+[data-theme="light"] #theme-icon{ filter:brightness(0); /* #1A1A2E */ }
 </style>
 </head>
 <body>
@@ -730,9 +744,9 @@ footer{
 
       <div class="gauge-row">
         <div class="gauge-track">
-          <div class="gauge-fill" id="gauge-fill" style="width:100%"></div>
+          <div class="gauge-fill" id="gauge-fill" style="width:0%"></div>
         </div>
-        <div class="gauge-label"><b id="q-count">5</b>/5 questions</div>
+        <div class="gauge-label"><b id="q-count">0</b>/5 questions</div>
       </div>
 
       <div class="pills-row">
@@ -757,6 +771,8 @@ footer{
     <span class="marquee-item">Kill Bill<span class="marquee-dot" aria-hidden="true">✦</span></span>
     <span class="marquee-item">Succession<span class="marquee-dot" aria-hidden="true">✦</span></span>
     <span class="marquee-item">Zelda TOTK<span class="marquee-dot" aria-hidden="true">✦</span></span>
+    <span class="marquee-item">Le voyage de Chihiro<span class="marquee-dot" aria-hidden="true">✦</span></span>
+    <span class="marquee-item">Naruto Shippuden<span class="marquee-dot" aria-hidden="true">✦</span></span>
     <span class="marquee-item">Kaamelott<span class="marquee-dot" aria-hidden="true">✦</span></span>
     <span class="marquee-item">Severance<span class="marquee-dot" aria-hidden="true">✦</span></span>
     <span class="marquee-item">Burger Quiz<span class="marquee-dot" aria-hidden="true">✦</span></span>
@@ -765,6 +781,8 @@ footer{
     <span class="marquee-item">Kill Bill<span class="marquee-dot" aria-hidden="true">✦</span></span>
     <span class="marquee-item">Succession<span class="marquee-dot" aria-hidden="true">✦</span></span>
     <span class="marquee-item">Zelda TOTK<span class="marquee-dot" aria-hidden="true">✦</span></span>
+    <span class="marquee-item">Le voyage de Chihiro<span class="marquee-dot" aria-hidden="true">✦</span></span>
+    <span class="marquee-item">Naruto Shippuden<span class="marquee-dot" aria-hidden="true">✦</span></span>
   </div>
 </div>
 
@@ -928,7 +946,7 @@ footer{
           <div class="card-body">Je prends le temps de gribouiller. Parfois ça ne donne rien, parfois le résultat me plaît. On teste, on itère. Le fondement de mon métier.</div>
         </div>
         <div class="btn-visit" style="text-decoration:none">
-          <img src="icons8-behance.svg" alt="Behance" width="20" height="20" style="flex-shrink:0;object-fit:contain;filter:brightness(0) invert(1)"/>
+          <img src="icons8-behance.svg" alt="Behance" width="20" height="20" class="behance-icon" style="flex-shrink:0;object-fit:contain"/>
           <a href="https://www.behance.net/mariearnaud" target="_blank" style="color:#EEEAE2;text-decoration:none;flex:1;font-size:13px;font-weight:600;">Behance</a>
           <div class="btn-visit-icon">
             <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" class="nav-icon-img"/>
@@ -954,6 +972,13 @@ footer{
 const html = document.documentElement;
 const saved = localStorage.getItem('eko-theme') || 'dark';
 html.setAttribute('data-theme', saved);
+// Set correct theme icon on load
+const themeIcon = document.getElementById('theme-icon');
+if (themeIcon) {
+  themeIcon.src = saved === 'dark'
+    ? 'light_mode_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg'
+    : 'dark_mode_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg';
+}
 document.getElementById('theme-btn').addEventListener('click', () => {
   const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
   html.setAttribute('data-theme', next);
@@ -974,8 +999,9 @@ const qEl     = document.getElementById('q-count');
 const gauge   = document.getElementById('gauge-fill');
 
 function updateGauge() {
-  qEl.textContent = remaining;
-  gauge.style.width = (remaining / MAX_Q * 100) + '%';
+  const used = MAX_Q - remaining;
+  qEl.textContent = used;
+  gauge.style.width = (used / MAX_Q * 100) + '%';
   if (remaining <= 0) {
     gauge.style.background = '#E05252';
     inputEl.placeholder = 'Limite atteinte — contactez Marie directement !';
@@ -988,7 +1014,7 @@ function updateGauge() {
 function addMsg(role, html) {
   const d = document.createElement('div');
   d.className = 'msg ' + (role === 'ai' ? 'ai' : 'user');
-  d.innerHTML = `<div class="msg-av ${role}">${role === 'ai' ? '✦' : '→'}</div><div class="msg-bubble">${html}</div>`;
+  d.innerHTML = `<div class="msg-av ${role}">${role === 'ai' ? '✦' : '🙂'}</div><div class="msg-bubble">${html}</div>`;
   msgsEl.appendChild(d);
   msgsEl.scrollTop = msgsEl.scrollHeight;
 }
