@@ -242,16 +242,7 @@ nav{
   width:100%;position:relative;
 }
 /* Hero visuals */
-.hero-eko{
-  height:240px;width:auto;
-  margin-right:-96px;
-  position:relative;z-index:1;
-  object-fit:contain;flex-shrink:0;
-  transition:filter .3s;
-}
-[data-theme="light"] .hero-eko{
-  filter:invert(1) sepia(1) saturate(0) brightness(0.05);
-}
+
 .hero-illus-desktop{
   height:405px;width:518px;
   object-fit:contain;flex-shrink:0;
@@ -263,7 +254,6 @@ nav{
   width:100%;max-width:354px;height:auto;
 }
 @media(max-width:400px){
-  .hero-eko{ display:none; }
   .hero-illus-desktop{ display:none; }
   .hero-illus-mobile{ display:block; }
   .hero-visuals{ justify-content:center; margin-bottom:var(--s24); }
@@ -509,7 +499,7 @@ nav{
 .contact-links{display:flex;flex-direction:column;gap:var(--s16)}
 .contact-row{
   display:flex;align-items:center;gap:var(--s8);
-  height:40px;padding:0 6px 0 10px;
+  height:36px;padding:0 6px 0 10px;
   background:var(--indigo-m);border:none;border-radius:var(--r4);
   transition:background .18s;cursor:pointer;
 }
@@ -517,11 +507,11 @@ nav{
 .contact-row img{width:24px;height:24px;object-fit:contain;flex-shrink:0}
 .contact-row svg{width:24px;height:24px;flex-shrink:0}
 .contact-row a{
-  flex:1;font-size:14px;font-weight:600;color:#EEEAE2;text-decoration:none;
+  flex:1;font-size:13px;font-weight:600;color:#EEEAE2;text-decoration:none;
 }
 .contact-arrow{
   display:flex;align-items:center;justify-content:center;
-  padding:var(--s8) var(--s24);background:var(--indigo);
+  padding:6px 12px;background:var(--indigo);
   border-radius:var(--r4);flex-shrink:0;
   transition:background .18s;
 }
@@ -555,13 +545,13 @@ nav{
 }
 .tiger-link-row{
   display:flex;align-items:center;gap:var(--s8);
-  height:40px;padding:0 6px 0 10px;
+  height:36px;padding:0 6px 0 10px;
   background:var(--indigo-m);border:none;border-radius:var(--r4);
   transition:background .18s;cursor:pointer;
 }
 .tiger-link-row:hover{background:var(--indigo)}
 .tiger-link-row img{width:24px;height:24px;object-fit:contain;flex-shrink:0}
-.tiger-link-row a{flex:1;font-size:14px;font-weight:600;color:#EEEAE2;text-decoration:none;}
+.tiger-link-row a{flex:1;font-size:13px;font-weight:600;color:#EEEAE2;text-decoration:none;}
 
 /* ─────────────────────────────────────────
    FOOTER
@@ -572,8 +562,18 @@ footer{
   background:var(--nav-bg);
   border-top:1px solid var(--border);
 }
-.footer-logo img{height:24px;width:auto;object-fit:contain;opacity:.45;transition:opacity .18s}
-.footer-logo:hover img{opacity:.8}
+.footer-logo img{
+  height:24px;width:auto;object-fit:contain;
+  opacity:.6;transition:opacity .18s,filter .3s;
+  /* Dark theme: white logo */
+  filter:brightness(0) invert(1);
+}
+[data-theme="light"] .footer-logo img{
+  /* Light theme: dark logo */
+  filter:none;
+  opacity:.55;
+}
+.footer-logo:hover img{opacity:1}
 .footer-copy{font-size:14px;font-weight:600;color:var(--indigo-m)}
 .footer-kanji{font-size:18px;font-weight:800;color:var(--indigo-m);opacity:.5}
 
@@ -632,7 +632,7 @@ footer{
 
   <div class="nav-right">
     <a href="https://www.linkedin.com/in/marie-arnaud-437a3b172/" target="_blank" class="btn-secondary">
-      <span>Linkedin</span>
+      <span>LinkedIn</span>
       <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" style="filter:brightness(0) invert(1)"/>
     </a>
     <a href="https://www.behance.net/mariearnaud" target="_blank" class="btn-secondary">
@@ -650,17 +650,14 @@ footer{
   <div class="hero-dots"></div>
   <div class="hero-inner">
 
-    <!-- Illustration responsive : desktop au-delà de 400px, mobile en dessous -->
+    <!-- Illustration responsive : >400px desktop, ≤400px mobile -->
     <div class="hero-visuals">
-      <img class="hero-eko"
-           src="Eko.svg"
-           alt="Eko Design"/>
       <img class="hero-illus-desktop"
            src="visualdesktop.svg"
-           alt="Marie avec Moka le chat"/>
+           alt="Eko Design — Marie avec Moka le chat"/>
       <img class="hero-illus-mobile"
            src="visualmobile.svg"
-           alt="Marie avec Moka le chat"/>
+           alt="Eko Design — Marie avec Moka le chat"/>
     </div>
 
     <!-- MOKA -->
@@ -670,13 +667,13 @@ footer{
       <div class="moka-msgs" id="messages">
         <div class="msg ai">
           <div class="msg-av ai">✦</div>
-          <div class="msg-bubble">Bonjour ! Je suis Moka, l'assistante de Marie, posez-moi n'importe quelle question 😊</div>
+          <div class="msg-bubble">Bonjour ! Je suis Moka, l'assistante de Marie, posez-moi n'importe quelle question. 😊</div>
         </div>
       </div>
 
       <div class="moka-bar">
         <input class="moka-input" id="chat-input" type="text"
-               placeholder="Écrire un message..." aria-label="Message à Moka"/>
+               placeholder="Écrivez un message…" aria-label="Message à Moka"/>
         <button class="btn-primary" id="send-btn" aria-label="Envoyer">
           Envoyer
           <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
@@ -704,7 +701,7 @@ footer{
 <!-- ══ MARQUEE ══ -->
 <div class="marquee-strip" aria-hidden="true">
   <div class="marquee-inner">
-    <span class="marquee-item">Kamelott<span class="marquee-dot" aria-hidden="true">✦</span></span>
+    <span class="marquee-item">Kaamelott<span class="marquee-dot" aria-hidden="true">✦</span></span>
     <span class="marquee-item">Severance<span class="marquee-dot" aria-hidden="true">✦</span></span>
     <span class="marquee-item">Burger Quiz<span class="marquee-dot" aria-hidden="true">✦</span></span>
     <span class="marquee-item">Sin City<span class="marquee-dot" aria-hidden="true">✦</span></span>
@@ -712,7 +709,7 @@ footer{
     <span class="marquee-item">Kill Bill<span class="marquee-dot" aria-hidden="true">✦</span></span>
     <span class="marquee-item">Succession<span class="marquee-dot" aria-hidden="true">✦</span></span>
     <span class="marquee-item">Zelda TOTK<span class="marquee-dot" aria-hidden="true">✦</span></span>
-    <span class="marquee-item">Kamelott<span class="marquee-dot" aria-hidden="true">✦</span></span>
+    <span class="marquee-item">Kaamelott<span class="marquee-dot" aria-hidden="true">✦</span></span>
     <span class="marquee-item">Severance<span class="marquee-dot" aria-hidden="true">✦</span></span>
     <span class="marquee-item">Burger Quiz<span class="marquee-dot" aria-hidden="true">✦</span></span>
     <span class="marquee-item">Sin City<span class="marquee-dot" aria-hidden="true">✦</span></span>
@@ -739,22 +736,22 @@ footer{
     </div>
 
     <div class="card" style="flex:1.2;min-width:240px">
-      <div class="card-lbl">Poste actuel - 4 ans</div>
+      <div class="card-lbl">Poste actuel · 4 ans</div>
       <div class="card-ttl">Sephora</div>
       <div class="card-body">
-        Scope Convert - Web &amp; App - International<br><br>
+        Scope Convert · Web &amp; App · International<br><br>
         Je pilote l'expérience du checkout, du panier à la confirmation d'achat. Réconcilier les contraintes business, tech et légales pour en faire un parcours fluide : c'est mon quotidien.
       </div>
     </div>
 
     <div class="card" style="flex:1.4;min-width:260px">
-      <div class="card-lbl">expertise</div>
+      <div class="card-lbl">Expertise</div>
       <div class="card-ttl">Compétences</div>
       <div class="skill-tags">
-        <span class="skill-pill">Design system</span>
+        <span class="skill-pill">Design System</span>
         <span class="skill-pill">Maze</span>
-        <span class="skill-pill">Ux research</span>
-        <span class="skill-pill">Content square</span>
+        <span class="skill-pill">UX Research</span>
+        <span class="skill-pill">ContentSquare</span>
         <span class="skill-pill">Scrum</span>
         <span class="skill-pill">Baymard</span>
         <span class="skill-pill">iOS 26</span>
@@ -762,12 +759,12 @@ footer{
     </div>
 
     <div class="card card-phil" style="flex:.9;min-width:200px">
-      <div class="card-lbl">philosophie</div>
+      <div class="card-lbl">Philosophie</div>
       <div class="card-body">"Transformer des contraintes exigeantes en parcours fluides et pérennes."</div>
     </div>
 
     <div class="card" style="flex:1;min-width:200px">
-      <div class="card-lbl">hors design</div>
+      <div class="card-lbl">Hors design</div>
       <div class="card-ttl">Passions</div>
       <div class="card-body" style="display:flex;flex-direction:column;gap:8px">
         <span>→ Zelda Tears of the Kingdom</span>
@@ -782,7 +779,7 @@ footer{
 
 <!-- ══ PROJETS ══ -->
 <section class="section" id="projects">
-  <div class="sec-label">Projet</div>
+  <div class="sec-label">Projets</div>
   <div class="sec-title">Concret</div>
   <p style="font-size:14px;font-weight:600;color:var(--t2);margin-bottom:var(--s24);line-height:1.6">
     ℹ️ À noter que la majorité des projets clients avec lesquels j'ai travaillé ont une clause de confidentialité. Les réalisations présentées ici sont celles pour lesquelles j'ai obtenu l'autorisation de partage.
@@ -808,7 +805,7 @@ footer{
 
     <div class="proj-card" style="display:flex;flex-direction:column;">
       <div class="proj-top" style="flex:1">
-        <div class="card-lbl">transport</div>
+        <div class="card-lbl">Transport</div>
         <div class="card-ttl">SNCF Abonnement</div>
         <div class="card-body">Refonte d'une plateforme d'abonnement TER en marque blanche. Souscription, paiement et espace abonné responsive.</div>
       </div>
@@ -857,7 +854,7 @@ footer{
       <div class="contact-links">
         <div class="contact-row">
           <img src="LI-In-Bug.png" alt="LinkedIn" width="24" height="24" style="flex-shrink:0;object-fit:contain"/>
-          <a href="https://www.linkedin.com/in/marie-arnaud-437a3b172/" target="_blank">LinkedIn - Marie Arnaud</a>
+          <a href="https://www.linkedin.com/in/marie-arnaud-437a3b172/" target="_blank">LinkedIn — Marie Arnaud</a>
           <div class="contact-arrow">
             <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" style="filter:brightness(0) invert(1)"/>
           </div>
@@ -878,9 +875,9 @@ footer{
       </div>
       <div class="tiger-copy">
         <div>
-          <div class="card-lbl">univers</div>
+          <div class="card-lbl">Univers</div>
           <div class="card-ttl">Mon petit plaisir</div>
-          <div class="card-body">Je prends le temps de gribouiller. Parfois ça ne donne rien, parfois le résultat me plaît. On test, on itère. Le fondement de mon métier.</div>
+          <div class="card-body">Je prends le temps de gribouiller. Parfois ça ne donne rien, parfois le résultat me plaît. On teste, on itère. Le fondement de mon métier.</div>
         </div>
         <div class="tiger-link-row">
           <img src="icons8-behance.svg" alt="Behance" width="24" height="24" style="flex-shrink:0;object-fit:contain"/>
