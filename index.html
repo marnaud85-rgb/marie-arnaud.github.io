@@ -88,7 +88,10 @@
   background: var(--indigo-dim);
 }
 [data-theme="light"] .btn-icon img {
-  filter: none;
+  filter: brightness(0); /* dark icon on light bg */
+}
+[data-theme="light"] .btn-secondary img {
+  filter: brightness(0); /* dark arrow on light bg */
 }
 [data-theme="light"] .btn-secondary svg {
   fill: var(--indigo);
@@ -243,19 +246,37 @@ nav{
 }
 /* Hero visuals */
 
+/* Hero illustrations — base hidden */
+.hero-illus{ display:none; }
+
+/* Desktop size */
 .hero-illus-desktop{
   height:405px;width:518px;
   object-fit:contain;flex-shrink:0;
   position:relative;z-index:2;
-  display:block;
 }
+
+/* Mobile size */
 .hero-illus-mobile{
-  display:none;
   width:100%;max-width:354px;height:auto;
 }
+
+/* Dark theme default: show dark, hide light */
+[data-theme="dark"] .hero-illus-desktop.hero-illus-dark{ display:block; }
+[data-theme="dark"] .hero-illus-mobile.hero-illus-dark{ display:none; }
+[data-theme="dark"] .hero-illus-light{ display:none; }
+
+/* Light theme: show light, hide dark */
+[data-theme="light"] .hero-illus-desktop.hero-illus-light{ display:block; }
+[data-theme="light"] .hero-illus-mobile.hero-illus-light{ display:none; }
+[data-theme="light"] .hero-illus-dark{ display:none; }
+
+/* Mobile breakpoint ≤400px — override desktop, show mobile */
 @media(max-width:400px){
-  .hero-illus-desktop{ display:none; }
-  .hero-illus-mobile{ display:block; }
+  [data-theme="dark"] .hero-illus-desktop.hero-illus-dark{ display:none; }
+  [data-theme="dark"] .hero-illus-mobile.hero-illus-dark{ display:block; }
+  [data-theme="light"] .hero-illus-desktop.hero-illus-light{ display:none; }
+  [data-theme="light"] .hero-illus-mobile.hero-illus-light{ display:block; }
   .hero-visuals{ justify-content:center; margin-bottom:var(--s24); }
 }
 
@@ -294,7 +315,12 @@ nav{
   padding:var(--r12);max-width:calc(100% - 38px);
 }
 .msg.ai .msg-bubble{border-radius:var(--r12) var(--r12) var(--r12) var(--r4)}
-.msg.user .msg-bubble{border-radius:var(--r12) var(--r12) var(--r4) var(--r12)}
+.msg.user .msg-bubble{
+  border-radius:var(--r12) var(--r12) var(--r4) var(--r12);
+  background:rgba(109,40,217,0.18);
+  border-color:rgba(139,92,246,0.35);
+  color:var(--t1);
+}
 .msg-bubble a{color:var(--indigo-l);text-decoration:underline}
 
 /* Search bar */
@@ -586,7 +612,9 @@ footer{
 }
 @media(max-width:768px){
   nav{padding:0 var(--s16)}
+  /* Mobile nav: hide Behance button, keep LinkedIn + theme toggle */
   .btn-secondary span{display:none}
+  .nav-behance{display:none}
   .hero{padding:calc(72px + var(--s24)) var(--s16) var(--s32)}
   .hero-visuals{flex-direction:column;align-items:center;gap:var(--s16)}
   .moka{max-width:100%}
@@ -635,7 +663,7 @@ footer{
       <span>LinkedIn</span>
       <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" style="filter:brightness(0) invert(1)"/>
     </a>
-    <a href="https://www.behance.net/mariearnaud" target="_blank" class="btn-secondary">
+    <a href="https://www.behance.net/mariearnaud" target="_blank" class="btn-secondary nav-behance">
       <span>Behance</span>
       <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" style="filter:brightness(0) invert(1)"/>
     </a>
@@ -650,13 +678,23 @@ footer{
   <div class="hero-dots"></div>
   <div class="hero-inner">
 
-    <!-- Illustration responsive : >400px desktop, ≤400px mobile -->
+    <!-- Visuels responsive + theme : 4 combinaisons -->
     <div class="hero-visuals">
-      <img class="hero-illus-desktop"
+      <!-- Desktop light (>400px) -->
+      <img class="hero-illus hero-illus-desktop hero-illus-light"
            src="visualdesktop.svg"
            alt="Eko Design — Marie avec Moka le chat"/>
-      <img class="hero-illus-mobile"
+      <!-- Desktop dark (>400px) -->
+      <img class="hero-illus hero-illus-desktop hero-illus-dark"
+           src="Visualsdesktopdarktheme.svg"
+           alt="Eko Design — Marie avec Moka le chat"/>
+      <!-- Mobile light (≤400px) -->
+      <img class="hero-illus hero-illus-mobile hero-illus-light"
            src="visualmobile.svg"
+           alt="Eko Design — Marie avec Moka le chat"/>
+      <!-- Mobile dark (≤400px) -->
+      <img class="hero-illus hero-illus-mobile hero-illus-dark"
+           src="Visualsmobiledarktheme.svg"
            alt="Eko Design — Marie avec Moka le chat"/>
     </div>
 
@@ -852,17 +890,17 @@ footer{
         <div class="card-ttl">Une préférence ?</div>
       </div>
       <div class="contact-links">
-        <div class="contact-row">
-          <img src="LI-In-Bug.png" alt="LinkedIn" width="24" height="24" style="flex-shrink:0;object-fit:contain"/>
-          <a href="https://www.linkedin.com/in/marie-arnaud-437a3b172/" target="_blank">LinkedIn — Marie Arnaud</a>
-          <div class="contact-arrow">
+        <div class="btn-visit" style="text-decoration:none">
+          <img src="InBug-White.png" alt="LinkedIn" width="20" height="20" style="flex-shrink:0;object-fit:contain"/>
+          <a href="https://www.linkedin.com/in/marie-arnaud-437a3b172/" target="_blank" style="color:#EEEAE2;text-decoration:none;flex:1;font-size:13px;font-weight:600;">LinkedIn — Marie Arnaud</a>
+          <div class="btn-visit-icon">
             <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" style="filter:brightness(0) invert(1)"/>
           </div>
         </div>
-        <div class="contact-row">
-          <img src="alternate_email_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="Email" width="24" height="24" style="flex-shrink:0;filter:brightness(0) invert(1)"/>
-          <a href="mailto:m.arnaud85@icloud.com">m.arnaud85@icloud.com</a>
-          <div class="contact-arrow">
+        <div class="btn-visit" style="text-decoration:none">
+          <img src="alternate_email_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="Email" width="20" height="20" style="flex-shrink:0;filter:brightness(0) invert(1)"/>
+          <a href="mailto:m.arnaud85@icloud.com" style="color:#EEEAE2;text-decoration:none;flex:1;font-size:13px;font-weight:600;">m.arnaud85@icloud.com</a>
+          <div class="btn-visit-icon">
             <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" style="filter:brightness(0) invert(1)"/>
           </div>
         </div>
@@ -879,10 +917,10 @@ footer{
           <div class="card-ttl">Mon petit plaisir</div>
           <div class="card-body">Je prends le temps de gribouiller. Parfois ça ne donne rien, parfois le résultat me plaît. On teste, on itère. Le fondement de mon métier.</div>
         </div>
-        <div class="tiger-link-row">
-          <img src="icons8-behance.svg" alt="Behance" width="24" height="24" style="flex-shrink:0;object-fit:contain"/>
-          <a href="https://www.behance.net/mariearnaud" target="_blank">Behance</a>
-          <div class="contact-arrow">
+        <div class="btn-visit" style="text-decoration:none">
+          <img src="icons8-behance.svg" alt="Behance" width="20" height="20" style="flex-shrink:0;object-fit:contain;filter:brightness(0) invert(1)"/>
+          <a href="https://www.behance.net/mariearnaud" target="_blank" style="color:#EEEAE2;text-decoration:none;flex:1;font-size:13px;font-weight:600;">Behance</a>
+          <div class="btn-visit-icon">
             <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" style="filter:brightness(0) invert(1)"/>
           </div>
         </div>
