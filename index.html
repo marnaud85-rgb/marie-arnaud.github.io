@@ -251,7 +251,9 @@ nav{
 
 /* Desktop size */
 .hero-illus-desktop{
-  height:405px;width:518px;
+  height:clamp(320px, 40vw, 560px);
+  width:auto;
+  max-width:720px;
   object-fit:contain;flex-shrink:0;
   position:relative;z-index:2;
 }
@@ -612,8 +614,7 @@ footer{
 }
 @media(max-width:768px){
   nav{padding:0 var(--s16)}
-  /* Mobile nav: hide Behance button, keep LinkedIn + theme toggle */
-  .btn-secondary span{display:none}
+  /* Mobile nav: hide Behance entirely, keep LinkedIn with text */
   .nav-behance{display:none}
   .hero{padding:calc(72px + var(--s24)) var(--s16) var(--s32)}
   .hero-visuals{flex-direction:column;align-items:center;gap:var(--s16)}
@@ -642,6 +643,16 @@ footer{
 [data-theme="light"] .marquee-strip {
   border-color: rgba(26,26,46,0.10);
 }
+
+/* Nav CTA icons — white in dark, indigo in light */
+.nav-icon-img{
+  filter:brightness(0) invert(1); /* white by default (dark theme) */
+  transition:filter .2s;
+}
+[data-theme="light"] .nav-icon-img{
+  filter:brightness(0) saturate(100%) invert(31%) sepia(70%) saturate(1200%) hue-rotate(225deg) brightness(95%);
+  /* renders as indigo #4F46E5 */
+}
 </style>
 </head>
 <body>
@@ -661,11 +672,11 @@ footer{
   <div class="nav-right">
     <a href="https://www.linkedin.com/in/marie-arnaud-437a3b172/" target="_blank" class="btn-secondary">
       <span>LinkedIn</span>
-      <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" style="filter:brightness(0) invert(1)"/>
+      <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" class="nav-icon-img"/>
     </a>
     <a href="https://www.behance.net/mariearnaud" target="_blank" class="btn-secondary nav-behance">
       <span>Behance</span>
-      <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" style="filter:brightness(0) invert(1)"/>
+      <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" class="nav-icon-img"/>
     </a>
     <button class="btn-icon" id="theme-btn" aria-label="Changer de thème">
       <img id="theme-icon" src="light_mode_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="Thème" width="16" height="16" style="filter:brightness(0) invert(1)"/>
@@ -834,7 +845,7 @@ footer{
         <div class="btn-visit">
           <a href="https://www.pandacraft.fr" target="_blank">Visiter le site</a>
           <div class="btn-visit-icon">
-            <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" style="filter:brightness(0) invert(1)"/>
+            <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" class="nav-icon-img"/>
           </div>
         </div>
         <p class="proj-italic" style="margin-top:var(--s32)">J'ai eu la chance de travailler un bon moment avec Swan Robbes. On collaborait au quotidien via un backlog Asana, un outil que j'apprécie beaucoup, bien plus agréable que Jira à mon goût. 😊</p>
@@ -851,7 +862,7 @@ footer{
         <div class="btn-visit">
           <a href="https://www.abonnement-regional.sncf/region/PDL/produit/UF08_DIGITAL_Abonnement%20tutti%20annuel%20monomodal%20NASA" target="_blank">Visiter le site</a>
           <div class="btn-visit-icon">
-            <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" style="filter:brightness(0) invert(1)"/>
+            <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" class="nav-icon-img"/>
           </div>
         </div>
         <p class="proj-italic" style="margin-top:var(--s32)">J'ai collaboré directement avec les équipes design de la SNCF, avec une répartition selon les produits. C'est là que j'ai vraiment mis le pied à l'étrier sur l'accessibilité.</p>
@@ -868,7 +879,7 @@ footer{
         <div class="btn-visit">
           <a href="https://www.aigle.com/fr/fr/p/aiw25mout003-BJ99_avocat.html" target="_blank">Visiter le site</a>
           <div class="btn-visit-icon">
-            <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" style="filter:brightness(0) invert(1)"/>
+            <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" class="nav-icon-img"/>
           </div>
         </div>
         <p class="proj-italic" style="margin-top:var(--s32)">Beaucoup d'UX Research aussi : tests utilisateurs, benchmarks… L'idée était de dé-risquer nos hypothèses, de la hiérarchisation de la page jusqu'aux mécanismes de sélection.</p>
@@ -894,14 +905,14 @@ footer{
           <img src="InBug-White.png" alt="LinkedIn" width="20" height="20" style="flex-shrink:0;object-fit:contain"/>
           <a href="https://www.linkedin.com/in/marie-arnaud-437a3b172/" target="_blank" style="color:#EEEAE2;text-decoration:none;flex:1;font-size:13px;font-weight:600;">LinkedIn — Marie Arnaud</a>
           <div class="btn-visit-icon">
-            <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" style="filter:brightness(0) invert(1)"/>
+            <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" class="nav-icon-img"/>
           </div>
         </div>
         <div class="btn-visit" style="text-decoration:none">
           <img src="alternate_email_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="Email" width="20" height="20" style="flex-shrink:0;filter:brightness(0) invert(1)"/>
           <a href="mailto:m.arnaud85@icloud.com" style="color:#EEEAE2;text-decoration:none;flex:1;font-size:13px;font-weight:600;">m.arnaud85@icloud.com</a>
           <div class="btn-visit-icon">
-            <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" style="filter:brightness(0) invert(1)"/>
+            <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" class="nav-icon-img"/>
           </div>
         </div>
       </div>
@@ -921,7 +932,7 @@ footer{
           <img src="icons8-behance.svg" alt="Behance" width="20" height="20" style="flex-shrink:0;object-fit:contain;filter:brightness(0) invert(1)"/>
           <a href="https://www.behance.net/mariearnaud" target="_blank" style="color:#EEEAE2;text-decoration:none;flex:1;font-size:13px;font-weight:600;">Behance</a>
           <div class="btn-visit-icon">
-            <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" style="filter:brightness(0) invert(1)"/>
+            <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" class="nav-icon-img"/>
           </div>
         </div>
       </div>
