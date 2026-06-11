@@ -72,17 +72,17 @@
 /* Light mode — nav buttons visible */
 [data-theme="light"] .btn-secondary {
   border-color: var(--indigo);
-  color: var(--indigo);
+  color: #1A1A2E;
   box-shadow: 0 2px 4px rgba(79,70,229,0.2);
 }
 [data-theme="light"] .btn-secondary:hover {
   background: var(--indigo-dim);
   border-color: var(--indigo-700);
-  color: var(--indigo-700);
+  color: #1A1A2E;
 }
 [data-theme="light"] .btn-icon {
   border-color: var(--indigo);
-  color: var(--indigo);
+  color: #1A1A2E;
 }
 [data-theme="light"] .btn-icon:hover {
   background: var(--indigo-dim);
@@ -91,7 +91,7 @@
   filter: brightness(0); /* dark icon on light bg */
 }
 [data-theme="light"] .btn-secondary img {
-  filter: brightness(0); /* dark arrow on light bg */
+  filter: brightness(0); /* #1A1A2E on light bg */
 }
 [data-theme="light"] .btn-secondary svg {
   fill: var(--indigo);
@@ -251,16 +251,16 @@ nav{
 
 /* Desktop size */
 .hero-illus-desktop{
-  height:clamp(320px, 40vw, 560px);
-  width:auto;
-  max-width:720px;
+  width:clamp(354px, 60vw, 875px);
+  height:auto;
   object-fit:contain;flex-shrink:0;
   position:relative;z-index:2;
 }
 
 /* Mobile size */
 .hero-illus-mobile{
-  width:100%;max-width:354px;height:auto;
+  width:clamp(354px, 90vw, 875px);
+  height:auto;
 }
 
 /* Dark theme default: show dark, hide light */
@@ -597,9 +597,9 @@ footer{
   filter:brightness(0) invert(1);
 }
 [data-theme="light"] .footer-logo img{
-  /* Light theme: dark logo */
-  filter:none;
-  opacity:.55;
+  /* Light theme: indigo-m #6366F1 */
+  filter:brightness(0) saturate(100%) invert(42%) sepia(80%) saturate(600%) hue-rotate(210deg) brightness(100%);
+  opacity:1;
 }
 .footer-logo:hover img{opacity:1}
 .footer-copy{font-size:14px;font-weight:600;color:var(--indigo-m)}
@@ -650,8 +650,7 @@ footer{
   transition:filter .2s;
 }
 [data-theme="light"] .nav-icon-img{
-  filter:brightness(0) saturate(100%) invert(31%) sepia(70%) saturate(1200%) hue-rotate(225deg) brightness(95%);
-  /* renders as indigo #4F46E5 */
+  filter:brightness(0); /* #1A1A2E */
 }
 </style>
 </head>
