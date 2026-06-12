@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Eko Design — Marie Arnaud, Product Designer</title>
-<link rel="canonical" href="http://marie-arnaud.com"/>
+<link rel="canonical" href="https://marie-arnaud.com"/>
 <meta name="description" content="Marie Arnaud — Product Designer senior spécialisée dans l'expérience de conversion. Sephora, SNCF, Pandacraft, Aigle. Nantes / Paris."/>
 <meta property="og:title" content="Eko Design — Marie Arnaud, Product Designer"/>
-<meta property="og:url" content="http://marie-arnaud.com"/>
+<meta property="og:url" content="https://marie-arnaud.com"/>
 <meta property="og:type" content="website"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,6 +49,8 @@
   --card:     #1C1C2E;
   --inp-bg:   #0F0F14;
   --inp-t:    #EEEAE2;
+  /* Icônes CTA navigation — homogènes */
+  --icon-cta: #D0C2EC;
 }
 
 /* ── LIGHT ── */
@@ -67,6 +69,8 @@
   --inp-t:     #1A1A2E;
   /* Override purple-soft for light */
   --purple-soft: #EDE8FA;
+  /* Icônes CTA navigation — homogènes */
+  --icon-cta: #1A1A2E;
 }
 
 /* Light mode — nav buttons visible */
@@ -94,7 +98,7 @@
   filter: brightness(0); /* #1A1A2E on light bg */
 }
 [data-theme="light"] .btn-secondary svg {
-  fill: var(--indigo);
+  fill: var(--icon-cta);
 }
 /* Light — nav links */
 [data-theme="light"] .nav-links a {
@@ -199,7 +203,7 @@ nav{
   color:var(--indigo-l);
   box-shadow:0 2px 8px rgba(165,180,252,0.45);
 }
-.btn-secondary svg{width:16px;height:16px;fill:currentColor;flex-shrink:0}
+.btn-secondary svg{width:16px;height:16px;fill:var(--icon-cta);flex-shrink:0}
 
 /* Icon button (theme toggle) */
 .btn-icon{
@@ -215,7 +219,7 @@ nav{
   border-color:var(--indigo-m);
   color:var(--indigo-l);
 }
-.btn-icon svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.btn-icon svg{width:18px;height:18px;fill:var(--icon-cta)}
 
 /* ─────────────────────────────────────────
    HERO
@@ -257,10 +261,12 @@ nav{
   position:relative;z-index:2;
 }
 
-/* Mobile size */
+/* Mobile size — min 354px, max 600px */
 .hero-illus-mobile{
-  width:clamp(354px, 90vw, 875px);
+  width:clamp(354px, 90vw, 600px);
   height:auto;
+  object-fit:contain;
+  position:relative;z-index:2;
 }
 
 /* Dark theme default: show dark, hide light */
@@ -273,8 +279,8 @@ nav{
 [data-theme="light"] .hero-illus-mobile.hero-illus-light{ display:none; }
 [data-theme="light"] .hero-illus-dark{ display:none; }
 
-/* Mobile breakpoint ≤400px — override desktop, show mobile */
-@media(max-width:400px){
+/* Format tablette/mobile ≤900px — variante mobile ; au-delà : desktop */
+@media(max-width:900px){
   [data-theme="dark"] .hero-illus-desktop.hero-illus-dark{ display:none; }
   [data-theme="dark"] .hero-illus-mobile.hero-illus-dark{ display:block; }
   [data-theme="light"] .hero-illus-desktop.hero-illus-light{ display:none; }
@@ -650,17 +656,17 @@ footer{
   border-color: rgba(26,26,46,0.10);
 }
 
-/* Nav CTA icons — white in dark, indigo in light */
-.nav-icon-img{
-  filter:brightness(0) invert(1); /* white by default (dark theme) */
-  transition:filter .2s;
-}
-[data-theme="light"] .nav-icon-img{
-  filter:brightness(0); /* #1A1A2E */
+/* Icônes CTA — couleur homogène via token, quel que soit le contexte */
+.ic-arrow{
+  width:16px;height:16px;flex-shrink:0;
+  fill:var(--icon-cta);
+  transition:fill .2s;
 }
 
-/* Theme icon — uses currentColor, inherits from btn-icon */
-#theme-icon{ transition:color .2s; }
+/* Icônes du bouton de thème : soleil (light) / lune (dark) */
+.theme-ic{ display:none; fill:var(--icon-cta); transition:fill .2s; }
+[data-theme="dark"]  .theme-ic-moon{ display:block; }
+[data-theme="light"] .theme-ic-sun{ display:block; }
 </style>
 </head>
 <body>
@@ -680,16 +686,19 @@ footer{
   <div class="nav-right">
     <a href="https://www.linkedin.com/in/marie-arnaud-437a3b172/" target="_blank" class="btn-secondary">
       <span>LinkedIn</span>
-      <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" class="nav-icon-img"/>
+      <svg class="ic-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="16" height="16" aria-hidden="true"><path d="m216-160-56-56 464-464H360v-80h400v400h-80v-264L216-160Z"/></svg>
     </a>
     <a href="https://www.behance.net/mariearnaud" target="_blank" class="btn-secondary nav-behance">
       <span>Behance</span>
-      <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" class="nav-icon-img"/>
+      <svg class="ic-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="16" height="16" aria-hidden="true"><path d="m216-160-56-56 464-464H360v-80h400v400h-80v-264L216-160Z"/></svg>
     </a>
     <button class="btn-icon" id="theme-btn" aria-label="Changer de thème">
-      <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true">
-          <path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Zm0-80q88 0 158-48.5T740-375q-20 5-40 8t-40 3q-123 0-209.5-86.5T364-660q0-20 3-40t8-40q-78 32-126.5 102T200-480q0 116 82 198t198 82Zm-10-270Z"/>
-        </svg>
+      <svg class="theme-ic theme-ic-sun" xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 -960 960 960" aria-hidden="true">
+        <path d="M565-395q35-35 35-85t-35-85q-35-35-85-35t-85 35q-35 35-35 85t35 85q35 35 85 35t85-35Zm-226.5 56.5Q280-397 280-480t58.5-141.5Q397-680 480-680t141.5 58.5Q680-563 680-480t-58.5 141.5Q563-280 480-280t-141.5-58.5ZM200-440H40v-80h160v80Zm720 0H760v-80h160v80ZM440-760v-160h80v160h-80Zm0 720v-160h80v160h-80ZM256-650l-101-97 57-59 96 100-52 56Zm492 496-97-101 53-55 101 97-57 59Zm-98-550 97-101 59 57-100 96-56-52ZM154-212l101-97 55 53-97 101-59-57Zm326-268Z"/>
+      </svg>
+      <svg class="theme-ic theme-ic-moon" xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 -960 960 960" aria-hidden="true">
+        <path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Zm0-80q88 0 158-48.5T740-375q-20 5-40 8t-40 3q-123 0-209.5-86.5T364-660q0-20 3-40t8-40q-78 32-126.5 102T200-480q0 116 82 198t198 82Zm-10-270Z"/>
+      </svg>
     </button>
   </div>
 </nav>
@@ -701,21 +710,21 @@ footer{
 
     <!-- Visuels responsive + theme : 4 combinaisons -->
     <div class="hero-visuals">
-      <!-- Desktop light (>400px) -->
+      <!-- Desktop light (>900px) -->
       <img class="hero-illus hero-illus-desktop hero-illus-light"
-           src="lightthemedesktop.svg"
+           src="illu-desktop-light.svg"
            alt="Eko Design — Marie avec Moka le chat"/>
-      <!-- Desktop dark (>400px) -->
+      <!-- Desktop dark (>900px) -->
       <img class="hero-illus hero-illus-desktop hero-illus-dark"
-           src="Darkthemedesktop.svg"
+           src="illu-desktop-dark.svg"
            alt="Eko Design — Marie avec Moka le chat"/>
-      <!-- Mobile light (≤400px) -->
+      <!-- Mobile light (≤900px) -->
       <img class="hero-illus hero-illus-mobile hero-illus-light"
-           src="lightthememobile.svg"
+           src="illu-mobile-light.svg"
            alt="Eko Design — Marie avec Moka le chat"/>
-      <!-- Mobile dark (≤400px) -->
+      <!-- Mobile dark (≤900px) -->
       <img class="hero-illus hero-illus-mobile hero-illus-dark"
-           src="Darkthememobile.svg"
+           src="illu-mobile-dark.svg"
            alt="Eko Design — Marie avec Moka le chat"/>
     </div>
 
@@ -859,7 +868,7 @@ footer{
         <div class="btn-visit">
           <a href="https://www.pandacraft.fr" target="_blank">Visiter le site</a>
           <div class="btn-visit-icon">
-            <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" class="nav-icon-img"/>
+            <svg class="ic-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="16" height="16" aria-hidden="true"><path d="m216-160-56-56 464-464H360v-80h400v400h-80v-264L216-160Z"/></svg>
           </div>
         </div>
         <p class="proj-italic" style="margin-top:var(--s32)">J'ai eu la chance de travailler un bon moment avec Swan Robbes. On collaborait au quotidien via un backlog Asana, un outil que j'apprécie beaucoup, bien plus agréable que Jira à mon goût. 😊</p>
@@ -876,7 +885,7 @@ footer{
         <div class="btn-visit">
           <a href="https://www.abonnement-regional.sncf/region/PDL/produit/UF08_DIGITAL_Abonnement%20tutti%20annuel%20monomodal%20NASA" target="_blank">Visiter le site</a>
           <div class="btn-visit-icon">
-            <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" class="nav-icon-img"/>
+            <svg class="ic-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="16" height="16" aria-hidden="true"><path d="m216-160-56-56 464-464H360v-80h400v400h-80v-264L216-160Z"/></svg>
           </div>
         </div>
         <p class="proj-italic" style="margin-top:var(--s32)">J'ai collaboré directement avec les équipes design de la SNCF, avec une répartition selon les produits. C'est là que j'ai vraiment mis le pied à l'étrier sur l'accessibilité.</p>
@@ -893,7 +902,7 @@ footer{
         <div class="btn-visit">
           <a href="https://www.aigle.com/fr/fr/p/aiw25mout003-BJ99_avocat.html" target="_blank">Visiter le site</a>
           <div class="btn-visit-icon">
-            <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" class="nav-icon-img"/>
+            <svg class="ic-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="16" height="16" aria-hidden="true"><path d="m216-160-56-56 464-464H360v-80h400v400h-80v-264L216-160Z"/></svg>
           </div>
         </div>
         <p class="proj-italic" style="margin-top:var(--s32)">Beaucoup d'UX Research aussi : tests utilisateurs, benchmarks… L'idée était de dé-risquer nos hypothèses, de la hiérarchisation de la page jusqu'aux mécanismes de sélection.</p>
@@ -919,14 +928,14 @@ footer{
           <img src="InBug-White.png" alt="LinkedIn" width="20" height="20" style="flex-shrink:0;object-fit:contain"/>
           <a href="https://www.linkedin.com/in/marie-arnaud-437a3b172/" target="_blank" style="color:#EEEAE2;text-decoration:none;flex:1;font-size:13px;font-weight:600;">LinkedIn — Marie Arnaud</a>
           <div class="btn-visit-icon">
-            <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" class="nav-icon-img"/>
+            <svg class="ic-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="16" height="16" aria-hidden="true"><path d="m216-160-56-56 464-464H360v-80h400v400h-80v-264L216-160Z"/></svg>
           </div>
         </div>
         <div class="btn-visit" style="text-decoration:none">
           <img src="alternate_email_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="Email" width="20" height="20" style="flex-shrink:0;filter:brightness(0) invert(1)"/>
           <a href="mailto:m.arnaud85@icloud.com" style="color:#EEEAE2;text-decoration:none;flex:1;font-size:13px;font-weight:600;">m.arnaud85@icloud.com</a>
           <div class="btn-visit-icon">
-            <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" class="nav-icon-img"/>
+            <svg class="ic-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="16" height="16" aria-hidden="true"><path d="m216-160-56-56 464-464H360v-80h400v400h-80v-264L216-160Z"/></svg>
           </div>
         </div>
       </div>
@@ -948,7 +957,7 @@ footer{
 </svg>
           <a href="https://www.behance.net/mariearnaud" target="_blank" style="color:#EEEAE2;text-decoration:none;flex:1;font-size:13px;font-weight:600;">Behance</a>
           <div class="btn-visit-icon">
-            <img src="call_made_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="" width="16" height="16" class="nav-icon-img"/>
+            <svg class="ic-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="16" height="16" aria-hidden="true"><path d="m216-160-56-56 464-464H360v-80h400v400h-80v-264L216-160Z"/></svg>
           </div>
         </div>
       </div>
@@ -971,21 +980,10 @@ footer{
 const html = document.documentElement;
 const saved = localStorage.getItem('eko-theme') || 'dark';
 html.setAttribute('data-theme', saved);
-// Set correct theme icon on load
-const themeIcon = document.getElementById('theme-icon');
-if (themeIcon) {
-  // Set correct path on load based on saved theme
-  themeIcon.querySelector('path').setAttribute('d', saved === 'dark' ? 'M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Zm0-80q88 0 158-48.5T740-375q-20 5-40 8t-40 3q-123 0-209.5-86.5T364-660q0-20 3-40t8-40q-78 32-126.5 102T200-480q0 116 82 198t198 82Zm-10-270Z' : 'M480-360q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35Zm0-80q17 0 28.5-11.5T520-480q0-17-11.5-28.5T480-520q-17 0-28.5 11.5T440-480q0 17 11.5 28.5T480-440Zm0-360q-17 0-28.5-11.5T440-840v-80q0-17 11.5-28.5T480-960q17 0 28.5 11.5T520-920v80q0 17-11.5 28.5T480-800Zm0 720q-17 0-28.5-11.5T440-120v-80q0-17 11.5-28.5T480-240q17 0 28.5 11.5T520-200v80q0 17-11.5 28.5T480-80ZM226-678l-43-42q-12-11-11.5-28t11.5-29q12-12 29-12t28 12l42 43q11 12 11 28t-11 28q-11 12-27.5 11.5T226-678Zm494 495-42-43q-11-12-11-28.5t11-27.5q11-12 27.5-11.5T734-282l43 42q12 11 11.5 28T777-183q-12 12-29 12t-28-12Zm-42-495q-12-11-11.5-27.5T678-734l42-43q11-12 28-11.5t29 11.5q12 12 12 29t-12 28l-43 42q-12 11-28 11t-28-11ZM183-183q-12-12-12-29t12-28l43-42q12-11 28.5-11t27.5 11q12 11 11.5 27.5T282-226l-42 43q-11 12-28 11.5T183-183Z');
-}
 document.getElementById('theme-btn').addEventListener('click', () => {
   const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
   html.setAttribute('data-theme', next);
   localStorage.setItem('eko-theme', next);
-  const icon = document.getElementById('theme-icon');
-  if (icon) {
-    // Swap SVG path: sun in dark mode, moon in light mode
-    icon.querySelector('path').setAttribute('d', next === 'dark' ? 'M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Zm0-80q88 0 158-48.5T740-375q-20 5-40 8t-40 3q-123 0-209.5-86.5T364-660q0-20 3-40t8-40q-78 32-126.5 102T200-480q0 116 82 198t198 82Zm-10-270Z' : 'M480-360q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35Zm0-80q17 0 28.5-11.5T520-480q0-17-11.5-28.5T480-520q-17 0-28.5 11.5T440-480q0 17 11.5 28.5T480-440Zm0-360q-17 0-28.5-11.5T440-840v-80q0-17 11.5-28.5T480-960q17 0 28.5 11.5T520-920v80q0 17-11.5 28.5T480-800Zm0 720q-17 0-28.5-11.5T440-120v-80q0-17 11.5-28.5T480-240q17 0 28.5 11.5T520-200v80q0 17-11.5 28.5T480-80ZM226-678l-43-42q-12-11-11.5-28t11.5-29q12-12 29-12t28 12l42 43q11 12 11 28t-11 28q-11 12-27.5 11.5T226-678Zm494 495-42-43q-11-12-11-28.5t11-27.5q11-12 27.5-11.5T734-282l43 42q12 11 11.5 28T777-183q-12 12-29 12t-28-12Zm-42-495q-12-11-11.5-27.5T678-734l42-43q11-12 28-11.5t29 11.5q12 12 12 29t-12 28l-43 42q-12 11-28 11t-28-11ZM183-183q-12-12-12-29t12-28l43-42q12-11 28.5-11t27.5 11q12 11 11.5 27.5T282-226l-42 43q-11 12-28 11.5T183-183Z');
-  }
 });
 
 /* ── Moka AI ── */
