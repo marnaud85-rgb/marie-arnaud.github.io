@@ -1,0 +1,110 @@
+/* ─────────────────────────────────────────────────────────────
+   DESIGN TOKENS — Eko Design (Marie Arnaud)
+   Source : Figma "Eko Design" → page "Ui Kit"
+   https://www.figma.com/design/hDbmg7UJrIOWoPMN8X11Dg/Eko-Design?node-id=1-210
+   Généré via Figma MCP (get_variable_defs) le 2026-07-18.
+
+   Méthode : les variables ont été lues nœud par nœud sur des
+   symboles isolés en variante "Light theme=On" / "Light theme=Off"
+   (Bouton, Dynamic Keys words, module Moka).
+
+   Règle d'or projet : jamais plus de variables en prod que dans le
+   Figma. Les tokens marqués "nouveau" existent bien comme variables
+   Figma mais n'étaient pas encore répercutés en CSS en prod.
+
+   Validé par Marie le 2026-07-18 :
+   - border/default dark = #1A1A2E → répercuté dans index.html.
+   - text/secondary et border light : valeurs déduites confirmées.
+   - Kanit / Anton SC servent uniquement au logo "Eko", déjà vectorisé
+     en SVG (assets/Eko.svg, Eko_fullname.svg). Pas de texte HTML les
+     utilise → pas de @font-face à charger, pour rester sobre
+     (éco-conception). Les tokens --font-title-h0/h1 ci-dessous ne
+     documentent que la spec typographique du logo, à titre de
+     référence si un jour il faut le régénérer.
+
+   Passe 2 (2026-07-18) — page "Landing pages" → frame "Desktop dark"
+   (node 87:1174), pour la refonte visuelle de index.html. Nouveaux
+   tokens couleur relevés dans le JSX exporté (accent/*, complementary/*),
+   théme-invariants sauf mention contraire. Le hero (dégradé + illustration
+   + badges "Product designer"/"Chat with Moka") est livré par Marie en SVG
+   déjà assemblé (assets/desktopekoheadillustration.svg,
+   assets/mobileekoheadillustration.svg) : Kanit et Titan One y sont donc
+   vectorisés, toujours pas de @font-face nécessaire.
+───────────────────────────────────────────────────────────── */
+
+:root {
+  /* Accent — identiques dark & light (Figma: accent/*) */
+  --indigo:        #4F46E5;
+  --indigo-m:      #6366F1;
+  --indigo-l:      #A5B4FC;
+  --indigo-dim:    rgba(79,70,229,0.12);   /* accent/indigo-dim = #4f46e51f */
+  --indigo-border: rgba(99,102,241,0.30);  /* accent/indigo-border = #6366f14d */
+  --purple:        #D0C2EC;                /* accent/purple */
+  --purple-deep:   #2A1F42;                /* accent/purple-deep — nouveau, non utilisé en prod actuellement */
+  --t-on-accent:   #FFFFFF;                /* text/on-accent — identique dark & light */
+
+  /* Nouveaux accents — Figma "Landing pages", tuiles Discutons + hero */
+  --accent-blue:        #123AF7;  /* accent/blue — tuile Behance */
+  --accent-pink:        #FFD2E1;  /* accent/pink — tuile Flower (déco) */
+  --accent-punchy-pink: #FF77A5;  /* accent/punchy-pink — tuile Email */
+  --complementary-green:#00A594;  /* complementary/green — tuile LinkedIn + tuile Moka (déco) */
+  --hero-gradient-from: #F4C7E5;  /* dégradé hero, stop haut */
+  --hero-gradient-to:   #5860EF;  /* dégradé hero, stop bas à 74.976% */
+
+  /* Spacing (Figma: spacing/*) */
+  --s4:  4px;   /* spacing/xs */
+  --s8:  8px;   /* spacing/sm */
+  --s16: 16px;  /* spacing/md */
+  --s24: 24px;  /* spacing/lg */
+  --s48: 48px;  /* spacing/2xl */
+  /* --s12/--s32/--s64 existent en prod mais n'ont pas été retrouvées
+     dans les frames échantillonnées du Ui Kit — à confirmer avec Marie
+     avant de les garder. */
+
+  /* Radius (Figma: radius/*) */
+  --r4:    4px;   /* radius/xs */
+  --r8:    8px;   /* radius/sm */
+  --r12:   12px;  /* radius/md */
+  --rpill: 100px; /* radius/pill */
+
+  /* Border width (Figma: border/width/*) — nouveau, pas encore de var CSS dédiée en prod */
+  --border-w-default: 1px;
+  --border-w-medium:  2px;
+
+  /* Élévation (Figma: "Shadow Input") — nouveau */
+  --shadow-input: 0 2px 4px rgba(165,180,252,0.5);
+
+  /* Typographie (Figma: page Fonts) — nouveau, pas encore de vars en prod.
+     Title H0 (Anton SC) et Title H1 (Kanit) documentent uniquement le
+     wordmark du logo Eko, déjà exporté en SVG statique. Pas de
+     @font-face associé volontairement — voir note en tête de fichier. */
+  --font-title-h0:     400 80px/64px 'Anton SC', sans-serif;
+  --font-title-h1:     700 72px/1 'Kanit', sans-serif;
+  --font-title-h2:     800 32px/1 'Nunito', sans-serif;
+  --font-title-h3:     800 18px/1 'Nunito', sans-serif;
+  --font-categories:   600 16px/1 'Nunito', sans-serif;
+  --font-subtitle:     500 14px/1 'Nunito', sans-serif;
+  --font-description:  600 14px/1 'Nunito', sans-serif;
+  --font-citation:     italic 500 14px/1 'Nunito', sans-serif;
+  --font-caption-name: 600 12px/1 'Nunito', sans-serif;
+}
+
+/* ── DARK (Figma: colonne "Light theme = Off") ── */
+[data-theme="dark"] {
+  --bg:           #0F0F14;                   /* background/primary */
+  --t1:           #EEEAE2;                   /* text/primary */
+  --t2:           rgba(238,234,226,0.80);    /* text/secondary — confirmé par Marie */
+  --t3:           rgba(238,234,226,0.55);    /* text/tertiary = #eeeae28c */
+  --border:       #1A1A2E;                   /* border/default — confirmé par Marie, remplace l'ancienne valeur prod rgba(238,234,226,0.08) */
+  --purple-soft:  #1A1535;                   /* accent/purple-soft */
+}
+
+/* ── LIGHT (Figma: colonne "Light theme = On") ── */
+[data-theme="light"] {
+  --bg:           #F7F6F2;                   /* bg/primary */
+  --t1:           #1A1A2E;                   /* text/primary */
+  --t2:           rgba(26,26,46,0.80);       /* text/secondary — confirmé par Marie */
+  --t3:           rgba(26,26,46,0.55);       /* text/tertiary = #1a1a2e8c */
+  --border:       rgba(26,26,46,0.10);       /* border/default — confirmé par Marie */
+  --purple-soft:  #EDE8FA;                   /* accent/purple-soft — confirmé par Marie */
+}
