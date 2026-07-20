@@ -294,15 +294,19 @@ a.discutons-tile:focus-visible{outline:2px solid var(--indigo-m);outline-offset:
 .discutons-tile.bg-punchy{background:var(--accent-punchy-pink)}
 .discutons-tile.bg-indigo{background:var(--indigo-m)}
 .discutons-tile.bg-pink{background:var(--accent-pink)}
-.discutons-tile img{padding:var(--s24)}
-.discutons-tile.is-link img{padding:0}
 
 /* Heat distortion — effet réservé aux tuiles décoratives (Heart/Flower/Orange),
    jamais sur les tuiles fonctionnelles (logos Behance/LinkedIn/email doivent
-   rester lisibles). ~1 Ko, 0 JS, désactivé si prefers-reduced-motion. */
-.tile-fx-heat{ filter: url(#heatDistortion); }
+   rester lisibles). ~1 Ko, 0 JS. Les tuiles déco ne sont plus des liens
+   (aucun clic), l'effet reste au survol souris uniquement. */
+.tile-fx-heat{ filter: none; }
+.discutons-tile:hover .tile-fx-heat{
+  filter: url(#heatDistortion);
+}
 @media (prefers-reduced-motion: reduce){
-  .tile-fx-heat{ filter: none; }
+  .discutons-tile:hover .tile-fx-heat{
+    filter: none;
+  }
 }
 
 /* ─────────────────────────────────────────
@@ -599,15 +603,15 @@ footer{display:flex;align-items:center;justify-content:space-between;padding:var
   <div class="sec-title">Discutons</div>
   <div class="discutons-grid">
 
-    <a class="discutons-tile bg-indigo" href="#" tabindex="-1" aria-hidden="true">
+    <div class="discutons-tile bg-indigo" aria-hidden="true">
       <img class="tile-fx-heat" src="../assets/contact-tiles/tile-cat-glasses.svg" alt=""/>
-    </a>
+    </div>
     <a class="discutons-tile bg-blue is-link" href="https://www.behance.net/mariearnaud" target="_blank" aria-label="Behance — Marie Arnaud">
       <img src="../assets/contact-tiles/tile-behance.svg" alt=""/>
     </a>
-    <a class="discutons-tile bg-pink" href="#" tabindex="-1" aria-hidden="true">
+    <div class="discutons-tile bg-pink" aria-hidden="true">
       <img class="tile-fx-heat" src="../assets/contact-tiles/tile-flower.svg" alt=""/>
-    </a>
+    </div>
 
     <a class="discutons-tile bg-green is-link" href="https://www.linkedin.com/in/marie-arnaud-437a3b172/" target="_blank" aria-label="LinkedIn — Marie Arnaud">
       <img src="../assets/contact-tiles/tile-linkedin.svg" alt=""/>
@@ -615,9 +619,9 @@ footer{display:flex;align-items:center;justify-content:space-between;padding:var
     <a class="discutons-tile bg-punchy is-link" href="mailto:m.arnaud85@icloud.com" aria-label="Envoyer un email à Marie Arnaud">
       <img src="../assets/contact-tiles/tile-email.svg" alt=""/>
     </a>
-    <a class="discutons-tile bg-green" href="#" tabindex="-1" aria-hidden="true">
+    <div class="discutons-tile bg-green" aria-hidden="true">
       <img class="tile-fx-heat" src="../assets/contact-tiles/tile-moka-face.svg" alt=""/>
-    </a>
+    </div>
 
   </div>
 </section>
