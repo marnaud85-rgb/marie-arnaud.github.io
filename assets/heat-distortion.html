@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Heat Distortion — boucle infinie fluide</title>
+<style>
+  :root {
+    --indigo: #6366f1;
+    --pink: #ffd2e1;
+    --orange: #00a594;
+  }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+    background: #0d0d1a;
+    font-family: system-ui, sans-serif;
+    padding: 32px;
+    box-sizing: border-box;
+  }
+  .card {
+    width: 260px;
+    height: 236px;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .card.indigo { background: var(--indigo); }
+  .card.pink   { background: var(--pink); }
+  .card.orange { background: var(--orange); }
+
+  /* Le filtre s'applique directement sur l'illustration, pas sur le fond de carte */
+  .card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: url(#heatDistortion);
+  }
+
+  .note {
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #9aa0b3;
+    font-family: system-ui, sans-serif;
+    font-size: 13px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="card indigo">
+    <img src="https://www.figma.com/api/mcp/asset/7d5a0d83-0a30-46d1-8ce9-a7e51b33cc8d" alt="Heart illustration">
+  </div>
+  <div class="card pink">
+    <img src="https://www.figma.com/api/mcp/asset/2f055b1b-5c01-4b80-9c82-b9faf6513f99" alt="Flower illustration">
+  </div>
+  <div class="card orange">
+    <img src="https://www.figma.com/api/mcp/asset/1f69dbf3-c5ee-4172-a20d-fa56382a19c4" alt="Orange illustration">
+  </div>
+
+  <!-- Le filtre : défini une seule fois, réutilisable sur n'importe quel élément -->
+  <svg width="0" height="0" style="position:absolute">
+    <defs>
+      <filter id="heatDistortion" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+
+        <!-- ÉCHELLE : pilote la fréquence (taille) du motif de bruit -->
+        <feTurbulence
+          type="fractalNoise"
+          numOctaves="2"
+          seed="7"
+          result="noise">
+          <animate
+            attributeName="baseFrequency"
+            values="0.0073 0.011; 0.018 0.027; 0.0073 0.011"
+            keyTimes="0; 0.5; 1"
+            calcMode="spline"
+            keySplines="0.5 0 0.5 1; 0.445 0.05 0.55 0.95"
+            dur="1.6s"
+            repeatCount="indefinite" />
+        </feTurbulence>
+
+        <!-- INTENSITÉ : pilote l'amplitude de la déformation -->
+        <feDisplacementMap
+          in="SourceGraphic"
+          in2="noise"
+          xChannelSelector="R"
+          yChannelSelector="G">
+          <animate
+            attributeName="scale"
+            values="18.8; 31.2; 18.8"
+            keyTimes="0; 0.5; 1"
+            calcMode="spline"
+            keySplines="0.5 0 0.5 1; 0.445 0.05 0.55 0.95"
+            dur="1.6s"
+            repeatCount="indefinite" />
+        </feDisplacementMap>
+
+      </filter>
+    </defs>
+  </svg>
+
+  <p class="note">Filtre SVG animé — 0% JS, 0% vidéo, poids ~1&nbsp;Ko</p>
+</body>
+</html>
