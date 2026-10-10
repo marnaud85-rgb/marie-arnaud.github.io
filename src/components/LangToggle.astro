@@ -1,0 +1,36 @@
+---
+import { useT, pathFor, defaultLang, type Lang } from '../i18n';
+const lang = (Astro.currentLocale ?? defaultLang) as Lang;
+const t = useT(lang);
+const other = t.nav.switchLang as Lang;
+---
+<!-- Changer de langue = naviguer vers la page équivalente : c'est donc un lien (pas un switch),
+     habillé comme un interrupteur FR ○ EN. Sans JS, c'est un lien normal. -->
+<a
+  class={`toggle lang-toggle is-${lang}`}
+  href={pathFor(Astro.url.pathname, other)}
+  hreflang={other}
+  lang={other}
+  aria-label={t.nav.switchLabel}
+>
+  <span class="tg-lang" aria-hidden="true">
+    <span class="tg-pill"></span>
+    <span class="tg-seg tg-fr">FR</span>
+    <span class="tg-seg tg-en">EN</span>
+  </span>
+</a>
+
+<script>
+  // Petite animation du curseur avant de changer de page (sauf ouverture dans un nouvel onglet
+  // ou préférence « réduire les animations »).
+  document.querySelectorAll<HTMLAnchorElement>('.lang-toggle').forEach((a) =>
+    a.addEventListener('click', (e) => {
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      e.preventDefault();
+      a.classList.toggle('is-fr');
+      a.classList.toggle('is-en');
+      setTimeout(() => { location.href = a.href; }, 220);
+    }),
+  );
+</script>
