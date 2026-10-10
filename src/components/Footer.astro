@@ -1,7 +1,11 @@
+---
+import { useT, defaultLang } from '../i18n';
+const t = useT(Astro.currentLocale ?? defaultLang);
+---
 <footer>
   <a href="#" class="footer-logo">
-    <img src="/assets/Eko_fullname.svg" alt="Eko Design" />
+    <img src="/assets/Eko_fullname.svg" alt={t.footer.logoAlt} />
   </a>
-  <span class="footer-copy">© Marie Arnaud · 2026 · Nantes / Paris</span>
+  <span class="footer-copy">{t.footer.copy}</span>
   <span class="footer-kanji">声</span>
 </footer>

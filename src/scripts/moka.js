@@ -1,4 +1,7 @@
 /* ── Moka AI ── */
+const root = document.querySelector('.moka');
+const lang = root.dataset.lang;
+const S = JSON.parse(root.dataset.strings); // chaînes localisées (voir MokaChat.astro)
 const MAX_Q = 5;
 let remaining = MAX_Q, msgs = [];
 const msgsEl  = document.getElementById('messages');
@@ -13,7 +16,7 @@ function updateGauge() {
   gauge.style.width = (used / MAX_Q * 100) + '%';
   if (remaining <= 0) {
     gauge.style.background = '#E05252';
-    inputEl.placeholder = 'Limite atteinte — contactez Marie directement !';
+    inputEl.placeholder = S.limitReached;
     inputEl.disabled = true;
     sendBtn.disabled = true;
     document.querySelectorAll('.pill').forEach(p => p.disabled = true);
@@ -39,7 +42,7 @@ async function send(text) {
   if (!text.trim() || remaining <= 0) return;
   if (text.toLowerCase().includes('linkedin')) {
     addMsg('user', text);
-    addMsg('ai', 'Profil LinkedIn de Marie 👉 <a href="https://www.linkedin.com/in/marie-arnaud-437a3b172/" target="_blank">linkedin.com/in/marie-arnaud-437a3b172/</a>');
+    addMsg('ai', S.linkedinReply + ' <a href="https://www.linkedin.com/in/marie-arnaud-437a3b172/" target="_blank">linkedin.com/in/marie-arnaud-437a3b172/</a>');
     msgs.push({ role: 'user', content: text }, { role: 'assistant', content: 'LinkedIn partagé.' });
     inputEl.value = ''; remaining--; updateGauge(); return;
   }
@@ -51,7 +54,7 @@ async function send(text) {
     const res = await fetch('https://long-sky-b5a2.m-arnaud85.workers.dev', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ messages: msgs.slice(-6) })
+      body: JSON.stringify({ messages: msgs.slice(-6), lang })
     });
     const data = await res.json();
     document.getElementById('typing')?.remove();
@@ -60,11 +63,11 @@ async function send(text) {
       addMsg('ai', r.replace(/\n/g, '<br>'));
       msgs.push({ role: 'assistant', content: r });
     } else if (data.error) {
-      addMsg('ai', `Erreur : ${data.error.message}`);
+      addMsg('ai', `${S.errorPrefix} ${data.error.message}`);
     }
   } catch (e) {
     document.getElementById('typing')?.remove();
-    addMsg('ai', 'Connexion impossible. Réessayez dans un instant.');
+    addMsg('ai', S.connection);
   }
   sendBtn.disabled = false;
 }

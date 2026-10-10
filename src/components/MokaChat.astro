@@ -1,26 +1,30 @@
 ---
-const pills = [
-  { label: 'Résumer le profil', q: 'Résume le profil de Marie en 3 points clés' },
-  { label: 'Passions', q: 'Quelles sont les passions de Marie ?' },
-  { label: 'Projets', q: 'Quels sont les projets en production de Marie ?' },
-  { label: 'Contacts', q: 'Comment contacter Marie ?' },
-];
+import { useT, defaultLang } from '../i18n';
+const lang = Astro.currentLocale ?? defaultLang;
+const t = useT(lang).moka;
+// Chaînes lues par moka.js (le script ne contient plus de texte en dur).
+const strings = JSON.stringify({
+  limitReached: t.limitReached,
+  linkedinReply: t.linkedinReply,
+  errorPrefix: t.errorPrefix,
+  connection: t.connection,
+});
 ---
 <section class="moka-section">
-  <div class="moka">
-    <h1 class="moka-title">Fiez-vous à Moka 🐱</h1>
+  <div class="moka" data-lang={lang} data-strings={strings}>
+    <h1 class="moka-title">{t.title}</h1>
 
     <div class="moka-msgs" id="messages">
       <div class="msg ai">
         <div class="msg-av ai">✦</div>
-        <div class="msg-bubble">Bonjour ! Je suis Moka, l'assistante de Marie, posez-moi n'importe quelle question. 😊</div>
+        <div class="msg-bubble">{t.greeting}</div>
       </div>
     </div>
 
     <div class="moka-bar">
-      <input class="moka-input" id="chat-input" type="text" placeholder="Écrivez un message…" aria-label="Message à Moka" />
-      <button class="btn-primary" id="send-btn" aria-label="Envoyer">
-        Envoyer
+      <input class="moka-input" id="chat-input" type="text" placeholder={t.placeholder} aria-label={t.inputLabel} />
+      <button class="btn-primary" id="send-btn" aria-label={t.send}>
+        {t.send}
         <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
       </button>
     </div>
@@ -29,11 +33,11 @@ const pills = [
       <div class="gauge-track">
         <div class="gauge-fill" id="gauge-fill" style="width:0%"></div>
       </div>
-      <div class="gauge-label"><b id="q-count">0</b>/5 questions</div>
+      <div class="gauge-label"><b id="q-count">0</b>/5 {t.questions}</div>
     </div>
 
     <div class="pills-row">
-      {pills.map((p) => <button class="pill" data-q={p.q}>{p.label}</button>)}
+      {t.pills.map((p) => <button class="pill" data-q={p.q}>{p.label}</button>)}
     </div>
   </div>
 </section>

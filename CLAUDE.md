@@ -34,6 +34,9 @@ d'inventer. Si l'info n'y est pas, poser la question à Marie.
 - Contrastes : `npm run check:contrast` (paires dans `src/styles/contrast-pairs.json`, AA en dark ET light) ;
   toute nouvelle paire texte/fond doit y être déclarée. Palette B validée (rôles `accent-text`,
   `accent`, `on-accent`, `field-border`…) : ne pas utiliser `--indigo`/`--indigo-m` pour du texte.
+- Langues : FR par défaut (`/`), EN sous `/en/`, sans redirection automatique. Tout le texte vit dans
+  `src/i18n/fr.ts` (source) et `src/i18n/en.ts` (même forme) ; aucune chaîne en dur dans les composants.
+  L'anglais est relu par Marie avant chaque publication.
 - Le chat Moka vit dans `src/components/MokaChat.astro` + `src/scripts/moka.js`.
 
 ## Les 5 phases du workflow

@@ -1,5 +1,6 @@
 ---
 import ArrowIcon from './ArrowIcon.astro';
+import { useT, defaultLang } from '../i18n';
 
 interface Props {
   label: string;
@@ -8,6 +9,7 @@ interface Props {
   quote: string;
 }
 const { label, title, href, quote } = Astro.props;
+const t = useT(Astro.currentLocale ?? defaultLang);
 ---
 <div class="proj-card" style="display:flex;flex-direction:column;">
   <div class="proj-top" style="flex:1">
@@ -17,7 +19,7 @@ const { label, title, href, quote } = Astro.props;
   </div>
   <div>
     <div class="btn-visit">
-      <a href={href} target="_blank" rel="noopener">Visiter le site</a>
+      <a href={href} target="_blank" rel="noopener">{t.projects.visit}</a>
       <div class="btn-visit-icon"><ArrowIcon /></div>
     </div>
     <p class="proj-italic">{quote}</p>

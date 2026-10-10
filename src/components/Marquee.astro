@@ -1,8 +1,6 @@
 ---
-const items = [
-  'Kaamelott', 'Severance', 'Burger Quiz', 'Sin City', 'Malcolm', 'Kill Bill',
-  'Succession', 'Zelda TOTK', 'Le voyage de Chihiro', 'Naruto Shippuden',
-];
+import { useT, defaultLang } from '../i18n';
+const items = useT(Astro.currentLocale ?? defaultLang).marquee;
 // Liste doublée : la boucle CSS (translateX -50%) est ainsi continue.
 const loop = [...items, ...items];
 ---
