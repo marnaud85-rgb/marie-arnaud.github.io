@@ -272,3 +272,6 @@ footer{display:flex;align-items:center;justify-content:space-between;padding:var
   transform:translateY(-200%);
 }
 .skip-link:focus-visible{transform:none}
+
+/* Sélecteur de langue : un lien (pas d'état JS), même gabarit que le bouton de thème */
+.lang-switch{font-size:13px;font-weight:800;text-decoration:none;letter-spacing:.04em}

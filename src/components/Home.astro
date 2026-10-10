@@ -1,0 +1,88 @@
+---
+import { useT, defaultLang } from '../i18n';
+import HeatFilter from './HeatFilter.astro';
+import Nav from './Nav.astro';
+import Hero from './Hero.astro';
+import Marquee from './Marquee.astro';
+import MokaChat from './MokaChat.astro';
+import AboutCard from './AboutCard.astro';
+import ProjectCard from './ProjectCard.astro';
+import ContactTile from './ContactTile.astro';
+import Footer from './Footer.astro';
+
+// Page d'accueil unique pour toutes les langues : le texte vient de src/i18n/<lang>.ts.
+const t = useT(Astro.currentLocale ?? defaultLang);
+const { about, projects, contact } = t;
+---
+<HeatFilter />
+<Nav />
+<main id="main">
+  <Hero />
+  <Marquee />
+  <MokaChat />
+
+  <!-- ══ À PROPOS ══ -->
+  <section class="section" id="about">
+    <div class="sec-label">{about.label}</div>
+    <div class="sec-title">{about.title}</div>
+    <div class="cards-grid">
+
+      <AboutCard label={about.profile.label} title={about.profile.title} flex={1.8} minWidth={480}>
+        <div class="card-body">
+          {about.profile.paragraphs.map((p, i) => (
+            <>{i > 0 && <><br /><br /></>}{p}</>
+          ))}
+        </div>
+      </AboutCard>
+
+      <AboutCard label={about.passions.label} title={about.passions.title} flex={1} minWidth={320}>
+        <div class="card-body" style="display:flex;flex-direction:column;gap:8px">
+          {about.passions.items.map((p) => <span>→ {p}</span>)}
+        </div>
+      </AboutCard>
+
+      <AboutCard label={about.role.label} title={about.role.title} flex={1.2} minWidth={340}>
+        <div class="card-body">
+          {about.role.scope}<br /><br />
+          {about.role.text}
+        </div>
+      </AboutCard>
+
+      <AboutCard label={about.skills.label} title={about.skills.title} flex={1.8} minWidth={480}>
+        <div class="skill-tags">
+          {about.skills.items.map((s) => <span class="skill-pill">{s}</span>)}
+        </div>
+      </AboutCard>
+
+    </div>
+  </section>
+
+  <!-- ══ PROJETS ══ -->
+  <section class="section" id="projects">
+    <div class="sec-label">{projects.label}</div>
+    <div class="sec-title">{projects.title}</div>
+    <p style="font-size:14px;font-weight:600;color:var(--t2);margin-bottom:var(--s24);line-height:1.6">
+      {projects.note}
+    </p>
+    <div class="projects-grid">
+      {projects.items.map((p) => (
+        <ProjectCard label={p.label} title={p.title} href={p.href} quote={p.quote}>{p.text}</ProjectCard>
+      ))}
+    </div>
+  </section>
+
+  <!-- ══ CONTACT — Discutons ══ -->
+  <section class="section" id="contact">
+    <div class="sec-label">{contact.label}</div>
+    <div class="sec-title">{contact.title}</div>
+    <div class="discutons-grid">
+      <ContactTile color="indigo" src="/assets/contact-tiles/tile-cat-glasses.svg" heat />
+      <ContactTile color="blue" src="/assets/contact-tiles/tile-behance.svg" href="https://www.behance.net/mariearnaud" label={contact.behance} external />
+      <ContactTile color="pink" src="/assets/contact-tiles/tile-flower.svg" heat />
+      <ContactTile color="green" src="/assets/contact-tiles/tile-linkedin.svg" href="https://www.linkedin.com/in/marie-arnaud-437a3b172/" label={contact.linkedin} external />
+      <ContactTile color="punchy" src="/assets/contact-tiles/tile-email.svg" href="mailto:m.arnaud85@icloud.com" label={contact.email} />
+      <ContactTile color="green" src="/assets/contact-tiles/tile-moka-face.svg" heat />
+    </div>
+  </section>
+</main>
+<Footer />

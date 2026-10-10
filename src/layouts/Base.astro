@@ -1,27 +1,33 @@
 ---
 import '../styles/global.css';
+import { useT, pathFor, locales, defaultLang } from '../i18n';
 
 interface Props {
   title?: string;
   description?: string;
 }
-const {
-  title = 'Eko Design — Marie Arnaud, Product Designer',
-  description = "Marie Arnaud — Product Designer senior spécialisée dans l'expérience de conversion. Sephora, SNCF, Pandacraft, Aigle. Nantes / Paris.",
-} = Astro.props;
-const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const lang = Astro.currentLocale ?? defaultLang;
+const t = useT(lang);
+const { title = t.meta.title, description = t.meta.description } = Astro.props;
+const url = (path: string) => new URL(path, Astro.site).href;
+const canonical = url(Astro.url.pathname);
+// Pages équivalentes dans chaque langue (hreflang), + x-default = FR
+const alternates = locales.map((l) => ({ lang: l, href: url(pathFor(Astro.url.pathname, l)) }));
 ---
 <!doctype html>
-<html lang="fr" data-theme="dark">
+<html lang={lang} data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <link rel="canonical" href={canonical} />
+    {alternates.map((a) => <link rel="alternate" hreflang={a.lang} href={a.href} />)}
+    <link rel="alternate" hreflang="x-default" href={url(pathFor(Astro.url.pathname, defaultLang))} />
     <meta name="description" content={description} />
     <meta property="og:title" content={title} />
     <meta property="og:url" content={canonical} />
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content={t.meta.ogLocale} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -37,7 +43,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     <slot name="head" />
   </head>
   <body>
-    <a class="skip-link" href="#main">Aller au contenu</a>
+    <a class="skip-link" href="#main">{t.skipLink}</a>
     <slot />
   </body>
 </html>

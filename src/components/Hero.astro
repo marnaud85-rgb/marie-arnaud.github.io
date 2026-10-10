@@ -1,5 +1,6 @@
 ---
-const alt = 'Eko Design — Marie, product designer, avec Moka le chat';
+import { useT, defaultLang } from '../i18n';
+const alt = useT(Astro.currentLocale ?? defaultLang).hero.alt;
 ---
 <div class="hero-band">
   <img class="hero-illus hero-illus-desktop" src="/assets/desktopekoheadillustration.svg" alt={alt} />
