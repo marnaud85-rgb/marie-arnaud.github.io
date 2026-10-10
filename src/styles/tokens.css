@@ -1,28 +1,37 @@
 /* ─────────────────────────────────────────────────────────────
    DESIGN TOKENS — source de vérité : Figma "Eko Design"
    (pages "Ui Kit" + "Landing pages"). Voir tokens.figma-reference.css
-   pour la traçabilité de l'extraction.
+   pour la traçabilité de l'extraction initiale.
 
-   Règle projet : jamais plus de variables que dans le Figma.
-   Ici : uniquement les tokens réellement utilisés par le site.
+   Palette B (validée le 2026-10) : AA + neutres teintés vers l'indigo.
+   Garde-fou : `npm run check:contrast` vérifie les paires déclarées dans
+   contrast-pairs.json (4,5:1 texte, 3:1 composants d'interface, dark ET light).
+
+   Règle projet : jamais plus de variables que dans le Figma. Les rôles
+   ajoutés (accent/*, border/field, border/button, text/on-accent) sont à
+   créer dans le Figma, voir le tableau de la PR.
 ───────────────────────────────────────────────────────────── */
 
 :root {
-  /* Accent — identiques dark & light */
+  /* Rampe d'accent — identique dark & light */
   --indigo:        #4F46E5;
-  --indigo-700:    #4338CA;
-  --indigo-m:      #6366F1;
-  --indigo-l:      #A5B4FC;
+  --indigo-m:      #6366F1;   /* décoratif (bordures, tuile Heart) */
+  --indigo-l:      #A5B4FC;   /* décoratif (jauge, halos) */
   --indigo-dim:    rgba(79,70,229,0.12);
-  --indigo-border: rgba(99,102,241,0.30);
-  --purple:        #D0C2EC;
-  --purple-soft:   #1A1535;
+  --indigo-border: rgba(99,102,241,0.30);   /* décoratif : ne porte pas d'information */
+
+  /* Palette de la page Landing */
   --accent-blue:         #123AF7;
   --accent-pink:         #FFD2E1;
   --accent-punchy-pink:  #FF77A5;
   --complementary-green: #00A594;
   --hero-gradient-from:  #F4C7E5;
   --hero-gradient-to:    #5860EF;
+
+  /* Rôles d'accent — identiques dark & light */
+  --accent:        #4F46E5;   /* accent/fill        : fond de bouton plein */
+  --accent-hover:  #4338CA;   /* accent/fill-hover  : survol */
+  --on-accent:     #FFFFFF;   /* text/on-accent     : texte sur fond d'accent (≥ 4,5:1) */
 
   /* Spacing */
   --s4:4px; --s8:8px; --s16:16px; --s24:24px; --s32:32px; --s48:48px; --s64:64px;
@@ -32,27 +41,34 @@
 
 /* ── DARK (Figma : Light theme = Off) ── */
 [data-theme="dark"] {
-  --bg:       #0F0F14;
-  --bg2:      #1C1C2E;
-  --nav-bg:   rgba(15,15,20,0.95);
+  --bg:       #0D0D17;
+  --bg2:      #181830;
+  --nav-bg:   rgba(13,13,23,0.92);
   --t1:       #EEEAE2;
   --t2:       rgba(238,234,226,0.80);
   --t3:       rgba(238,234,226,0.55);
-  --border:   #1A1A2E;
-  --border-m: rgba(238,234,226,0.15);
-  --icon-cta: #D0C2EC;
+  --border:   #26264A;
+  --border-m: rgba(238,234,226,0.18);
+  --icon-cta: #C7D2FE;
+  --accent-text:  #A5B4FC;   /* accent/text   : labels, liens, texte d'accent */
+  --accent-focus: #A5B4FC;   /* accent/focus  : anneau de focus clavier */
+  --field-border: #6366F1;   /* border/field  : bordure du champ de saisie (≥ 3:1) */
+  --btn-border:   #A5B4FC;   /* border/button : bordure des boutons secondaires */
 }
 
 /* ── LIGHT (Figma : Light theme = On) ── */
 [data-theme="light"] {
-  --bg:        #F7F6F2;
-  --bg2:       #EEEAF8;
-  --nav-bg:    rgba(247,246,242,0.97);
-  --t1:        #1A1A2E;
-  --t2:        rgba(26,26,46,0.80);
-  --t3:        rgba(26,26,46,0.55);
-  --border:    rgba(26,26,46,0.10);
-  --border-m:  rgba(26,26,46,0.18);
-  --purple-soft: #EDE8FA;
-  --icon-cta:  #1A1A2E;
+  --bg:        #F5F4FA;
+  --bg2:       #E9E7F7;
+  --nav-bg:    rgba(245,244,250,0.94);
+  --t1:        #17172B;
+  --t2:        rgba(23,23,43,0.80);
+  --t3:        rgba(23,23,43,0.68);
+  --border:    rgba(23,23,43,0.14);
+  --border-m:  rgba(23,23,43,0.22);
+  --icon-cta:  #17172B;
+  --accent-text:  #4338CA;
+  --accent-focus: #4F46E5;
+  --field-border: #6366F1;
+  --btn-border:   #4F46E5;
 }

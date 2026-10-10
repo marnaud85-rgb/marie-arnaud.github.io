@@ -34,8 +34,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
         document.documentElement.setAttribute('data-theme', localStorage.getItem('eko-theme') || 'dark');
       } catch (e) {}
     </script>
+    <slot name="head" />
   </head>
   <body>
+    <a class="skip-link" href="#main">Aller au contenu</a>
     <slot />
   </body>
 </html>

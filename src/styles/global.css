@@ -11,13 +11,17 @@
 @theme inline {
   --color-*: initial;
   --color-indigo: var(--indigo);
-  --color-indigo-700: var(--indigo-700);
   --color-indigo-m: var(--indigo-m);
   --color-indigo-l: var(--indigo-l);
   --color-indigo-dim: var(--indigo-dim);
   --color-indigo-border: var(--indigo-border);
-  --color-purple: var(--purple);
-  --color-purple-soft: var(--purple-soft);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-on-accent: var(--on-accent);
+  --color-accent-text: var(--accent-text);
+  --color-accent-focus: var(--accent-focus);
+  --color-field-border: var(--field-border);
+  --color-btn-border: var(--btn-border);
   --color-accent-blue: var(--accent-blue);
   --color-accent-pink: var(--accent-pink);
   --color-accent-punchy-pink: var(--accent-punchy-pink);

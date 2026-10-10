@@ -15,6 +15,13 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  contrast:
+    # Garde-fou accessibilité : échoue si un contraste déclaré passe sous WCAG AA
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - run: node scripts/check-contrast.mjs
+
   build:
     runs-on: ubuntu-latest
     steps:
@@ -24,7 +31,7 @@ jobs:
           node-version: 24
 
   deploy:
-    needs: build
+    needs: [contrast, build]
     runs-on: ubuntu-latest
     environment:
       name: github-pages
