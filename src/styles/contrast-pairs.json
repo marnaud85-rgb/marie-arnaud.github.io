@@ -1,0 +1,156 @@
+[
+ {
+  "id": "t1 sur fond",
+  "fg": "t1",
+  "bg": "bg",
+  "min": 4.5
+ },
+ {
+  "id": "t2 sur fond (nav, corps de texte)",
+  "fg": "t2",
+  "bg": "bg",
+  "min": 4.5
+ },
+ {
+  "id": "t3 sur fond (marquee)",
+  "fg": "t3",
+  "bg": "bg",
+  "min": 4.5
+ },
+ {
+  "id": "t3 sur barre Moka (placeholder)",
+  "fg": "t3",
+  "bg": [
+   "bg",
+   "indigo-dim"
+  ],
+  "min": 4.5
+ },
+ {
+  "id": "t1 dans une card",
+  "fg": "t1",
+  "bg": [
+   "bg",
+   "indigo-dim"
+  ],
+  "min": 4.5
+ },
+ {
+  "id": "t2 dans une card",
+  "fg": "t2",
+  "bg": [
+   "bg",
+   "indigo-dim"
+  ],
+  "min": 4.5
+ },
+ {
+  "id": "t1 sur bg2",
+  "fg": "t1",
+  "bg": "bg2",
+  "min": 4.5
+ },
+ {
+  "id": "t2 sur bg2 (projet survolé)",
+  "fg": "t2",
+  "bg": "bg2",
+  "min": 4.5
+ },
+ {
+  "id": "accent-text sur fond (labels, jauge, footer)",
+  "fg": "accent-text",
+  "bg": "bg",
+  "min": 4.5
+ },
+ {
+  "id": "accent-text dans une card",
+  "fg": "accent-text",
+  "bg": [
+   "bg",
+   "indigo-dim"
+  ],
+  "min": 4.5
+ },
+ {
+  "id": "accent-text sur bg2",
+  "fg": "accent-text",
+  "bg": "bg2",
+  "min": 4.5
+ },
+ {
+  "id": "accent-text dans bulle Moka (lien)",
+  "fg": "accent-text",
+  "bg": [
+   "bg",
+   "indigo-border"
+  ],
+  "min": 4.5
+ },
+ {
+  "id": "t1 dans bulle Moka",
+  "fg": "t1",
+  "bg": [
+   "bg",
+   "indigo-border"
+  ],
+  "min": 4.5
+ },
+ {
+  "id": "bouton plein : on-accent sur accent",
+  "fg": "on-accent",
+  "bg": "accent",
+  "min": 4.5
+ },
+ {
+  "id": "bouton plein au survol : on-accent sur accent-hover",
+  "fg": "on-accent",
+  "bg": "accent-hover",
+  "min": 4.5
+ },
+ {
+  "id": "btn-secondary : icon-cta sur fond",
+  "fg": "icon-cta",
+  "bg": "bg",
+  "min": 4.5
+ },
+ {
+  "id": "UI : bordure du champ Moka sur fond",
+  "fg": "field-border",
+  "bg": "bg",
+  "min": 3
+ },
+ {
+  "id": "UI : anneau de focus sur fond",
+  "fg": "accent-focus",
+  "bg": "bg",
+  "min": 3
+ },
+ {
+  "id": "UI : anneau de focus sur card",
+  "fg": "accent-focus",
+  "bg": [
+   "bg",
+   "indigo-dim"
+  ],
+  "min": 3
+ },
+ {
+  "id": "UI : bordure bouton secondaire sur fond",
+  "fg": "btn-border",
+  "bg": "bg",
+  "min": 3
+ },
+ {
+  "id": "conseil : bordure d'une pill sur fond",
+  "fg": "indigo-border",
+  "bg": "bg",
+  "min": 3,
+  "level": "advisory"
+ },
+ {
+  "id": "UI : jauge de questions (accent) sur fond",
+  "fg": "accent",
+  "bg": "bg",
+  "min": 3
+ }
+]

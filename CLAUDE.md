@@ -31,6 +31,9 @@ d'inventer. Si l'info n'y est pas, poser la question à Marie.
 - Commandes : `npm run dev` (local), `npm run build` puis `npm run preview` (vérifier `dist/`).
 - Déploiement : GitHub Actions (`.github/workflows/deploy.yml`) → GitHub Pages.
   Seul `dist/` est publié : `knowledge/`, `.claude/`, `fonts/` ne sont plus en ligne.
+- Contrastes : `npm run check:contrast` (paires dans `src/styles/contrast-pairs.json`, AA en dark ET light) ;
+  toute nouvelle paire texte/fond doit y être déclarée. Palette B validée (rôles `accent-text`,
+  `accent`, `on-accent`, `field-border`…) : ne pas utiliser `--indigo`/`--indigo-m` pour du texte.
 - Le chat Moka vit dans `src/components/MokaChat.astro` + `src/scripts/moka.js`.
 
 ## Les 5 phases du workflow
