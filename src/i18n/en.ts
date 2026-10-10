@@ -28,8 +28,8 @@ export const en: Dict = {
     'Succession', 'Zelda TOTK', 'Spirited Away', 'Naruto Shippuden',
   ],
   moka: {
-    title: 'Trust Moka 🐱',
-    greeting: "Hi! I'm Moka, Marie's assistant. Ask me anything. 😊",
+    title: 'Ask Moka anything 🐱',
+    greeting: "Hi! I'm Moka, Marie's assistant. What would you like to know? 😊",
     placeholder: 'Type a message…',
     inputLabel: 'Message to Moka',
     send: 'Send',
@@ -54,19 +54,19 @@ export const en: Dict = {
       paragraphs: [
         'I moved from agency mode to product mode. The agency taught me speed and versatility. A UI project on Monday, a complex topic by Wednesday.',
         'Sephora gave me depth: Scrum, large-scale processes and solid experience in conversion funnels.',
-        "I'm curious and ambitious, and I like to push the innovation cursor in my projects. My method? I secure and de-risk my design choices with user feedback and data, then deliver creative, tailor-made solutions. A true early adopter, I spend my time testing the latest Figma betas. This site is a demo of my craft. Feel free to ask Moka your questions!",
+        "I'm curious and ambitious, and I love pushing the boundaries of innovation in my projects. My method? I secure and de-risk my design choices with user feedback and data, then deliver creative, tailor-made solutions. A true early adopter, I spend my time testing the latest Figma betas. This site is a demo of my craft. Feel free to ask Moka your questions!",
       ],
     },
     passions: {
-      label: 'Outside design',
+      label: 'Beyond design',
       title: 'Passions',
-      items: ['Zelda Tears of the Kingdom', 'Interior design', 'Japanese culture', 'Reading'],
+      items: ['Zelda: Tears of the Kingdom', 'Interior design', 'Japanese culture', 'Reading'],
     },
     role: {
       label: 'Current role · 4 years',
       title: 'Sephora',
       scope: 'Scope Convert · Web & App · International',
-      text: "I lead the checkout experience, from cart to purchase confirmation. Reconciling business, tech and legal constraints into a smooth journey: that's my daily work.",
+      text: "I own the checkout experience, from cart to purchase confirmation. Reconciling business, tech and legal constraints into a smooth journey: that's my daily work.",
     },
     skills: {
       label: 'Expertise',
@@ -87,15 +87,15 @@ export const en: Dict = {
         label: 'E-commerce',
         title: 'Pandacraft',
         href: 'https://www.pandacraft.fr',
-        text: 'UX optimisation of the subscription funnel, UI reinforcement of the product range and kit modules, and a coherent design system built from scratch.',
+        text: 'UX optimisation of the subscription funnel, UI improvements on the product range and kit modules, and a coherent design system built from scratch.',
         quote: 'I was lucky to work with Swan Robbes for a good while. We collaborated daily through an Asana backlog, a tool I really like, much nicer than Jira in my opinion. 😊',
       },
       {
         label: 'Transport',
         title: 'SNCF Abonnement',
         href: 'https://www.abonnement-regional.sncf/region/PDL/produit/UF08_DIGITAL_Abonnement%20tutti%20annuel%20monomodal%20NASA',
-        text: 'Redesign of a white-label regional (TER) subscription platform. Subscription, payment and a responsive subscriber area.',
-        quote: "I worked directly with SNCF's design teams, with the work split by product. That's where I really got my foot in the door on accessibility.",
+        text: 'Redesign of a white-label subscription platform for TER regional trains. Subscription, payment and a responsive subscriber area.',
+        quote: "I worked directly with SNCF's design teams, with the work split by product. That's where I really got started on accessibility.",
       },
       {
         label: 'Fashion & Outdoor',
