@@ -1,0 +1,58 @@
+/* ─────────────────────────────────────────────────────────────
+   DESIGN TOKENS — source de vérité : Figma "Eko Design"
+   (pages "Ui Kit" + "Landing pages"). Voir tokens.figma-reference.css
+   pour la traçabilité de l'extraction.
+
+   Règle projet : jamais plus de variables que dans le Figma.
+   Ici : uniquement les tokens réellement utilisés par le site.
+───────────────────────────────────────────────────────────── */
+
+:root {
+  /* Accent — identiques dark & light */
+  --indigo:        #4F46E5;
+  --indigo-700:    #4338CA;
+  --indigo-m:      #6366F1;
+  --indigo-l:      #A5B4FC;
+  --indigo-dim:    rgba(79,70,229,0.12);
+  --indigo-border: rgba(99,102,241,0.30);
+  --purple:        #D0C2EC;
+  --purple-soft:   #1A1535;
+  --accent-blue:         #123AF7;
+  --accent-pink:         #FFD2E1;
+  --accent-punchy-pink:  #FF77A5;
+  --complementary-green: #00A594;
+  --hero-gradient-from:  #F4C7E5;
+  --hero-gradient-to:    #5860EF;
+
+  /* Spacing */
+  --s4:4px; --s8:8px; --s16:16px; --s24:24px; --s32:32px; --s48:48px; --s64:64px;
+  /* Radius */
+  --r4:4px; --r8:8px; --r12:12px; --rpill:100px;
+}
+
+/* ── DARK (Figma : Light theme = Off) ── */
+[data-theme="dark"] {
+  --bg:       #0F0F14;
+  --bg2:      #1C1C2E;
+  --nav-bg:   rgba(15,15,20,0.95);
+  --t1:       #EEEAE2;
+  --t2:       rgba(238,234,226,0.80);
+  --t3:       rgba(238,234,226,0.55);
+  --border:   #1A1A2E;
+  --border-m: rgba(238,234,226,0.15);
+  --icon-cta: #D0C2EC;
+}
+
+/* ── LIGHT (Figma : Light theme = On) ── */
+[data-theme="light"] {
+  --bg:        #F7F6F2;
+  --bg2:       #EEEAF8;
+  --nav-bg:    rgba(247,246,242,0.97);
+  --t1:        #1A1A2E;
+  --t2:        rgba(26,26,46,0.80);
+  --t3:        rgba(26,26,46,0.55);
+  --border:    rgba(26,26,46,0.10);
+  --border-m:  rgba(26,26,46,0.18);
+  --purple-soft: #EDE8FA;
+  --icon-cta:  #1A1A2E;
+}

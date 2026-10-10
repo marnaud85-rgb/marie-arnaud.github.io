@@ -1,0 +1,15 @@
+---
+interface Props {
+  label: string;
+  title: string;
+  flex: number;
+  minWidth: number;
+}
+// min-width neutralisé en mobile par `.card{min-width:0!important}` (base.css)
+const { label, title, flex, minWidth } = Astro.props;
+---
+<div class="card" style={`flex:${flex};min-width:${minWidth}px`}>
+  <div class="card-lbl">{label}</div>
+  <div class="card-ttl">{title}</div>
+  <slot />
+</div>

@@ -1,0 +1,43 @@
+---
+const pills = [
+  { label: 'Résumer le profil', q: 'Résume le profil de Marie en 3 points clés' },
+  { label: 'Passions', q: 'Quelles sont les passions de Marie ?' },
+  { label: 'Projets', q: 'Quels sont les projets en production de Marie ?' },
+  { label: 'Contacts', q: 'Comment contacter Marie ?' },
+];
+---
+<section class="moka-section">
+  <div class="moka">
+    <h1 class="moka-title">Fiez-vous à Moka 🐱</h1>
+
+    <div class="moka-msgs" id="messages">
+      <div class="msg ai">
+        <div class="msg-av ai">✦</div>
+        <div class="msg-bubble">Bonjour ! Je suis Moka, l'assistante de Marie, posez-moi n'importe quelle question. 😊</div>
+      </div>
+    </div>
+
+    <div class="moka-bar">
+      <input class="moka-input" id="chat-input" type="text" placeholder="Écrivez un message…" aria-label="Message à Moka" />
+      <button class="btn-primary" id="send-btn" aria-label="Envoyer">
+        Envoyer
+        <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+      </button>
+    </div>
+
+    <div class="gauge-row">
+      <div class="gauge-track">
+        <div class="gauge-fill" id="gauge-fill" style="width:0%"></div>
+      </div>
+      <div class="gauge-label"><b id="q-count">0</b>/5 questions</div>
+    </div>
+
+    <div class="pills-row">
+      {pills.map((p) => <button class="pill" data-q={p.q}>{p.label}</button>)}
+    </div>
+  </div>
+</section>
+
+<script>
+  import '../scripts/moka.js';
+</script>
