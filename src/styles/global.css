@@ -1,0 +1,40 @@
+/* Tailwind v4 SANS Preflight : le site a son propre reset (base.css) et la migration
+   doit rester identique à l'existant. À réévaluer quand le CSS sera converti en utilitaires. */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+@import "./tokens.css";
+
+/* Expose les tokens (variables CSS ci-dessus) comme utilitaires Tailwind.
+   `inline` : l'utilitaire référence var(--x) directement, donc le swap
+   [data-theme] fonctionne sans variante `dark:`. */
+@theme inline {
+  --color-*: initial;
+  --color-indigo: var(--indigo);
+  --color-indigo-700: var(--indigo-700);
+  --color-indigo-m: var(--indigo-m);
+  --color-indigo-l: var(--indigo-l);
+  --color-indigo-dim: var(--indigo-dim);
+  --color-indigo-border: var(--indigo-border);
+  --color-purple: var(--purple);
+  --color-purple-soft: var(--purple-soft);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-pink: var(--accent-pink);
+  --color-accent-punchy-pink: var(--accent-punchy-pink);
+  --color-complementary-green: var(--complementary-green);
+  --color-bg: var(--bg);
+  --color-bg2: var(--bg2);
+  --color-nav-bg: var(--nav-bg);
+  --color-t1: var(--t1);
+  --color-t2: var(--t2);
+  --color-t3: var(--t3);
+  --color-line: var(--border);
+  --color-line-m: var(--border-m);
+  --radius-*: initial;
+  --radius-xs: var(--r4);
+  --radius-sm: var(--r8);
+  --radius-md: var(--r12);
+  --radius-pill: var(--rpill);
+}
+
+@import "./base.css";

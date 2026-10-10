@@ -1,0 +1,25 @@
+---
+import ArrowIcon from './ArrowIcon.astro';
+
+interface Props {
+  label: string;
+  title: string;
+  href: string;
+  quote: string;
+}
+const { label, title, href, quote } = Astro.props;
+---
+<div class="proj-card" style="display:flex;flex-direction:column;">
+  <div class="proj-top" style="flex:1">
+    <div class="card-lbl">{label}</div>
+    <div class="card-ttl">{title}</div>
+    <div class="card-body"><slot /></div>
+  </div>
+  <div>
+    <div class="btn-visit">
+      <a href={href} target="_blank" rel="noopener">Visiter le site</a>
+      <div class="btn-visit-icon"><ArrowIcon /></div>
+    </div>
+    <p class="proj-italic">{quote}</p>
+  </div>
+</div>

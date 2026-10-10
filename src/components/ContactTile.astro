@@ -1,0 +1,22 @@
+---
+interface Props {
+  color: 'blue' | 'green' | 'punchy' | 'indigo' | 'pink';
+  src: string;
+  href?: string;
+  label?: string;
+  external?: boolean;
+  heat?: boolean;
+}
+const { color, src, href, label, external = false, heat = false } = Astro.props;
+const cls = `discutons-tile bg-${color}`;
+// Sans href : tuile décorative (pas un lien, masquée aux technologies d'assistance).
+---
+{href ? (
+  <a class={`${cls} is-link`} href={href} aria-label={label} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}>
+    <img src={src} alt="" />
+  </a>
+) : (
+  <div class={cls} aria-hidden="true">
+    <img class={heat ? 'tile-fx-heat' : undefined} src={src} alt="" />
+  </div>
+)}

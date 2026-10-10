@@ -23,6 +23,16 @@ Deux documents de référence sont à charger en priorité au démarrage d'une s
 Quand une information sur Marie manque, s'appuyer sur ces fichiers plutôt que
 d'inventer. Si l'info n'y est pas, poser la question à Marie.
 
+## Stack technique
+
+- **Astro** (site statique) + **Tailwind v4** (CSS-first, sans Preflight pour l'instant).
+- `src/styles/tokens.css` = tokens Figma (variables CSS, thèmes `[data-theme]`), exposés
+  comme utilitaires Tailwind dans `src/styles/global.css` (`@theme inline`).
+- Commandes : `npm run dev` (local), `npm run build` puis `npm run preview` (vérifier `dist/`).
+- Déploiement : GitHub Actions (`.github/workflows/deploy.yml`) → GitHub Pages.
+  Seul `dist/` est publié : `knowledge/`, `.claude/`, `fonts/` ne sont plus en ligne.
+- Le chat Moka vit dans `src/components/MokaChat.astro` + `src/scripts/moka.js`.
+
 ## Les 5 phases du workflow
 
 Chaque phase correspond à une skill dédiée. Charger la skill correspondante dès

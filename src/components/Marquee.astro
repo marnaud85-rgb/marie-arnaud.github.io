@@ -1,0 +1,15 @@
+---
+const items = [
+  'Kaamelott', 'Severance', 'Burger Quiz', 'Sin City', 'Malcolm', 'Kill Bill',
+  'Succession', 'Zelda TOTK', 'Le voyage de Chihiro', 'Naruto Shippuden',
+];
+// Liste doublée : la boucle CSS (translateX -50%) est ainsi continue.
+const loop = [...items, ...items];
+---
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-inner">
+    {loop.map((name) => (
+      <span class="marquee-item">{name}<span class="marquee-dot" aria-hidden="true">✦</span></span>
+    ))}
+  </div>
+</div>
