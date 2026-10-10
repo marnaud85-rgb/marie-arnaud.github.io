@@ -152,5 +152,26 @@
   "fg": "accent",
   "bg": "bg",
   "min": 3
+ },
+ {
+  "id": "UI : interrupteur thème, curseur (accent-text) sur sa piste",
+  "fg": "accent-text",
+  "bg": [
+   "bg",
+   "indigo-dim"
+  ],
+  "min": 3
+ },
+ {
+  "id": "interrupteur FR/EN : libellé inactif (t2) sur fond",
+  "fg": "t2",
+  "bg": "bg",
+  "min": 4.5
+ },
+ {
+  "id": "interrupteur thème : icône inactive (t3) sur fond",
+  "fg": "t3",
+  "bg": "bg",
+  "min": 4.5
  }
 ]

@@ -1,6 +1,5 @@
 /* Light mode — les rôles (--btn-border, --icon-cta, --field-border) portent déjà le thème */
 [data-theme="light"] .btn-secondary{box-shadow:0 2px 4px rgba(79,70,229,0.2)}
-[data-theme="light"] .btn-icon img{filter:brightness(0)}
 [data-theme="light"] .btn-secondary img{filter:brightness(0)}
 [data-theme="light"] .nav-links a{color:var(--t1)}
 [data-theme="light"] .card{box-shadow:0 1px 4px rgba(23,23,43,0.08)}
@@ -63,16 +62,6 @@ nav{
 }
 .btn-secondary:hover{background:var(--indigo-dim);border-color:var(--accent-text);color:var(--accent-text);box-shadow:0 2px 8px rgba(165,180,252,0.45)}
 .btn-secondary svg{width:16px;height:16px;fill:var(--icon-cta);flex-shrink:0}
-.btn-icon{
-  width:40px;height:40px;
-  display:flex;align-items:center;justify-content:center;
-  border:1px solid var(--btn-border);border-radius:var(--r4);
-  background:transparent;cursor:pointer;
-  box-shadow:0 2px 4px rgba(165,180,252,0.3);
-  transition:all .18s;color:var(--t2);
-}
-.btn-icon:hover{background:var(--indigo-dim);border-color:var(--accent-text);color:var(--accent-text)}
-.btn-icon svg{width:18px;height:18px;fill:var(--icon-cta)}
 
 /* ─────────────────────────────────────────
    HERO — dégradé + illustration assemblée par Marie
@@ -256,9 +245,6 @@ footer{display:flex;align-items:center;justify-content:space-between;padding:var
 [data-theme="light"] .marquee-strip{border-color:rgba(26,26,46,0.10)}
 
 .ic-arrow{width:16px;height:16px;flex-shrink:0;fill:var(--icon-cta);transition:fill .2s}
-.theme-ic{display:none;fill:var(--icon-cta);transition:fill .2s}
-[data-theme="dark"]  .theme-ic-moon{display:block}
-[data-theme="light"] .theme-ic-sun{display:block}
 
 /* ─────────────────────────────────────────
    ACCESSIBILITÉ — focus clavier + lien d'évitement
@@ -273,5 +259,43 @@ footer{display:flex;align-items:center;justify-content:space-between;padding:var
 }
 .skip-link:focus-visible{transform:none}
 
-/* Sélecteur de langue : un lien (pas d'état JS), même gabarit que le bouton de thème */
-.lang-switch{font-size:13px;font-weight:800;text-decoration:none;letter-spacing:.04em}
+/* ─────────────────────────────────────────
+   INTERRUPTEURS — thème (lune ○ soleil) et langue (FR ○ EN)
+───────────────────────────────────────── */
+.toggle{
+  display:inline-flex;align-items:center;gap:var(--s8);
+  height:40px;padding:0 var(--s8);
+  border:1px solid var(--btn-border);border-radius:var(--rpill);
+  background:transparent;color:var(--t2);cursor:pointer;text-decoration:none;
+  font-family:'Nunito',sans-serif;
+}
+.toggle:hover{background:var(--indigo-dim)}
+.tg-ic{fill:var(--t3);flex-shrink:0}
+[data-theme="dark"]  .tg-moon,
+[data-theme="light"] .tg-sun{fill:var(--accent-text)}
+.tg-track{
+  position:relative;width:36px;height:20px;flex-shrink:0;
+  border-radius:var(--rpill);border:1px solid var(--btn-border);background:var(--indigo-dim);
+}
+.tg-thumb{
+  position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;
+  background:var(--accent-text); /* accent-text : 3:1 minimum contre la piste en dark ET en light */
+}
+[data-theme="light"] .tg-thumb{transform:translateX(16px)}
+
+.lang-toggle{padding:3px}
+.tg-lang{position:relative;display:grid;grid-template-columns:1fr 1fr;width:68px;height:32px}
+.tg-seg{
+  position:relative;z-index:1;display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:800;letter-spacing:.04em;color:var(--t2);
+}
+.tg-pill{position:absolute;top:0;left:0;width:50%;height:100%;border-radius:var(--rpill);background:var(--accent)}
+.lang-toggle.is-fr .tg-fr,
+.lang-toggle.is-en .tg-en{color:var(--on-accent)}
+.lang-toggle.is-en .tg-pill{transform:translateX(100%)}
+
+@media (prefers-reduced-motion:no-preference){
+  .tg-thumb,.tg-pill{transition:transform .22s cubic-bezier(.3,.7,.2,1)}
+  .tg-seg,.tg-ic{transition:color .22s,fill .22s}
+}
+@media(max-width:520px){.nav-linkedin{display:none}} /* déjà dans « Discutons » ; libère la place des interrupteurs */
